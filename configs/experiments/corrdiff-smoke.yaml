@@ -1,0 +1,67 @@
+name: corrdiff-smoke
+paths:
+  project: ???
+  upstream: ???
+  dataset: ???
+  run: ???
+
+# 用完整空间网格、缩小的网络和少量训练步验证流程。
+smoke:
+  training_images: 8
+  ensemble_members: 4
+  denoising_steps: 4
+  times: '[2021-02-01T00:00:00,2021-02-01T01:00:00]'
+
+example: ${paths.upstream}/examples/weather/corrdiff
+regression_checkpoint: ${paths.run}/regression/checkpoints_regression/CorrDiffRegressionUNet.0.${smoke.training_images}.mdlus
+diffusion_checkpoint: ${paths.run}/diffusion/checkpoints_diffusion/EDMPrecondSuperResolution.0.${smoke.training_images}.mdlus
+samples: ${paths.run}/sampling/samples.nc
+metrics: ${paths.run}/evaluation/metrics.nc
+
+training_args:
+  - dataset.data_path=${paths.dataset}
+  - training.hp.training_duration=${smoke.training_images}
+  - training.hp.total_batch_size=1
+  - training.hp.batch_size_per_gpu=1
+  - training.hp.lr_rampup=0
+  - training.perf.dataloader_workers=0
+  - training.io.print_progress_freq=2
+  - training.io.validation_steps=1
+  - ++model.model_args.model_channels=32
+  - ++model.model_args.channel_mult=[1,2,2,2,2]
+  - ++model.model_args.num_blocks=1
+  - ++model.model_args.attn_resolutions=[28]
+  - wandb.mode=disabled
+  - hydra.run.dir=.
+
+stages:
+  - name: regression
+    script: ${example}/train.py
+    common_args: ${training_args}
+    args:
+      - --config-name=config_training_taiwan_regression
+    outputs: ["${regression_checkpoint}"]
+  - name: diffusion
+    script: ${example}/train.py
+    common_args: ${training_args}
+    args:
+      - --config-name=config_training_taiwan_diffusion
+      - training.io.regression_checkpoint_path=${regression_checkpoint}
+    outputs: ["${diffusion_checkpoint}"]
+  - name: sampling
+    script: ${example}/generate.py
+    args:
+      - --config-name=config_generate_taiwan
+      - dataset.data_path=${paths.dataset}
+      - generation.io.reg_ckpt_filename=${regression_checkpoint}
+      - generation.io.res_ckpt_filename=${diffusion_checkpoint}
+      - ++generation.io.output_filename=${samples}
+      - generation.num_ensembles=${smoke.ensemble_members}
+      - generation.times=${smoke.times}
+      - sampler.num_steps=${smoke.denoising_steps}
+      - hydra.run.dir=.
+    outputs: ["${samples}"]
+  - name: evaluation
+    script: ${paths.project}/scripts/score_ensemble.py
+    args: ["${samples}", "${metrics}"]
+    outputs: ["${metrics}"]

@@ -1,0 +1,14 @@
+/external/
+/data/
+/checkpoints/
+/runs/
+__pycache__/
+
+# 编辑器只共享项目级配置
+/.idea/*
+!/.idea/vcs.xml
+/.vscode/*
+!/.vscode/settings.json
+
+# 参考论文的本地副本
+/reference/**/*.pdf
