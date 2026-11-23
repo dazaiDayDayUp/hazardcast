@@ -5,7 +5,7 @@ paths:
   dataset: ???
   run: ???
 
-# 使用 NGC 正式权重进行论文表 1 评估，不执行训练。
+# 使用 NGC 发布权重生成 205 时刻集合；其训练包含 2021 年，不得作为论文留出对照。
 times: ???
 ensemble_members: 32
 denoising_steps: 18
