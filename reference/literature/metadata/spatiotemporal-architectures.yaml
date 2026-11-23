@@ -1,0 +1,374 @@
+topic: spatiotemporal-architectures
+papers:
+  - id: shi2015convlstm
+    title: "Convolutional LSTM Network: A Machine Learning Approach for Precipitation Nowcasting"
+    authors:
+      - Xingjian Shi
+      - Zhourong Chen
+      - Hao Wang
+      - Dit-Yan Yeung
+      - Wai-kin Wong
+      - Wang-chun Woo
+    year: 2015
+    venue: "Advances in Neural Information Processing Systems 28 (NIPS 2015)"
+    doi: null
+    url: "https://proceedings.neurips.cc/paper/2015/hash/07563a3fe3bbe7e3ba84431ad9d055af-Abstract.html"
+    oa_url: "https://proceedings.neurips.cc/paper/2015/file/07563a3fe3bbe7e3ba84431ad9d055af-Paper.pdf"
+    pdf_path: "reference/papers/spatiotemporal-architectures/shi2015convlstm.pdf"
+    sha256: "60ec1bca22ce97404b898d5ce249e2893f1678604c230efbc3132eef2af074fa"
+    access: downloaded
+    methods:
+      - ConvLSTM
+      - 编码器—预测器
+      - 端到端确定性时空序列预测
+    datasets:
+      - Moving-MNIST
+      - 香港天文台雷达回波数据集
+    metrics:
+      - MSE
+      - Cross-Entropy
+      - Rainfall-MSE
+      - CSI
+      - FAR
+      - POD
+      - 相关系数
+    relevance: "ConvLSTM 是把格点天气序列的空间结构与递归状态统一起来的奠基基线，可直接与相同编码器和解码器下的 CfC 时间核心比较。它适合检验连续时间单元是否真正优于离散递归，但局部卷积感受野、固定时间步和确定性输出不能单独解决跨尺度传播与小时段内高频重建。"
+    verified_at: 2026-11-23
+
+  - id: wang2017predrnn
+    title: "PredRNN: Recurrent Neural Networks for Predictive Learning using Spatiotemporal LSTMs"
+    authors:
+      - Yunbo Wang
+      - Mingsheng Long
+      - Jianmin Wang
+      - Zhifeng Gao
+      - Philip S. Yu
+    year: 2017
+    venue: "Advances in Neural Information Processing Systems 30 (NIPS 2017)"
+    doi: null
+    url: "https://proceedings.neurips.cc/paper/2017/hash/e5f6ad6ce374177eef023bf5d0c018b6-Abstract.html"
+    oa_url: "https://proceedings.neurips.cc/paper/2017/file/e5f6ad6ce374177eef023bf5d0c018b6-Paper.pdf"
+    pdf_path: "reference/papers/spatiotemporal-architectures/wang2017predrnn.pdf"
+    sha256: "f280ba06d6a50e6622b440cffe76af56598715ef130266d36025c8b04a8821e0"
+    access: downloaded
+    methods:
+      - ST-LSTM
+      - 跨层与时间方向的双记忆流
+      - PredRNN
+    datasets:
+      - Moving MNIST
+      - KTH Action
+      - 广州雷达回波数据集
+    metrics:
+      - MSE
+      - Cross-Entropy
+      - PSNR
+      - SSIM
+      - 训练时间
+      - 显存占用
+    relevance: "PredRNN 将层间空间记忆和层内时间记忆显式分流，为 CfC 隐状态与 CorrDiff 多尺度特征之间如何交换信息提供了结构参照。雷达回波实验增强了项目相关性，但逐步串行计算成本较高，双记忆仍是离散更新，且长滚动预测会累积平滑与误差。"
+    verified_at: 2026-11-23
+
+  - id: leguen2020phydnet
+    title: "Disentangling Physical Dynamics From Unknown Factors for Unsupervised Video Prediction"
+    authors:
+      - Vincent Le Guen
+      - Nicolas Thome
+    year: 2020
+    venue: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2020)"
+    doi: "10.1109/CVPR42600.2020.01149"
+    url: "https://openaccess.thecvf.com/content_CVPR_2020/html/Le_Guen_Disentangling_Physical_Dynamics_From_Unknown_Factors_for_Unsupervised_Video_Prediction_CVPR_2020_paper.html"
+    oa_url: "https://openaccess.thecvf.com/content_CVPR_2020/papers/Le_Guen_Disentangling_Physical_Dynamics_From_Unknown_Factors_for_Unsupervised_Video_Prediction_CVPR_2020_paper.pdf"
+    pdf_path: "reference/papers/spatiotemporal-architectures/leguen2020phydnet.pdf"
+    sha256: "bd40c74d1191881d114eabf278fb8837fda48f3742de373c143492742291f638"
+    access: downloaded
+    methods:
+      - PhyDNet 双分支解耦
+      - PhyCell 潜空间 PDE 约束递归
+      - 物理分支与残差分支
+      - 数据同化式预测—校正
+    datasets:
+      - Moving MNIST
+      - Traffic BJ
+      - Sea Surface Temperature (SST)
+      - Human3.6M
+    metrics:
+      - MSE
+      - MAE
+      - SSIM
+      - 长时预测误差
+      - 缺失输入鲁棒性
+    relevance: "PhyDNet 是本项目物理增强最直接的结构参照：可让物理分支承担已知输运或守恒倾向，让 CfC 或轻量残差分支表达未建模过程，并做分支消融。其 PhyCell 学习的是通用微分算子组合而非大气控制方程，不能据此声称满足真实天气物理，仍需独立检查守恒和极端事件。"
+    verified_at: 2026-11-23
+
+  - id: li2021fno
+    title: "Fourier Neural Operator for Parametric Partial Differential Equations"
+    authors:
+      - Zongyi Li
+      - Nikola Kovachki
+      - Kamyar Azizzadenesheli
+      - Burigede Liu
+      - Kaushik Bhattacharya
+      - Andrew Stuart
+      - Anima Anandkumar
+    year: 2021
+    venue: "International Conference on Learning Representations (ICLR 2021)"
+    doi: null
+    url: "https://openreview.net/forum?id=c8P9NQVtmnO"
+    oa_url: "https://arxiv.org/pdf/2010.08895"
+    pdf_path: "reference/papers/spatiotemporal-architectures/li2021fno.pdf"
+    sha256: "6cd2645d4a50d1a61a261529b33747c674d78851bdbe6993b0961f81a17dc6f2"
+    access: downloaded
+    methods:
+      - Fourier Neural Operator
+      - 频域积分核参数化
+      - 函数空间算子学习
+      - 零样本超分辨
+    datasets:
+      - Burgers 方程
+      - Darcy 流
+      - Navier–Stokes 方程（含湍流）
+    metrics:
+      - 相对 L2 误差
+      - 跨分辨率误差
+      - 推理时间
+      - 贝叶斯反问题精度
+    relevance: "FNO 为 CorrDiff+CfC 提供跨网格的全局空间混合模块，其零样本超分辨结果尤其适合设计“训练网格之外”的分辨率泛化对照。原文验证集中于规则网格 PDE，截断高频与全局谱卷积可能损害局地极端和非周期边界，也不能替代 CfC 的显式时间状态建模。"
+    verified_at: 2026-11-23
+
+  - id: pfaff2021meshgraphnets
+    title: "Learning Mesh-Based Simulation with Graph Networks"
+    authors:
+      - Tobias Pfaff
+      - Meire Fortunato
+      - Alvaro Sanchez-Gonzalez
+      - Peter W. Battaglia
+    year: 2021
+    venue: "International Conference on Learning Representations (ICLR 2021)"
+    doi: null
+    url: "https://openreview.net/forum?id=roNqYL0_XP"
+    oa_url: "https://arxiv.org/pdf/2010.03409"
+    pdf_path: "reference/papers/spatiotemporal-architectures/pfaff2021meshgraphnets.pdf"
+    sha256: "d5a9e09b4b8d559121bc67cbaa020fe61326cc8296637cb4dab4dc86d495f625"
+    access: downloaded
+    methods:
+      - MeshGraphNets
+      - 编码器—消息传递处理器—解码器
+      - 网格图多步模拟
+      - 自适应网格与分辨率泛化
+    datasets:
+      - CylinderFlow
+      - Airfoil
+      - DeformingPlate
+      - FlagSimple
+      - FlagDynamic
+      - SphereDynamic
+    metrics:
+      - 单步 RMSE
+      - 整段 rollout RMSE
+      - 跨网格规模泛化
+      - 推理加速比
+    relevance: "MeshGraphNets 说明如何在非规则、自适应离散上传播物理状态，可启发区域天气中地形感知节点、稀疏图校正和多尺度网格设计。它并未验证大气公里尺度重建，图构建与多轮消息传递增加成本，单步拟合和滚动稳定性也不能直接转化为时间插值能力。"
+    verified_at: 2026-11-23
+
+  - id: gao2022simvp
+    title: "SimVP: Simpler Yet Better Video Prediction"
+    authors:
+      - Zhangyang Gao
+      - Cheng Tan
+      - Lirong Wu
+      - Stan Z. Li
+    year: 2022
+    venue: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2022)"
+    doi: "10.1109/CVPR52688.2022.00317"
+    url: "https://openaccess.thecvf.com/content/CVPR2022/html/Gao_SimVP_Simpler_Yet_Better_Video_Prediction_CVPR_2022_paper.html"
+    oa_url: "https://openaccess.thecvf.com/content/CVPR2022/papers/Gao_SimVP_Simpler_Yet_Better_Video_Prediction_CVPR_2022_paper.pdf"
+    pdf_path: "reference/papers/spatiotemporal-architectures/gao2022simvp.pdf"
+    sha256: "c38f4f54286c1dc81b849332202eb9b0aa54ba9b40a15457ec60e1a1c9905abc"
+    access: downloaded
+    methods:
+      - 纯 CNN 编码器—时间转换器—解码器
+      - 多尺度卷积
+      - 端到端 MSE 训练
+      - 非递归时空预测
+    datasets:
+      - Moving MNIST
+      - TrafficBJ
+      - Human3.6M
+      - KTH
+      - KITTI → Caltech Pedestrian
+    metrics:
+      - MSE
+      - MAE
+      - SSIM
+      - PSNR
+      - FLOPs
+      - 显存占用
+      - 训练时间
+    relevance: "SimVP 是判断复杂时间单元是否必要的强简单基线：项目应复用其空间编码、隐空间时间转换和多尺度解码思想，再仅替换为 CfC 做公平消融。原模型不具连续时间语义且以 MSE 训练，容易平滑细尺度；原始同分辨率视频接口也需加入空间上采样和时间条件才能服务本项目。"
+    verified_at: 2026-11-23
+
+  - id: gao2022earthformer
+    title: "Earthformer: Exploring Space-Time Transformers for Earth System Forecasting"
+    authors:
+      - Zhihan Gao
+      - Xingjian Shi
+      - Hao Wang
+      - Yi Zhu
+      - Yuyang Wang
+      - Mu Li
+      - Dit-Yan Yeung
+    year: 2022
+    venue: "Advances in Neural Information Processing Systems 35 (NeurIPS 2022)"
+    doi: null
+    url: "https://proceedings.neurips.cc/paper_files/paper/2022/hash/a2affd71d15e8fedffe18d0219f4837a-Abstract-Conference.html"
+    oa_url: "https://proceedings.neurips.cc/paper_files/paper/2022/file/a2affd71d15e8fedffe18d0219f4837a-Paper-Conference.pdf"
+    pdf_path: "reference/papers/spatiotemporal-architectures/gao2022earthformer.pdf"
+    sha256: "cda538973f981723a49e84d9c37eeecd6ffc33bdcee62ec49f45297906a9f883"
+    access: downloaded
+    methods:
+      - 层次化时空 Transformer
+      - Cuboid Attention
+      - 全局向量
+      - 轴向与局部时空注意力
+    datasets:
+      - MovingMNIST
+      - N-body MNIST
+      - SEVIR
+      - ICAR-ENSO
+    metrics:
+      - MSE
+      - 多阈值 CSI
+      - Niño3.4 相关技巧
+      - 参数量
+      - GFLOPs
+    relevance: "Earthformer 直接面向降水短临和 ENSO，可用 Cuboid Attention 控制公里尺度序列的注意力成本，并用全局向量补充大尺度天气背景，是 CfC 时间核心的重要替代架构。论文明确指出其确定性预测会模糊小尺度且未利用物理知识；局部分块还可能在块边界和快速平移场上产生归纳偏置。"
+    verified_at: 2026-11-23
+
+  - id: pathak2022fourcastnet
+    title: "FourCastNet: A Global Data-driven High-resolution Weather Model using Adaptive Fourier Neural Operators"
+    authors:
+      - Jaideep Pathak
+      - Shashank Subramanian
+      - Peter Harrington
+      - Sanjeev Raja
+      - Ashesh Chattopadhyay
+      - Morteza Mardani
+      - Thorsten Kurth
+      - David Hall
+      - Zongyi Li
+      - Kamyar Azizzadenesheli
+      - Pedram Hassanzadeh
+      - Karthik Kashinath
+      - Animashree Anandkumar
+    year: 2022
+    venue: "arXiv:2202.11214"
+    doi: "10.48550/arXiv.2202.11214"
+    url: "https://arxiv.org/abs/2202.11214"
+    oa_url: "https://arxiv.org/pdf/2202.11214"
+    pdf_path: "reference/papers/spatiotemporal-architectures/pathak2022fourcastnet.pdf"
+    sha256: "cee61c60a35e9533f59dcebb8c621faa6e2f9b1bddfa0e7048d809b38d42e1d8"
+    access: downloaded
+    methods:
+      - Adaptive Fourier Neural Operator
+      - 全局频域 token 混合
+      - 高分辨率自回归天气预报
+      - 多变量联合建模
+    datasets:
+      - ERA5（0.25°，部分变量与垂直层）
+    metrics:
+      - 纬度加权 ACC
+      - 纬度加权 RMSE
+      - 推理时间
+      - 极端事件路径与强度误差
+    relevance: "FourCastNet 将 FNO 演进为可承载高分辨率多变量天气的 AFNO 骨干，为区域模型的全局背景混合、频域多尺度表达和计算预算对照提供实例。其 0.25° 全球预报不是公里尺度时空超分辨，规则 6 小时递归也未解决非均匀时间重建，物理守恒与再分析偏差需另行处理。"
+    verified_at: 2026-11-23
+
+  - id: lam2023graphcast
+    title: "Learning skillful medium-range global weather forecasting"
+    authors:
+      - Remi Lam
+      - Alvaro Sanchez-Gonzalez
+      - Matthew Willson
+      - Peter Wirnsberger
+      - Meire Fortunato
+      - Ferran Alet
+      - Suman Ravuri
+      - Timo Ewalds
+      - Zach Eaton-Rosen
+      - Weihua Hu
+      - Alexander Merose
+      - Stephan Hoyer
+      - George Holland
+      - Oriol Vinyals
+      - Jacklynn Stott
+      - Alexander Pritzel
+      - Shakir Mohamed
+      - Peter Battaglia
+    year: 2023
+    venue: "Science 382(6677), 1416–1421"
+    doi: "10.1126/science.adi2336"
+    url: "https://www.science.org/doi/10.1126/science.adi2336"
+    oa_url: "https://arxiv.org/pdf/2212.12794"
+    pdf_path: "reference/papers/spatiotemporal-architectures/lam2023graphcast.pdf"
+    sha256: "71ce5f63fb0b67955d38df35b766d9cd4ef27b4cd6188c7cbe4f9307b0e758c3"
+    access: downloaded
+    methods:
+      - GraphCast
+      - 多尺度二十面体网格
+      - 图消息传递
+      - 网格—图—网格编码解码
+      - 自回归多步训练
+    datasets:
+      - ERA5
+      - ECMWF HRES 业务预报
+      - IBTrACS
+      - TIGGE
+    metrics:
+      - RMSE
+      - ACC
+      - 1380 个验证目标
+      - 热带气旋路径误差
+      - 极端事件技能
+      - 推理时间
+    relevance: "GraphCast 证明多分辨率图能在统一模型中耦合长程与局地天气演变，为 CfC 状态更新和 CorrDiff 空间细化之间的图骨干及多步训练提供强对照。它仍是约 28 km、6 小时的全球确定性预报，主评估还因 ERA5 已知偏差排除总降水，不能把综合 RMSE/ACC 优势直接外推到公里尺度降水重建。"
+    verified_at: 2026-11-23
+
+  - id: tan2023tau
+    title: "Temporal Attention Unit: Towards Efficient Spatiotemporal Predictive Learning"
+    authors:
+      - Cheng Tan
+      - Zhangyang Gao
+      - Lirong Wu
+      - Yongjie Xu
+      - Jun Xia
+      - Siyuan Li
+      - Stan Z. Li
+    year: 2023
+    venue: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2023)"
+    doi: "10.1109/CVPR52729.2023.01800"
+    url: "https://openaccess.thecvf.com/content/CVPR2023/html/Tan_Temporal_Attention_Unit_Towards_Efficient_Spatiotemporal_Predictive_Learning_CVPR_2023_paper.html"
+    oa_url: "https://openaccess.thecvf.com/content/CVPR2023/papers/Tan_Temporal_Attention_Unit_Towards_Efficient_Spatiotemporal_Predictive_Learning_CVPR_2023_paper.pdf"
+    pdf_path: "reference/papers/spatiotemporal-architectures/tan2023tau.pdf"
+    sha256: "f0f44930c1d49544e8b24dec5c0865ac3c7e5ef2c5df901d16e321aba5380a43"
+    access: downloaded
+    methods:
+      - Temporal Attention Unit
+      - 帧内静态注意力与帧间动态注意力
+      - 并行时间建模
+      - 差分散度正则化
+    datasets:
+      - Moving MNIST
+      - TaxiBJ
+      - KTH
+      - KITTI → Caltech Pedestrian
+    metrics:
+      - MSE
+      - MAE
+      - SSIM
+      - PSNR
+      - 参数量
+      - FLOPs
+      - 推理效率
+    relevance: "TAU 提供了与 CfC 互补的并行时间建模路线，可比较连续递归、离散时间注意力及纯 CNN 在精度、吞吐和外推时长上的取舍；差分散度正则也可转化为时间差分损失消融。其注意力仍定义在已采样帧上，不给出任意目标时刻查询机制，通用视频结果也不能替代物理一致性与极端天气验证。"
+    verified_at: 2026-11-23

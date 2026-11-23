@@ -1,0 +1,364 @@
+topic: classical-downscaling
+papers:
+  - id: glahn-1972-mos
+    title: The Use of Model Output Statistics (MOS) in Objective Weather Forecasting
+    authors:
+      - Harry R. Glahn
+      - Dale A. Lowry
+    year: 1972
+    venue: Journal of Applied Meteorology 11(8), 1203-1211
+    doi: "10.1175/1520-0450(1972)011<1203:TUOMOS>2.0.CO;2"
+    url: "https://journals.ametsoc.org/view/journals/apme/11/8/1520-0450_1972_011_1203_tuomos_2_0_co_2.xml"
+    oa_url: https://www.vorticity.de/_pdf/glahn_1972_mos.pdf
+    pdf_path: reference/papers/classical-downscaling/glahn-1972-mos.pdf
+    sha256: 4f1ad3620c9971f374833637953c2872266c01acd4678176816891abb3b547bb
+    access: downloaded
+    methods:
+      - model output statistics (MOS)
+      - screening regression
+      - synchronous numerical-model-output and observation matching
+    datasets:
+      - Subsynoptic Advection Model (SAM) forecasts
+      - US National Weather Service operational Primitive Equation model forecasts
+      - surface observations and forecasts of wind, precipitation, maximum temperature, cloud amount and frozen precipitation
+    metrics:
+      - forecast verification scores
+      - comparison with official forecasts and other objective techniques
+    relevance: 该文奠定了由数值模式输出和观测直接学习统计映射的 MOS 路线，可作为 CorrDiff+CfC 的多元线性后处理基线，并提醒训练输入必须保留模式自身误差特征。它面向逐站预报而非公里尺度随机场生成，确定性的筛选回归也不能表达扩散模型针对的小尺度不确定性和 CfC 针对的连续时间演变。
+    verified_at: "2026-11-23"
+
+  - id: giorgi-1990-nested-rcm
+    title: Simulation of Regional Climate Using a Limited Area Model Nested in a General Circulation Model
+    authors:
+      - Filippo Giorgi
+    year: 1990
+    venue: Journal of Climate 3(9), 941-963
+    doi: "10.1175/1520-0442(1990)003<0941:SORCUA>2.0.CO;2"
+    url: "https://journals.ametsoc.org/view/journals/clim/3/9/1520-0442_1990_003_0941_sorcua_2_0_co_2.xml"
+    oa_url: https://journals.ametsoc.org/view/journals/clim/3/9/1520-0442_1990_003_0941_sorcua_2_0_co_2.pdf
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - one-way nested limited-area dynamical downscaling
+      - GCM-driven lateral and initial boundary conditions
+      - explicit representation of topography and land-surface hydrology
+    datasets:
+      - NCAR CCM1 R15 and T42 January simulations
+      - Penn State/NCAR MM4 simulations at 60 km over the western United States
+      - high-resolution temperature and precipitation observations
+    metrics:
+      - temperature and precipitation mean distributions
+      - daily precipitation intensity frequencies
+      - spatial comparison with observations
+      - large-scale circulation and storm-frequency evaluation
+    relevance: 该文是嵌套区域气候模式的奠基实验，说明高分辨地形的显式动力响应能增加区域细节，为本项目提供“物理模式参照物”而非单纯插值真值的来源。其价值在于界定 CorrDiff+CfC 要逼近的物理过程与计算成本，但单月、单向嵌套和 60 km 试验不能直接证明公里尺度时空重建或极端事件增益。
+    verified_at: "2026-11-23"
+
+  - id: vonstorch-1993-regression
+    title: "Downscaling of Global Climate Change Estimates to Regional Scales: An Application to Iberian Rainfall in Wintertime"
+    authors:
+      - Hans von Storch
+      - Eduardo Zorita
+      - Ulrich Cubasch
+    year: 1993
+    venue: Journal of Climate 6(6), 1161-1171
+    doi: "10.1175/1520-0442(1993)006<1161:DOGCCE>2.0.CO;2"
+    url: "https://journals.ametsoc.org/view/journals/clim/6/6/1520-0442_1993_006_1161_dogcce_2_0_co_2.xml"
+    oa_url: http://www.hvonstorch.de/klima/pdf/storch_etal_1993.pdf
+    pdf_path: reference/papers/classical-downscaling/vonstorch-1993-regression.pdf
+    sha256: 5da352f4a386affe6371a034415aa34cb093937d08b566076549b9b20ed8e807
+    access: downloaded
+    methods:
+      - canonical correlation analysis (CCA)
+      - large-scale sea-level-pressure to regional-rainfall transfer function
+      - perfect-prognosis statistical downscaling
+    datasets:
+      - observed North Atlantic winter sea-level pressure from 1900 onward
+      - Iberian Peninsula winter mean rainfall
+      - two GCM greenhouse-gas experiments including instantaneous CO2 doubling and IPCC scenario A
+    metrics:
+      - reproduction of observed regional rainfall evolution
+      - area-averaged and local rainfall change
+      - interdecadal variability
+      - comparison of GCM-simulated and observed predictor-predictand relationships
+    relevance: 该文把大尺度环流与区域降水的 CCA 映射用于气候变化降尺度，是检验 CorrDiff+CfC 是否真正超越低秩线性基线的关键起点。它还表明驱动模式若不能再现观测到的环流—降水关系，精细输出也会继承错误；但冬季平均、低秩线性映射无法描述日以下对流降水及 CfC 所需的序列状态。
+    verified_at: "2026-11-23"
+
+  - id: wilby-1997-review
+    title: "Downscaling general circulation model output: a review of methods and limitations"
+    authors:
+      - R. L. Wilby
+      - T. M. L. Wigley
+    year: 1997
+    venue: "Progress in Physical Geography: Earth and Environment 21(4), 530-548"
+    doi: 10.1177/030913339702100403
+    url: https://journals.sagepub.com/doi/10.1177/030913339702100403
+    oa_url: "https://opensky.ucar.edu/islandora/object/articles%3A4261"
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - methodological review and taxonomy
+      - regression methods
+      - circulation/weather-pattern approaches
+      - stochastic weather generators
+      - limited-area climate models
+    datasets:
+      - published GCM downscaling studies
+      - international precipitation-model intercomparison summarized in the review
+    metrics:
+      - daily precipitation occurrence and intensity characteristics
+      - present-climate variability
+      - changes in daily precipitation variability
+    relevance: 该综述把回归、天气分型、随机天气发生器和有限区域模式放进统一框架，可防止把 CorrDiff+CfC 与单一 MOS 或单一 analog 的比较误当作完整经典基线评估。其“当前气候拟合好不等于变化信号可靠”的警告直接约束本项目外推实验，但早期文献和日尺度降水重点未覆盖现代概率生成模型及连续时间架构。
+    verified_at: "2026-11-23"
+
+  - id: zorita-1999-analog
+    title: "The Analog Method as a Simple Statistical Downscaling Technique: Comparison with More Complicated Methods"
+    authors:
+      - Eduardo Zorita
+      - Hans von Storch
+    year: 1999
+    venue: Journal of Climate 12(8), 2474-2489
+    doi: "10.1175/1520-0442(1999)012<2474:TAMAAS>2.0.CO;2"
+    url: "https://journals.ametsoc.org/view/journals/clim/12/8/1520-0442_1999_012_2474_tamaas_2_0_co_2.xml"
+    oa_url: http://www.hvonstorch.de/klima/pdf/zorita_storch_1999.pdf
+    pdf_path: reference/papers/classical-downscaling/zorita-1999-analog.pdf
+    sha256: 8f69f799dd015e1a36b8f989e5279e01484ed8b8ec1a2e434bd6a06ed5b61cae
+    access: downloaded
+    methods:
+      - EOF-space nearest-analog downscaling
+      - canonical correlation analysis baseline
+      - classification and regression trees baseline
+      - neural-network baseline
+      - independent-period validation
+    datasets:
+      - North Atlantic sea-level pressure and Iberian station winter rainfall
+      - monthly winter cases with analogs searched across independent years
+      - daily winter rainfall cases during 1965-1985
+    metrics:
+      - explained variance and correlation
+      - temporal variability
+      - spatial covariance between stations
+      - daily rainfall distribution
+    relevance: 该文证明简单 analog 在月、日降水上可与 CCA、分类树和神经网络竞争，并能保留方差与站点间协方差，因此是必须实现的非参数对照，而不是可省略的弱基线。它也为 CorrDiff+CfC 提供“检索历史完整场”的下限参照；局限是只能重排历史状态，无法生成真正未见的小尺度结构或可靠的连续时间插值轨迹。
+    verified_at: "2026-11-23"
+
+  - id: vrac-2007-weather-typing
+    title: Statistical downscaling of precipitation through nonhomogeneous stochastic weather typing
+    authors:
+      - M. Vrac
+      - M. Stein
+      - K. Hayhoe
+    year: 2007
+    venue: Climate Research 34(3), 169-184
+    doi: 10.3354/cr00696
+    url: https://www.int-res.com/journals/cr/articles/cr00696
+    oa_url: https://www.int-res.com/articles/cr2007/34/c034p169.pdf
+    pdf_path: reference/papers/classical-downscaling/vrac-2007-weather-typing.pdf
+    sha256: 723131069c73dc373323efb89c1e232c13395a2a438a306e5c3829a24f93b236
+    access: downloaded
+    methods:
+      - nonhomogeneous stochastic weather typing
+      - hierarchical agglomerative clustering of precipitation patterns
+      - mixture-model circulation patterns
+      - nonhomogeneous Markov transition model
+      - large-scale-conditioned stochastic simulation
+    datasets:
+      - 37 Illinois rain gauges
+      - NCEP reanalysis geopotential height, humidity and dew-point depression
+      - fitting period 1980-1999 and evaluation period 1952-1971
+    metrics:
+      - precipitation quantile-quantile plots and 99th percentile
+      - conditional local rainfall-intensity distributions
+      - wet-spell and dry-spell probabilities
+      - comparison with circulation-only weather typing
+    relevance: 该文把离散环流型、降水型和随大尺度条件变化的马尔可夫转移结合起来，与 CfC 的连续隐状态形成清晰对照，也提示评估必须覆盖干湿持续时间和条件强度而非只看逐点误差。它可启发生成模型的天气状态分层训练，但离散日尺度状态和低维站点降水型难以表达快速对流演变及完整公里尺度场。
+    verified_at: "2026-11-23"
+
+  - id: maraun-2010-precipitation
+    title: "Precipitation downscaling under climate change: Recent developments to bridge the gap between dynamical models and the end user"
+    authors:
+      - D. Maraun
+      - F. Wetterhall
+      - A. M. Ireson
+      - R. E. Chandler
+      - E. J. Kendon
+      - M. Widmann
+      - S. Brienen
+      - H. W. Rust
+      - T. Sauter
+      - M. Themeßl
+      - V. K. C. Venema
+      - K. P. Chun
+      - C. M. Goodess
+      - R. G. Jones
+      - C. Onof
+      - M. Vrac
+      - I. Thiele-Eich
+    year: 2010
+    venue: Reviews of Geophysics 48(3), RG3003
+    doi: 10.1029/2009RG000314
+    url: https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2009RG000314
+    oa_url: https://discovery.ucl.ac.uk/id/eprint/404441/1/2009RG000314.pdf
+    pdf_path: reference/papers/classical-downscaling/maraun-2010-precipitation.pdf
+    sha256: 3b99197f11d8b9ca77fc3f8936359b8326b5d24b2f450196ce5a3af2f53cad8c
+    access: downloaded
+    methods:
+      - cross-disciplinary methodological synthesis
+      - dynamical downscaling
+      - perfect prognosis
+      - model output statistics
+      - stochastic and full-field weather generators
+    datasets:
+      - published GCM/RCM and station or gridded precipitation studies
+      - HadCM3/HadRM3 United Kingdom precipitation example for 1961-2000
+    metrics:
+      - precipitation intensity distributions
+      - temporal and spatial variability
+      - extreme and subdaily precipitation
+      - multivariable physical consistency
+      - validation against end-user needs
+    relevance: 该综述将强度、时间变化、空间变化和多变量物理一致性列为共同评价轴，正好可用于组织 CorrDiff+CfC 的统一指标，而非以图像清晰度或平均 RMSE 代替气候可信度。它还明确小尺度过程及其反馈、驱动模式误差和极端降水是共同瓶颈；但作为 2010 年综述，它不能提供现代扩散模型和公里尺度数据集的直接性能基准。
+    verified_at: "2026-11-23"
+
+  - id: gutmann-2014-intercomparison
+    title: An intercomparison of statistical downscaling methods used for water resource assessments in the United States
+    authors:
+      - Ethan Gutmann
+      - Tom Pruitt
+      - Martyn P. Clark
+      - Levi Brekke
+      - Jeffrey R. Arnold
+      - David A. Raff
+      - Roy M. Rasmussen
+    year: 2014
+    venue: Water Resources Research 50(9), 7167-7186
+    doi: 10.1002/2014WR015559
+    url: https://agupubs.onlinelibrary.wiley.com/doi/10.1002/2014WR015559
+    oa_url: https://opensky.ucar.edu/system/files/2024-08/articles_14453.pdf
+    pdf_path: reference/papers/classical-downscaling/gutmann-2014-intercomparison.pdf
+    sha256: 8dc09d6beb86b7e63c815d2e73309b784b1d20e6834e9aa954330e2acc3b410c
+    access: downloaded
+    methods:
+      - daily and monthly Bias Corrected Spatial Disaggregation (BCSDd/BCSDm)
+      - Asynchronous Regression (AR)
+      - Bias Corrected Constructed Analog (BCCA/BCCAr)
+      - calibration-validation split and spatial aggregation tests
+    datasets:
+      - NCEP/NCAR Reanalysis as coarse-model surrogate
+      - Maurer et al. 12 km CONUS precipitation observations
+      - Livneh et al. 6 km CONUS precipitation observations
+      - daily records covering 1949-2010
+    metrics:
+      - mean bias
+      - wet-day fraction and wet/dry spells
+      - extreme-event magnitude
+      - interannual variability
+      - behavior under spatial aggregation and across daily/monthly/annual scales
+    relevance: 该文为项目提供可复现的 BCSD、回归和构造 analog 基线组合，并证明方法排名会随空间聚合尺度和评价指标改变，适合直接检验 CorrDiff+CfC 的尺度一致性。两种观测网格产生相反干湿日变化还警示高分辨真值本身的插值伪影；但所评方法主要重标粗降水，且当前气候拟合不能检验未来非平稳性。
+    verified_at: "2026-11-23"
+
+  - id: gutierrez-2019-value
+    title: "An intercomparison of a large ensemble of statistical downscaling methods over Europe: Results from the VALUE perfect predictor cross-validation experiment"
+    authors:
+      - J. M. Gutiérrez
+      - D. Maraun
+      - M. Widmann
+      - R. Huth
+      - E. Hertig
+      - R. Benestad
+      - O. Roessler
+      - J. Wibig
+      - R. Wilcke
+      - S. Kotlarski
+      - D. San Martín
+      - S. Herrera
+      - J. Bedia
+      - A. Casanueva
+      - R. Manzanas
+      - M. Iturbide
+      - M. Vrac
+      - M. Dubrovsky
+      - J. Ribalaygua
+      - J. Pórtoles
+      - O. Räty
+      - J. Räisänen
+      - B. Hingray
+      - D. Raynaud
+      - M. J. Casado
+      - P. Ramos
+      - T. Zerenner
+      - M. Turco
+      - T. Bosshard
+      - P. Štěpánek
+      - J. Bartholy
+      - R. Pongracz
+      - D. E. Keller
+      - A. M. Fischer
+      - R. M. Cardoso
+      - P. M. M. Soares
+      - B. Czernecki
+      - C. Pagé
+    year: 2019
+    venue: International Journal of Climatology 39(9), 3750-3785
+    doi: 10.1002/joc.5462
+    url: https://rmets.onlinelibrary.wiley.com/doi/10.1002/joc.5462
+    oa_url: https://researchportal.helsinki.fi/files/160366720/Gutierrez.pdf
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - VALUE perfect-predictor cross-validation
+      - more than 50 perfect-prognosis, MOS/bias-correction and weather-generator methods
+      - seasonal calibration including moving windows
+      - deterministic and stochastic method comparison
+    datasets:
+      - VALUE reanalysis and reanalysis-driven RCM predictors
+      - 86 stations representing major European climatic regions
+      - daily precipitation and temperature
+    metrics:
+      - VALUE marginal-distribution diagnostics
+      - temporal variability and extremes
+      - spatial and process-based validation dimensions
+      - raw-model and downscaled-output biases
+    relevance: VALUE 是设计公平机器学习对照的最直接范本：统一预测因子、站点、交叉验证和指标后，50 余种方法没有普遍赢家，季节校准和随机性反而很关键。项目可据此避免只挑一个经典弱基线，并将 CorrDiff+CfC 按相同数据切分比较；但其日尺度站点完美预测因子实验不能证明未来气候技能，也不等同于公里尺度时空场重建。
+    verified_at: "2026-11-23"
+
+  - id: gutmann-2022-en-gard
+    title: "En-GARD: A Statistical Downscaling Framework to Produce and Test Large Ensembles of Climate Projections"
+    authors:
+      - Ethan D. Gutmann
+      - Joseph J. Hamman
+      - Martyn P. Clark
+      - Trude Eidhammer
+      - Andrew W. Wood
+      - Jeffrey R. Arnold
+    year: 2022
+    venue: Journal of Hydrometeorology 23(10), 1545-1561
+    doi: 10.1175/JHM-D-21-0142.1
+    url: https://journals.ametsoc.org/view/journals/hydr/23/10/JHM-D-21-0142.1.xml
+    oa_url: https://opensky.ucar.edu/system/files/2024-08/articles_25742.pdf
+    pdf_path: reference/papers/classical-downscaling/gutmann-2022-en-gard.pdf
+    sha256: 10814e42152f8b1fa7faa9cb9e2f9faaf61f5204c26aab07633378bc2c40a502
+    access: downloaded
+    methods:
+      - pure regression, pure analog and analog-regression
+      - logistic regression for event occurrence
+      - threshold-dependent magnitude prediction
+      - residual-based ensemble sampling
+      - spatiotemporally correlated random fields
+    datasets:
+      - Maurer et al. 1/8-degree daily CONUS precipitation and temperature observations
+      - ERA-Interim for 1979-2015
+      - six CMIP5 GCMs for 1950-2100
+      - consistent 50 km WRF intermediate simulations
+    metrics:
+      - mean annual precipitation and temperature bias
+      - precipitation magnitude probability distributions
+      - annual maximum daily precipitation and extreme-event counts
+      - interannual variability
+      - projected climate-change signal across methods and predictor sets
+    relevance: En-GARD 将 analog、回归、事件发生概率和时空相关随机场采样合成开源概率基线，是与 CorrDiff 集合生成和 CfC 时间依赖比较的最新经典参照。其预测因子消融显示历史均值拟合相近却可产生不同未来变化，直接支持本项目检验物理变量和极端外推；但逐格点日尺度后处理及简化相关随机场并未学习完整的连续时间动力轨迹。
+    verified_at: "2026-11-23"

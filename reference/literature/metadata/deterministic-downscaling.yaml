@@ -1,0 +1,378 @@
+topic: deterministic-downscaling
+papers:
+  - id: he-2016-precdwarf
+    title: "Spatial downscaling of precipitation using adaptable random forests"
+    authors:
+      - "Xiaogang He"
+      - "Nathaniel W. Chaney"
+      - "Marc Schleiss"
+      - "Justin Sheffield"
+    year: 2016
+    venue: "Water Resources Research, 52(10), 8217–8237"
+    doi: "10.1002/2016WR019034"
+    url: "https://doi.org/10.1002/2016WR019034"
+    oa_url: "https://eprints.soton.ac.uk/405286/2/wrcr22319.pdf"
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - "随机森林"
+      - "Prec-DWARF"
+      - "单随机森林与双随机森林"
+      - "粗细网格协变量与 dry drift"
+      - "双线性插值对照"
+    datasets:
+      - "NLDAS-2 小时 gauge-radar 降水，0.125°"
+      - "美国 SWUS、CUS、NEUS、SEUS 四个气候区"
+      - "由 0.125° 合成的 0.25°、0.5°、1° 粗分辨率输入"
+    metrics:
+      - "RMSE"
+      - "相关系数 R"
+      - "偏差与降水分布"
+      - "干湿分类"
+      - "空间和时间 variogram"
+    relevance: >-
+      Prec-DWARF 是非深度、非参数降尺度的重要强对照，可检验 CorrDiff+CfC 是否真正超过利用邻域降水、地形和干湿距离的随机森林，而不是只超过插值。双森林虽改善极端降水，但仍显著低估时空变率，这提示本项目必须同时报告强度分布和 variogram，不能只看 RMSE；其逐网格协变量回归也不能直接解决连续时间重建。
+    verified_at: "2026-11-23"
+
+  - id: vandal-2017-deepsd
+    title: "DeepSD: Generating High Resolution Climate Change Projections through Single Image Super-Resolution"
+    authors:
+      - "Thomas Vandal"
+      - "Evan Kodra"
+      - "Sangram Ganguly"
+      - "Andrew Michaelis"
+      - "Ramakrishna Nemani"
+      - "Auroop R. Ganguly"
+    year: 2017
+    venue: "Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 1663–1672"
+    doi: "10.1145/3097983.3098004"
+    url: "https://doi.org/10.1145/3097983.3098004"
+    oa_url: "https://arxiv.org/pdf/1703.03126"
+    pdf_path: "reference/papers/deterministic-downscaling/vandal-2017-deepsd.pdf"
+    sha256: "5d654c1faa5a62b25c0c6c5bf9d22b6bbd10dbdc07d6fdc454d26638c2b3909f"
+    access: downloaded
+    methods:
+      - "堆叠 SRCNN"
+      - "逐级 2 倍空间超分辨"
+      - "多尺度地形辅助通道"
+      - "MSE 回归"
+      - "BCSD、Lasso、ANN、SVM 对照"
+    datasets:
+      - "PRISM 美国本土逐日降水"
+      - "GTOPO30 高程"
+      - "1° 到 1/8°（约 100 km 到 12.5 km）八倍降尺度"
+      - "1980–2005 年训练、2006–2014 年测试"
+    metrics:
+      - "RMSE"
+      - "Pearson 相关系数"
+      - "平均偏差"
+      - "概率分布重叠 skill score"
+      - "分位数极端降水与运行时间"
+    relevance: >-
+      DeepSD 是把单图像超分辨系统引入气候统计降尺度的奠基工作，其堆叠 SRCNN、多尺度高程输入和 BCSD/传统机器学习对照可直接构成本项目的经典 CNN 基线。它证明空间邻域先验有效，但输入来自同一 PRISM 场的粗化而非真实跨模式序列，且作者明确承认未检验地域迁移、非平稳性和不确定性，因此不能替代时空泛化实验。
+    verified_at: "2026-11-23"
+
+  - id: bano-medina-2020-intercomparison
+    title: "Configuration and intercomparison of deep learning neural models for statistical downscaling"
+    authors:
+      - "Jorge Baño-Medina"
+      - "Rodrigo Manzanas"
+      - "José Manuel Gutiérrez"
+    year: 2020
+    venue: "Geoscientific Model Development, 13(4), 2109–2124"
+    doi: "10.5194/gmd-13-2109-2020"
+    url: "https://doi.org/10.5194/gmd-13-2109-2020"
+    oa_url: "https://gmd.copernicus.org/articles/13/2109/2020/gmd-13-2109-2020.pdf"
+    pdf_path: "reference/papers/deterministic-downscaling/bano-medina-2020-intercomparison.pdf"
+    sha256: "d5968c6c802632de22be700aedadad50f93689e20f796896c52a6ef5b7bbf2bb"
+    access: downloaded
+    methods:
+      - "多站点 CNN"
+      - "卷积与全连接拓扑消融"
+      - "perfect prognosis"
+      - "温度高斯回归"
+      - "降水 Bernoulli–Gamma 发生量模型"
+      - "GLM1/GLM4 线性对照"
+    datasets:
+      - "ERA-Interim 2° 大尺度预测因子"
+      - "E-OBS v14 0.5° 欧洲逐日平均温度和累计降水"
+      - "1979–2002 年训练、2003–2008 年暖期测试"
+      - "VALUE 验证框架"
+    metrics:
+      - "均值和 P2/P98 偏差"
+      - "RMSE"
+      - "Pearson/Spearman 相关"
+      - "标准差比"
+      - "ROCSS"
+      - "干湿与冷暖持续期"
+      - "年循环振幅和滞后一阶自相关"
+    relevance: >-
+      该研究提供了比单一模型结果更可信的 VALUE 对照框架，说明 CNN 对降水多数统计特征有增益，而温度上的非线性增益主要出现在极端值，复杂拓扑反而可能过拟合。其暖期留出和持续期、极端值、年循环指标非常适合迁移到 CWA 数据，但同一时刻的 perfect-prognosis 设置没有回答稀疏时间输入下的动力连续性问题，CfC 仍需单独的时间基线。
+    verified_at: "2026-11-23"
+
+  - id: liu-2020-ynet
+    title: "Climate Downscaling Using YNet: A Deep Convolutional Network with Skip Connections and Fusion"
+    authors:
+      - "Yumin Liu"
+      - "Auroop R. Ganguly"
+      - "Jennifer Dy"
+    year: 2020
+    venue: "Proceedings of the 26th ACM SIGKDD International Conference on Knowledge Discovery & Data Mining, 3145–3153"
+    doi: "10.1145/3394486.3403366"
+    url: "https://doi.org/10.1145/3394486.3403366"
+    oa_url: "https://par.nsf.gov/servlets/purl/10291916"
+    pdf_path: "reference/papers/deterministic-downscaling/liu-2020-ynet.pdf"
+    sha256: "5d61888a250e1d865ddbd9bf857fdee92b75655013cc736aa1f98a89a5c3fdf5"
+    access: downloaded
+    methods:
+      - "YNet 编码器—解码器"
+      - "跳跃连接与残差学习"
+      - "双线性上采样加卷积"
+      - "高分辨率高程和气候态融合"
+      - "多 GCM 通道输入"
+      - "BCSD、DeepSD、ESPCN、REDNet 对照"
+    datasets:
+      - "NASA NEX 的 35 个降水 GCM 和 33 个气温 GCM 月尺度模拟"
+      - "PRISM 美国本土月均降水、月最高和最低气温"
+      - "GTOPO30 高程及 PRISM 月气候态"
+      - "1° 输入，2、4、8 倍空间降尺度"
+    metrics:
+      - "MSE"
+      - "MAE 空间图"
+      - "平均偏差"
+      - "Pearson 相关系数"
+      - "分季节误差"
+    relevance: >-
+      YNet 将 UNet 式跳跃连接、可倍率上采样和高程/气候态融合用于真实 GCM 到观测的映射，为本项目设计多变量、多尺度解码器及静态场注入提供了直接参照。其月尺度结果和 MSE 优势不能外推到逐时极端降水或时间插值，而且辅助气候态可能强化平滑偏差，需在日/小时尺度与极端事件上重新验证。
+    verified_at: "2026-11-23"
+
+  - id: hohlein-2020-windfield
+    title: "A comparative study of convolutional neural network models for wind field downscaling"
+    authors:
+      - "Kevin Höhlein"
+      - "Michael Kern"
+      - "Timothy Hewson"
+      - "Rüdiger Westermann"
+    year: 2020
+    venue: "Meteorological Applications, 27(6), e1961"
+    doi: "10.1002/met.1961"
+    url: "https://doi.org/10.1002/met.1961"
+    oa_url: "https://arxiv.org/pdf/2008.12257"
+    pdf_path: "reference/papers/deterministic-downscaling/hohlein-2020-windfield.pdf"
+    sha256: "82eb21e04017e7805487f53c2ce05009a9a43717296e34918efcb2dbf4f6bec9"
+    access: downloaded
+    methods:
+      - "DeepRU 残差 UNet"
+      - "LinearCNN、DeepSD、EnhanceNet 架构比较"
+      - "多元线性回归对照"
+      - "高分辨率地形和陆海掩膜"
+      - "置换特征重要性"
+    datasets:
+      - "ECMWF ERA5 初始化的 31 km 短期 100 m 风预报"
+      - "ECMWF HRES 9 km 确定性预报目标"
+      - "2016 年 3 月至 2019 年 9 月中南欧和阿尔卑斯复杂地形"
+      - "U/V 风、Z500、地表粗糙度、边界层高度和静态地表场"
+    metrics:
+      - "风矢量 MSE"
+      - "风向 cosine dissimilarity"
+      - "风速 magnitude difference"
+      - "absolute relative error"
+      - "L2 偏差"
+      - "推理时间和特征重要性"
+    relevance: >-
+      DeepRU 表明多尺度 UNet 能重建线性模型漏掉的海岸和山地局地流型，且风向与风速必须分开评价，这对台湾复杂地形风场及 CorrDiff+CfC 的矢量变量设计很直接。其目标仍是 9 km 同一时刻确定性风场，极端阵风、跨地域泛化和时间演化均未解决；附加变量也并非全部有增益，应做消融而非默认堆叠。
+    verified_at: "2026-11-23"
+
+  - id: stengel-2020-phire
+    title: "Adversarial super-resolution of climatological wind and solar data"
+    authors:
+      - "Karen Stengel"
+      - "Andrew Glaws"
+      - "Dylan Hettinger"
+      - "Ryan N. King"
+    year: 2020
+    venue: "Proceedings of the National Academy of Sciences, 117(29), 16805–16815"
+    doi: "10.1073/pnas.1918964117"
+    url: "https://doi.org/10.1073/pnas.1918964117"
+    oa_url: "https://www.osti.gov/servlets/purl/1660090"
+    pdf_path: "reference/papers/deterministic-downscaling/stengel-2020-phire.pdf"
+    sha256: "0197865d8aef70fc7e13c04f4a237909b6d4edfa303327dc2bb1d37586fb57bb"
+    access: downloaded
+    methods:
+      - "PhIRE GAN"
+      - "两级 SRGAN"
+      - "16 个残差块的全卷积生成器"
+      - "MSE 内容损失预训练加对抗微调"
+      - "双线性/双三次插值和确定性 CNN 对照"
+    datasets:
+      - "NREL WIND Toolkit 2007–2013 年 2 km 风场"
+      - "NREL NSRDB 2007–2013 年约 4 km 太阳辐照度"
+      - "NCAR CCSM4/CMIP5 2020–2039 年约 100 km 气候情景"
+      - "风场 50 倍、太阳场 25 倍空间超分辨"
+    metrics:
+      - "相对 MSE"
+      - "湍流动能谱与 k^(-5/3) 标度"
+      - "纵向速度梯度 PDF 和偏度"
+      - "semivariogram"
+      - "输入噪声鲁棒性与全球推理成本"
+    relevance: >-
+      PhIRE 将 GAN 的评价从像素误差推进到湍流能谱、速度梯度间歇性和空间相关结构，说明“物理上像”与逐像素最接近并不等价，这对本项目的物理增强和频谱评估尤其重要。其高倍率小尺度细节是条件分布中的合理实现而非可唯一恢复的真值，GAN 的 MSE 还高于纯 CNN；模型逐时刻处理，全球 CCSM 应用也没有真实高分辨率标签。
+    verified_at: "2026-11-23"
+
+  - id: leinonen-2021-recurrentgan
+    title: "Stochastic Super-Resolution for Downscaling Time-Evolving Atmospheric Fields With a Generative Adversarial Network"
+    authors:
+      - "Jussi Leinonen"
+      - "Daniele Nerini"
+      - "Alexis Berne"
+    year: 2021
+    venue: "IEEE Transactions on Geoscience and Remote Sensing, 59(9), 7211–7223"
+    doi: "10.1109/TGRS.2020.3032790"
+    url: "https://doi.org/10.1109/TGRS.2020.3032790"
+    oa_url: "https://arxiv.org/pdf/2005.10374"
+    pdf_path: "reference/papers/datasets-baselines/leinonen-2021-temporal-gan.pdf"
+    sha256: "2df786aa20f3a7b97ba5e1fdb5d14bc8786410a7fdf93fa77c165abfcfffd3da"
+    access: existing
+    methods:
+      - "条件 Wasserstein GAN"
+      - "ConvGRU 循环生成器和判别器"
+      - "随机噪声集合生成"
+      - "16 倍空间超分辨"
+      - "全卷积变尺寸与长序列推理"
+      - "Lanczos、确定性 RCNN、RainFARM 对照"
+    datasets:
+      - "MeteoSwiss MCH-RZC 2018 年雷达降水，1 km、10 min、8 帧序列"
+      - "2017 年独立降水测试及 2017 年 6–8 月长序列"
+      - "GOES-16 云光学厚度 GOES-COT，2 km、10 min"
+      - "由 16×16 区域平均构造粗分辨率输入"
+    metrics:
+      - "RMSE"
+      - "MS-SSIM"
+      - "log spectral distance"
+      - "CRPS"
+      - "rank histogram"
+      - "Kolmogorov–Smirnov 统计量"
+      - "Kullback–Leibler 散度与 outlier fraction"
+    relevance: >-
+      这是与 CfC 结合最直接的前驱之一：ConvGRU 把高分辨隐藏状态随低分辨序列递推，并用随机集合表达不可恢复细节，同时以谱距离、CRPS 和 rank 统计检验时空真实性与校准。它只做固定 10 min 间隔的 16 倍空间增强，未提高时间分辨率，长时递推还可能出现伪影；CfC 的价值应明确落在连续/不规则时间条件、稳定长序列和中间时刻重建，而非笼统声称优于 RNN。
+    verified_at: "2026-11-23"
+
+  - id: serifi-2021-spatiotemporal
+    title: "Spatio-Temporal Downscaling of Climate Data Using Convolutional and Error-Predicting Neural Networks"
+    authors:
+      - "Agon Serifi"
+      - "Tobias Günther"
+      - "Nikolina Ban"
+    year: 2021
+    venue: "Frontiers in Climate, 3, 656479"
+    doi: "10.3389/fclim.2021.656479"
+    url: "https://doi.org/10.3389/fclim.2021.656479"
+    oa_url: "https://www.frontiersin.org/journals/climate/articles/10.3389/fclim.2021.656479/pdf"
+    pdf_path: "reference/papers/deterministic-downscaling/serifi-2021-spatiotemporal.pdf"
+    sha256: "66d333fccd9529399f0526ed509f03aecdf85aba57e0571d59d556db791b9875"
+    access: downloaded
+    methods:
+      - "UNet 式时空卷积"
+      - "残差预测网络 RPN"
+      - "反卷积网络 DCN"
+      - "目标相对时间注入隐空间"
+      - "L1 加梯度损失"
+      - "经纬度和高程辅助通道"
+      - "三线性插值对照"
+    datasets:
+      - "COSMO 2.2 km、5 min 温度和降水模拟"
+      - "瑞士 2004 年 1 km、小时降水观测"
+      - "空间 2/4 倍与时间 2/4/12 倍组合降尺度"
+      - "观测时间重建覆盖 2/4/6/12/24 h 到 1 h 等任务"
+    metrics:
+      - "MSE"
+      - "不同空间和时间倍率误差"
+      - "全域与局地误差图"
+      - "相对三线性基线误差降低率"
+    relevance: >-
+      该文与本项目目标形式最接近，直接用相邻粗时刻和目标相对时间重建中间高分辨率场，并证明温度适合残差校正而高变率降水需要直接 DCN，提供关键的变量相关架构对照。其时间编码较简单、主要指标只有 MSE，且部分结论来自两个月模拟和单年观测；CfC 应在相同空间骨干下与这种时间条件 CNN 公平比较，并补充频谱、极端值和跨季节测试。
+    verified_at: "2026-11-23"
+
+  - id: harder-2023-hardconstraints
+    title: "Hard-Constrained Deep Learning for Climate Downscaling"
+    authors:
+      - "Paula Harder"
+      - "Alex Hernandez-Garcia"
+      - "Venkatesh Ramesh"
+      - "Qidong Yang"
+      - "Prasanna Sattegeri"
+      - "Daniela Szwarcman"
+      - "Campbell D. Watson"
+      - "David Rolnick"
+    year: 2023
+    venue: "Journal of Machine Learning Research, 24(365), 1–40"
+    doi: null
+    url: "https://jmlr.org/papers/v24/23-0158.html"
+    oa_url: "https://jmlr.org/papers/volume24/23-0158/23-0158.pdf"
+    pdf_path: "reference/papers/physics-constraints/harder-2023-climate-downscaling.pdf"
+    sha256: "235c7b7cb410c000b77f9a93698b8132d5e7cb33f5c3d3dd331a5ba6d72ae1f5"
+    access: existing
+    methods:
+      - "加法、缩加法、乘法和 softmax 硬约束层"
+      - "质量与湿静能守恒"
+      - "非负约束"
+      - "CNN、cGAN、ConvGRU"
+      - "FlowConvGRU 时空超分辨"
+      - "软约束、无约束、插值对照"
+    datasets:
+      - "ERA5 总柱水量 TCW，2/4/8/16 倍空间及时间超分辨"
+      - "ERA5 850 hPa 水汽、液态水、温度和湿静能"
+      - "WRF Lake George 9 km 到 3 km 逐时 2 m 温度"
+      - "NorESM 双分辨率温度"
+      - "月面卫星影像和 Set5/Set14/Urban100/BSD100"
+    metrics:
+      - "RMSE、MAE、平均偏差"
+      - "PSNR、SSIM、MS-SSIM"
+      - "CRPS、FSS、Pearson 相关"
+      - "平均约束违反量"
+      - "负值像素数量与幅度"
+      - "超像素内部方差"
+    relevance: >-
+      该文给出可插到 CorrDiff 或 CfC 输出端的守恒投影方案，并证明硬约束可同时改善误差、负值、沿海/山地误差和部分分布外泛化，是物理增强最可操作的代表作。约束成立依赖粗网格确为细网格的面积平均；当真实双分辨率关系明显不一致（NorESM）或粗输入有偏差时会损害技巧，且乘法/softmax 在零总量附近需要谨慎，不能无条件用于所有变量。
+    verified_at: "2026-11-23"
+
+  - id: rampal-2025-reliablegan
+    title: "A Reliable Generative Adversarial Network Approach for Climate Downscaling and Weather Generation"
+    authors:
+      - "Neelesh Rampal"
+      - "Peter B. Gibson"
+      - "Steven Sherwood"
+      - "Gab Abramowitz"
+      - "Sanaa Hobeichi"
+    year: 2025
+    venue: "Journal of Advances in Modeling Earth Systems, 17(1), e2024MS004668"
+    doi: "10.1029/2024MS004668"
+    url: "https://doi.org/10.1029/2024MS004668"
+    oa_url: "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1029/2024MS004668"
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - "确定性 UNet 均值场加残差 cGAN"
+      - "Wasserstein GAN 与梯度惩罚"
+      - "区域最大降水强度约束"
+      - "对抗损失权重敏感性实验"
+      - "perfect-framework RCM 模拟器"
+      - "跨 GCM 测试与集合生成"
+    datasets:
+      - "CCAM 新西兰约 12 km 逐日降水"
+      - "1.5° 的 500/850 hPa U、V、T、Q 大尺度预测因子"
+      - "ACCESS-CM2 1960–1998 年训练和 1999–2000 年验证"
+      - "EC-Earth3 与 NorESM2-MM 2001–2014 年分布外测试"
+    metrics:
+      - "MAE 与集合平均 MAE"
+      - "Logarithmic Histogram Distance"
+      - "Radially Averaged Logarithmic Spectral Distance"
+      - "时间标准差比"
+      - "RX1Day、连续干日和季节平均"
+      - "rank histogram"
+      - "像素及 4×4/16×16 最大池化 CRPS"
+    relevance: >-
+      该研究把确定性 UNet 的可预测均值与残差 cGAN 的高频扰动分开，并用强度约束使对抗损失权重跨两个数量级仍保持稳健，为 CorrDiff+CfC 的“确定骨架加生成残差”与物理损失设计提供近期强参照。其价值主要在气候统计和极端事件而非确定时刻逐点复原；日尺度新西兰实验未解决连续时间插值，集合校准还随架构改变，需避免把视觉真实或分布改善等同于逐事件正确。
+    verified_at: "2026-11-23"

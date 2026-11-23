@@ -1,0 +1,347 @@
+topic: continuous-time-cfc
+papers:
+  - id: chen2018neural-ode
+    title: Neural Ordinary Differential Equations
+    authors:
+      - Ricky T. Q. Chen
+      - Yulia Rubanova
+      - Jesse Bettencourt
+      - David Duvenaud
+    year: 2018
+    venue: Advances in Neural Information Processing Systems 31 (NeurIPS 2018)
+    doi: null
+    url: https://proceedings.neurips.cc/paper/2018/hash/69386f6bb1dfed68692a24c8686939b9-Abstract.html
+    oa_url: https://proceedings.neurips.cc/paper_files/paper/2018/file/69386f6bb1dfed68692a24c8686939b9-Paper.pdf
+    pdf_path: reference/papers/continuous-time-cfc/chen2018neural-ode.pdf
+    sha256: fe6fae5c828a11d0347c04bc9fa765091df9551a85e6fa891980bfcae8d9ffce
+    access: downloaded
+    methods:
+      - Neural ODE
+      - adjoint sensitivity method
+      - continuous normalizing flow
+      - latent variable model
+    datasets:
+      - MNIST
+      - Two Circles
+      - Two Moons
+      - synthetic bidirectional spirals
+    metrics:
+      - test accuracy
+      - negative log-likelihood
+      - KL divergence
+      - predictive RMSE
+      - number of function evaluations
+      - memory usage
+    relevance: >-
+      为在低分辨率条件序列中定义连续潜状态、在任意目标时刻查询高分辨率场提供统一数学基础，伴随法也便于嵌入大型 CorrDiff 条件网络。其数值求解成本、误差与刚性天气动力学的训练稳定性是主要限制，不能把“连续时间”直接等同于物理一致。
+    verified_at: '2026-11-23'
+
+  - id: rubanova2019latent-ode
+    title: Latent Ordinary Differential Equations for Irregularly-Sampled Time Series
+    authors:
+      - Yulia Rubanova
+      - Ricky T. Q. Chen
+      - David K. Duvenaud
+    year: 2019
+    venue: Advances in Neural Information Processing Systems 32 (NeurIPS 2019)
+    doi: null
+    url: https://proceedings.neurips.cc/paper/2019/hash/42a6845a557bef704ad8ac9cb4461d43-Abstract.html
+    oa_url: https://proceedings.neurips.cc/paper_files/paper/2019/file/42a6845a557bef704ad8ac9cb4461d43-Paper.pdf
+    pdf_path: reference/papers/continuous-time-cfc/rubanova2019latent-ode.pdf
+    sha256: 80f434206d15c7b111920850af332d6601801c77740cb23bd7fe679e6cd29495
+    access: downloaded
+    methods:
+      - Latent ODE
+      - ODE-RNN encoder
+      - variational autoencoder
+      - Poisson process observation model
+    datasets:
+      - synthetic periodic trajectories
+      - MuJoCo Hopper
+      - PhysioNet Challenge 2012
+      - Human Activity Recognition
+    metrics:
+      - MSE
+      - AUC
+      - posterior entropy
+      - runtime
+    relevance: >-
+      可从稀疏低时频观测推断整条潜轨迹并给出不确定性，适合作为 CorrDiff 之前的概率时间编码器。纯 ODE 轨迹由初值决定且依赖编码器，对持续到达的新观测和空间极端事件的适应性有限。
+    verified_at: '2026-11-23'
+
+  - id: debrouwer2019gru-ode-bayes
+    title: 'GRU-ODE-Bayes: Continuous modeling of sporadically-observed time series'
+    authors:
+      - Edward De Brouwer
+      - Jaak Simm
+      - Adam Arany
+      - Yves Moreau
+    year: 2019
+    venue: Advances in Neural Information Processing Systems 32 (NeurIPS 2019)
+    doi: null
+    url: https://proceedings.neurips.cc/paper/2019/hash/455cb2657aaa59e32fad80cb0b65b9dc-Abstract.html
+    oa_url: https://arxiv.org/pdf/1905.12374
+    pdf_path: reference/papers/continuous-time-cfc/debrouwer2019gru-ode-bayes.pdf
+    sha256: e031724444ea9911ff7cac7a1e4914fb71e074f3d1c5ff650344881a198ec800
+    access: downloaded
+    methods:
+      - GRU-ODE
+      - Bayesian observation update
+      - continuous-discrete filtering
+      - Fokker-Planck dynamics representation
+    datasets:
+      - synthetic Ornstein-Uhlenbeck SDE
+      - Brusselator
+      - MIMIC-III
+      - USHCN
+    metrics:
+      - negative log-likelihood
+      - MSE
+    relevance: >-
+      GRU-ODE 与贝叶斯观测更新交替，为不规则低时频输入的“传播—校正”提供直接基线，且原文含 USHCN 气候预测实验。逐观测调用 ODE 求解器会限制公里尺度长序列吞吐，其气候实验也不是空间降尺度。
+    verified_at: '2026-11-23'
+
+  - id: li2020neural-sde
+    title: Scalable Gradients for Stochastic Differential Equations
+    authors:
+      - Xuechen Li
+      - Ting-Kam Leonard Wong
+      - Ricky T. Q. Chen
+      - David Duvenaud
+    year: 2020
+    venue: Proceedings of the Twenty Third International Conference on Artificial Intelligence and Statistics, PMLR 108
+    doi: null
+    url: https://proceedings.mlr.press/v108/li20i.html
+    oa_url: https://proceedings.mlr.press/v108/li20i/li20i.pdf
+    pdf_path: reference/papers/continuous-time-cfc/li2020neural-sde.pdf
+    sha256: 1ce9c54510ee218e8cb3513d3749e76bd3bd073bf0b100173d75a433d0a4dbe1
+    access: downloaded
+    methods:
+      - latent Neural SDE
+      - stochastic adjoint method
+      - variational inference
+      - Brownian motion caching
+    datasets:
+      - analytic SDE gradient problems
+      - geometric Brownian motion
+      - stochastic Lorenz attractor
+      - motion capture subject 35 walking sequences
+    metrics:
+      - gradient MSE
+      - forward NFE
+      - memory usage
+      - test MSE
+    relevance: >-
+      用潜 SDE 表示不可约天气变率和轨迹分布，可作为确定性 CfC 与 CorrDiff 随机空间生成之间的概率时间建模参照。随机伴随和 SDE 求解的计算与数值复杂度较高，原论文仅在小规模合成与动作捕捉上验证。
+    verified_at: '2026-11-23'
+
+  - id: kidger2020neural-cde
+    title: Neural Controlled Differential Equations for Irregular Time Series
+    authors:
+      - Patrick Kidger
+      - James Morrill
+      - James Foster
+      - Terry Lyons
+    year: 2020
+    venue: Advances in Neural Information Processing Systems 33 (NeurIPS 2020)
+    doi: null
+    url: https://proceedings.neurips.cc/paper/2020/hash/4a5876b450b45371f6cfe5047ac8cd45-Abstract.html
+    oa_url: https://proceedings.neurips.cc/paper_files/paper/2020/file/4a5876b450b45371f6cfe5047ac8cd45-Paper.pdf
+    pdf_path: reference/papers/continuous-time-cfc/kidger2020neural-cde.pdf
+    sha256: a381ae615fc8e4fcbf935b822117706fa3276221c33db5648e98c01f98a140ff
+    access: downloaded
+    methods:
+      - Neural CDE
+      - natural cubic spline interpolation
+      - observational intensity channels
+      - adjoint backpropagation
+    datasets:
+      - CharacterTrajectories
+      - PhysioNet Challenge 2019
+      - Speech Commands
+    metrics:
+      - test accuracy
+      - test AUC
+      - memory usage
+    relevance: >-
+      把不规则多变量观测插值为控制路径，使后续观测持续驱动隐状态，适合编码异步气象站、卫星与低分辨率场。它依赖插值和 ODE 求解，通道数增大还会抬高向量场参数与计算成本，且未解决空间超分辨。
+    verified_at: '2026-11-23'
+
+  - id: hasani2021liquid-time-constant
+    title: Liquid Time-constant Networks
+    authors:
+      - Ramin Hasani
+      - Mathias Lechner
+      - Alexander Amini
+      - Daniela Rus
+      - Radu Grosu
+    year: 2021
+    venue: Proceedings of the AAAI Conference on Artificial Intelligence 35(9), 7657-7666
+    doi: 10.1609/aaai.v35i9.16936
+    url: https://ojs.aaai.org/index.php/AAAI/article/view/16936
+    oa_url: https://arxiv.org/pdf/2006.04439
+    pdf_path: reference/papers/continuous-time-cfc/hasani2021liquid-time-constant.pdf
+    sha256: 45b809e2aadb535ef8f96e277023f06f6028fc471956e8da00d77bc6b0b62b00
+    access: downloaded
+    methods:
+      - Liquid Time-constant Network
+      - input-dependent time constant
+      - nonlinear gating
+      - numerical ODE solver
+    datasets:
+      - Gesture
+      - Room Occupancy
+      - Human Activity Recognition
+      - sequential MNIST
+      - Traffic
+      - Power
+      - Ozone
+      - HalfCheetah-v2
+    metrics:
+      - accuracy
+      - squared error
+      - F1-score
+      - MSE
+    relevance: >-
+      输入依赖的液态时间常数能按天气状态调节记忆与响应速度，是 CfC 时间门控的理论前身。原模型仍需数值 ODE 求解，实验以通用时序和 MuJoCo 为主，不能直接推出公里尺度天气的效率或精度。
+    verified_at: '2026-11-23'
+
+  - id: morrill2021neural-rde
+    title: Neural Rough Differential Equations for Long Time Series
+    authors:
+      - James Morrill
+      - Cristopher Salvi
+      - Patrick Kidger
+      - James Foster
+    year: 2021
+    venue: Proceedings of the 38th International Conference on Machine Learning, PMLR 139
+    doi: null
+    url: https://proceedings.mlr.press/v139/morrill21b.html
+    oa_url: https://proceedings.mlr.press/v139/morrill21b/morrill21b.pdf
+    pdf_path: reference/papers/continuous-time-cfc/morrill2021neural-rde.pdf
+    sha256: 1a3fc7bb9adbd857e1127c40e859276bbfbffeaa3da942092d6de67d3644f86b
+    access: downloaded
+    methods:
+      - Neural RDE
+      - log-signature transform
+      - log-ODE method
+      - adjoint backpropagation
+    datasets:
+      - EigenWorms
+      - BIDMC respiratory rate
+      - BIDMC heart rate
+      - BIDMC oxygen saturation
+    metrics:
+      - test accuracy
+      - L2 loss
+      - training time
+      - memory usage
+    relevance: >-
+      log-signature 将局部观测窗口压缩后驱动隐状态，为长时序 CorrDiff+CfC 的时间上下文压缩与加速提供对照。log-signature 维度随输入通道快速增长，步长和截断深度也需调节，对高维多变量天气场可能昂贵。
+    verified_at: '2026-11-23'
+
+  - id: hasani2022closed-form-cfc
+    title: Closed-form continuous-time neural networks
+    authors:
+      - Ramin Hasani
+      - Mathias Lechner
+      - Alexander Amini
+      - Lucas Liebenwein
+      - Aaron Ray
+      - Max Tschaikowski
+      - Gerald Teschl
+      - Daniela Rus
+    year: 2022
+    venue: Nature Machine Intelligence 4, 992-1003 (2022)
+    doi: 10.1038/s42256-022-00556-7
+    url: https://www.nature.com/articles/s42256-022-00556-7
+    oa_url: https://www.nature.com/articles/s42256-022-00556-7.pdf
+    pdf_path: reference/papers/continuous-time-cfc/hasani2022closed-form-cfc.pdf
+    sha256: 1b48bc871992ff37a26190cdbe47f7bbada6703faa30e8d70890f91d02afafa5
+    access: downloaded
+    methods:
+      - Closed-form Continuous-time Network
+      - approximate closed-form LTC solution
+      - explicit time-dependent gating
+      - mixed-memory RNN
+    datasets:
+      - Human Activity Recognition
+      - Walker2D
+      - event-based sequential MNIST
+      - bit-stream XOR
+      - PhysioNet Challenge 2012
+      - IMDB
+      - VISTA autonomous driving
+    metrics:
+      - per-time-step accuracy
+      - squared error
+      - AUC
+      - training time
+      - inference time
+    relevance: >-
+      CfC 以显式时间门控近似 LTC 闭式解，无需 ODE 求解器，可作为低时频条件序列到 CorrDiff 目标时刻条件表示的核心时间模块；Walker2D 与不规则序列实验支持其物理动力学潜力。其闭式性不保证大气 PDE、守恒律或长程外推正确，标准 CfC 本身也不提供集合不确定性。
+    verified_at: '2026-11-23'
+
+  - id: schirmer2022continuous-recurrent
+    title: Modeling Irregular Time Series with Continuous Recurrent Units
+    authors:
+      - Mona Schirmer
+      - Mazin Eltayeb
+      - Stefan Lessmann
+      - Maja Rudolph
+    year: 2022
+    venue: Proceedings of the 39th International Conference on Machine Learning, PMLR 162
+    doi: null
+    url: https://proceedings.mlr.press/v162/schirmer22a.html
+    oa_url: https://proceedings.mlr.press/v162/schirmer22a/schirmer22a.pdf
+    pdf_path: reference/papers/continuous-time-cfc/schirmer2022continuous-recurrent.pdf
+    sha256: bb068b3e46bced14abb015730ad57cb18ba21ab0f3f6af992e2e25756ab88466
+    access: downloaded
+    methods:
+      - Continuous Recurrent Unit
+      - linear latent SDE
+      - continuous-discrete Kalman filter
+      - fast CRU parameterization
+    datasets:
+      - Pendulum Images
+      - USHCN
+      - PhysioNet Challenge 2012
+    metrics:
+      - MSE
+      - Gaussian negative log-likelihood
+      - runtime per epoch
+    relevance: >-
+      连续—离散 Kalman 预测/更新形成不确定性感知闭式门控，且 USHCN 与摆图像实验直接贴近噪声气象序列及图像动力学。线性潜 SDE、矩阵运算和编码器—解码器设定限制其表达能力与扩展性，仍须与 CfC 在相同空间骨干下比较。
+    verified_at: '2026-11-23'
+
+  - id: hasani2023liquid-s4
+    title: Liquid Structural State-Space Models
+    authors:
+      - Ramin Hasani
+      - Mathias Lechner
+      - Tsun-Hsuan Wang
+      - Makram Chahine
+      - Alexander Amini
+      - Daniela Rus
+    year: 2023
+    venue: International Conference on Learning Representations (ICLR 2023)
+    doi: null
+    url: https://openreview.net/forum?id=g4OTKRKfS7R
+    oa_url: https://arxiv.org/pdf/2209.12951
+    pdf_path: reference/papers/continuous-time-cfc/hasani2023liquid-s4.pdf
+    sha256: 7137c8b536b627cb80d9b612ada982304fced6dcf79d1c42b8d36f06fff1da78
+    access: downloaded
+    methods:
+      - Liquid-S4
+      - linearized LTC state-space model
+      - structured state-space model
+      - liquid convolution kernel
+    datasets:
+      - Long Range Arena
+      - raw Speech Commands
+    metrics:
+      - accuracy
+      - parameter count
+    relevance: >-
+      将输入依赖状态转移与 S4 卷积结合，为超长天气序列提供可并行训练的 Liquid-S4 备选，能检验 CfC 顺序递归是否成为瓶颈。LRA 等结果主要是规则采样分类，不能直接证明不规则时间重建、在线更新或时空超分辨能力。
+    verified_at: '2026-11-23'

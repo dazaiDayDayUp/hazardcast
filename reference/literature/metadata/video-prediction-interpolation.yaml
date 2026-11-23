@@ -1,0 +1,363 @@
+topic: video-prediction-interpolation
+papers:
+  - id: shi-2015-convlstm
+    title: "Convolutional LSTM Network: A Machine Learning Approach for Precipitation Nowcasting"
+    authors:
+      - Xingjian Shi
+      - Zhourong Chen
+      - Hao Wang
+      - Dit-Yan Yeung
+      - Wai-kin Wong
+      - Wang-chun Woo
+    year: 2015
+    venue: "Advances in Neural Information Processing Systems 28 (NIPS 2015)"
+    doi: null
+    url: "https://proceedings.neurips.cc/paper/5955-convolutional-lstm-network-a-"
+    oa_url: "https://arxiv.org/pdf/1506.04214"
+    pdf_path: "reference/papers/video-prediction-interpolation/shi-2015-convlstm.pdf"
+    sha256: "6b83643820fa049a9cdf30621385bd5d33c67408d348a93edb6c59ed247986ef"
+    access: downloaded
+    methods:
+      - Convolutional LSTM
+      - 编码—预测循环结构
+      - 卷积状态转移
+      - 多步时空序列预测
+    datasets:
+      - Moving-MNIST
+      - 香港雷达回波数据集（2011—2013 年）
+    metrics:
+      - Cross-Entropy
+      - Rainfall-MSE
+      - CSI
+      - FAR
+      - POD
+      - Correlation
+    relevance: "ConvLSTM 把降水临近预报明确写成时空序列预测，其卷积状态转移可作为 CfC 连续时间状态更新的离散基线。论文还提供雷达回波端到端预测及 CSI/POD 等气象评估范式；但逐帧递推和点误差训练易平滑细节，未处理低分辨率输入到高分辨率输出。"
+    verified_at: "2026-11-23"
+
+  - id: niklaus-2017-sepconv
+    title: "Video Frame Interpolation via Adaptive Separable Convolution"
+    authors:
+      - Simon Niklaus
+      - Long Mai
+      - Feng Liu
+    year: 2017
+    venue: "2017 IEEE International Conference on Computer Vision (ICCV)"
+    doi: "10.1109/ICCV.2017.37"
+    url: "https://doi.org/10.1109/ICCV.2017.37"
+    oa_url: "https://arxiv.org/pdf/1708.01692"
+    pdf_path: "reference/papers/video-prediction-interpolation/niklaus-2017-sepconv.pdf"
+    sha256: "41cdd4e06296ba5dcec31ef0cd3d19414e0b84a24ef09e540d7833b9d1a35058"
+    access: downloaded
+    methods:
+      - 自适应可分离卷积
+      - 逐像素一维核预测
+      - 运动补偿与重采样一体化
+      - L1 与感知损失
+    datasets:
+      - 精选 YouTube 视频训练集
+      - Middlebury
+      - See You Again 视频留帧集
+    metrics:
+      - MAE
+      - RMSE
+      - PSNR
+      - SSIM
+      - Middlebury Interpolation Error
+      - 用户偏好研究
+    relevance: "逐像素一维核把运动补偿和重采样合并，可作为 CorrDiff 解码器的轻量确定性基线或条件分支，用于判断生成式细节是否必要。核尺寸限制可处理的局部位移，且 RGB 视频上的亮度与遮挡先验不能直接描述天气场生消和多变量物理耦合。"
+    verified_at: "2026-11-23"
+
+  - id: wang-2017-predrnn
+    title: "PredRNN: Recurrent Neural Networks for Predictive Learning using Spatiotemporal LSTMs"
+    authors:
+      - Yunbo Wang
+      - Mingsheng Long
+      - Jianmin Wang
+      - Zhifeng Gao
+      - Philip S. Yu
+    year: 2017
+    venue: "Advances in Neural Information Processing Systems 30 (NIPS 2017)"
+    doi: null
+    url: "https://proceedings.neurips.cc/paper/2017/hash/e5f6ad6ce374177eef023bf5d0c018b6-Abstract.html"
+    oa_url: "https://proceedings.neurips.cc/paper_files/paper/2017/file/e5f6ad6ce374177eef023bf5d0c018b6-Paper.pdf"
+    pdf_path: "reference/papers/video-prediction-interpolation/wang-2017-predrnn.pdf"
+    sha256: "f280ba06d6a50e6622b440cffe76af56598715ef130266d36025c8b04a8821e0"
+    access: downloaded
+    methods:
+      - PredRNN
+      - Spatiotemporal LSTM
+      - 跨层 zigzag 记忆流
+      - 时间与时空双记忆门控
+    datasets:
+      - Moving MNIST
+      - KTH Action
+      - 广州雷达回波数据集
+    metrics:
+      - MSE
+      - Cross-Entropy
+      - PSNR
+      - SSIM
+      - 训练时间与显存占用
+    relevance: "ST-LSTM 的跨层、跨时刻双记忆为 CfC 的隐状态传播和多尺度特征交互提供直接对照，可检验连续时间门控是否比离散 zigzag 记忆更能保持形变。论文覆盖雷达回波并指出光流难以描述生消，但仍依赖自回归 rollout，缺少概率采样与物理约束。"
+    verified_at: "2026-11-23"
+
+  - id: jiang-2018-super-slomo
+    title: "Super SloMo: High Quality Estimation of Multiple Intermediate Frames for Video Interpolation"
+    authors:
+      - Huaizu Jiang
+      - Deqing Sun
+      - Varun Jampani
+      - Ming-Hsuan Yang
+      - Erik Learned-Miller
+      - Jan Kautz
+    year: 2018
+    venue: "Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR 2018)"
+    doi: "10.1109/CVPR.2018.00938"
+    url: "https://openaccess.thecvf.com/content_cvpr_2018/html/Jiang_Super_SloMo_High_CVPR_2018_paper.html"
+    oa_url: "https://arxiv.org/pdf/1712.00080"
+    pdf_path: "reference/papers/video-prediction-interpolation/jiang-2018-super-slomo.pdf"
+    sha256: "f3bac2a0cbce42d5b47510c86392cb8f283c56c5fd87966649c40c6bdc6b95b8"
+    access: downloaded
+    methods:
+      - 双向光流估计
+      - 任意时刻中间流插值
+      - U-Net 流细化
+      - 软可见性图与遮挡推理
+      - 反向 warping 与多帧联合预测
+    datasets:
+      - Adobe240-fps
+      - YouTube240-fps
+      - Middlebury
+      - UCF101
+      - SlowFlow
+      - 高帧率 Sintel
+      - KITTI 2012
+    metrics:
+      - PSNR
+      - SSIM
+      - Interpolation Error
+      - Endpoint Error
+    relevance: "双向流插值、可见性图和任意时刻融合可构成稀疏天气观测之间的显式平流基线，并可与 CfC 的时间条件状态更新公平比较。其线性中间流和 warping 主要保持纹理与强度，不保证非线性生消、质量守恒或极端降水准确性。"
+    verified_at: "2026-11-23"
+
+  - id: ho-2022-video-diffusion
+    title: "Video Diffusion Models"
+    authors:
+      - Jonathan Ho
+      - Tim Salimans
+      - Alexey Gritsenko
+      - William Chan
+      - Mohammad Norouzi
+      - David J. Fleet
+    year: 2022
+    venue: "Advances in Neural Information Processing Systems 35 (NeurIPS 2022)"
+    doi: "10.52202/068431-0628"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2022/hash/39235c56aef13fb05a6adc95eb9d8d66-Abstract-Conference.html"
+    oa_url: "https://arxiv.org/pdf/2204.03458"
+    pdf_path: "reference/papers/video-prediction-interpolation/ho-2022-video-diffusion.pdf"
+    sha256: "564428dc63dfe59725377fbcf0b108e1fcc3378b82f32c5b042ce861679da96f"
+    access: downloaded
+    methods:
+      - 视频去噪扩散概率模型
+      - 三维 U-Net
+      - 分解时空注意力
+      - 图像—视频联合训练
+      - 重建引导条件采样
+      - 自回归时空扩展
+    datasets:
+      - UCF101
+      - BAIR Robot Pushing
+      - Kinetics-600
+      - 私有 1000 万条带字幕视频数据集
+    metrics:
+      - FVD
+      - FID
+      - Inception Score
+    relevance: "该工作把图像扩散扩展为三维 U-Net 与分解时空注意力，重建引导可在同一框架执行时间加密、空间超分和长序列扩展，为 CorrDiff 从单场降尺度走向条件时空生成提供直接路径。但像素空间低分辨率实验、自然视频训练和多步采样成本较高，重建引导也只是条件分布近似。"
+    verified_at: "2026-11-23"
+
+  - id: harvey-2022-flexible-diffusion
+    title: "Flexible Diffusion Modeling of Long Videos"
+    authors:
+      - William Harvey
+      - Saeid Naderiparizi
+      - Vaden Masrani
+      - Christian Weilbach
+      - Frank Wood
+    year: 2022
+    venue: "Advances in Neural Information Processing Systems 35 (NeurIPS 2022)"
+    doi: "10.52202/068431-2027"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2022/hash/b2fe1ee8d936ac08dd26f2ff58986c8f-Abstract-Conference.html"
+    oa_url: "https://arxiv.org/pdf/2205.11495"
+    pdf_path: "reference/papers/video-prediction-interpolation/harvey-2022-flexible-diffusion.pdf"
+    sha256: "63135ed6ba1417d658c26fbbf593037ef0e0e58fca873be3f1b9fbb243d04db4"
+    access: downloaded
+    methods:
+      - 条件 DDPM
+      - 任意观测帧与潜帧掩码训练
+      - 分解时空注意力
+      - 自回归与层级采样日程
+      - 长程稀疏条件
+      - 采样日程优化
+    datasets:
+      - GQN-Mazes
+      - MineRL Navigate
+      - CARLA Town01
+    metrics:
+      - FVD
+      - 房间访问 Accuracy
+      - 速度分布 Wasserstein Distance
+      - 速度异常比例
+    relevance: "训练时随机划分观测帧和潜帧，使一次训练支持任意子集条件补全、插值和预测；这可映射为不规则天气观测掩码，并为 CfC 提供灵活条件状态。层级与自回归采样在不同数据上优劣不一且采样缓慢，说明必须针对天气序列选择条件日程并检验长期物理一致性。"
+    verified_at: "2026-11-23"
+
+  - id: chen-2022-videoinr
+    title: "VideoINR: Learning Video Implicit Neural Representation for Continuous Space-Time Super-Resolution"
+    authors:
+      - Zeyuan Chen
+      - Yinbo Chen
+      - Jingwen Liu
+      - Xingqian Xu
+      - Vidit Goel
+      - Zhangyang Wang
+      - Humphrey Shi
+      - Xiaolong Wang
+    year: 2022
+    venue: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2022)"
+    doi: "10.1109/CVPR52688.2022.00209"
+    url: "https://doi.org/10.1109/CVPR52688.2022.00209"
+    oa_url: "https://arxiv.org/pdf/2206.04647"
+    pdf_path: "reference/papers/video-prediction-interpolation/chen-2022-videoinr.pdf"
+    sha256: "0792d7911297f384f67a0b2ba0a91f3cdcb240c0be246fde28ba074976f5385d"
+    access: downloaded
+    methods:
+      - 视频隐式神经表示
+      - SpatialINR 与 TemporalINR
+      - 连续时空坐标查询
+      - 连续运动场与特征 warping
+      - 固定倍率预训练后连续倍率微调
+    datasets:
+      - Adobe240
+      - Vid4
+      - GoPro
+    metrics:
+      - PSNR
+      - SSIM
+      - 参数量
+      - 推理时间
+      - 分布外时空倍率泛化
+    relevance: "以连续 (x,y,t) 坐标查询并按运动场 warping 特征，与项目的任意空间倍率、时间间隔重建高度一致，可作为 CfC 状态解码为连续天气场的直接参照。其两阶段训练显示了课程学习价值；但确定性重构、双端帧输入和极大运动失效限制了概率预报与外推。"
+    verified_at: "2026-11-23"
+
+  - id: lu-2022-vfi-transformer
+    title: "Video Frame Interpolation with Transformer"
+    authors:
+      - Liying Lu
+      - Ruizheng Wu
+      - Huaijia Lin
+      - Jiangbo Lu
+      - Jiaya Jia
+    year: 2022
+    venue: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2022)"
+    doi: "10.1109/CVPR52688.2022.00352"
+    url: "https://openaccess.thecvf.com/content/CVPR2022/html/Lu_Video_Frame_Interpolation_With_Transformer_CVPR_2022_paper.html"
+    oa_url: "https://arxiv.org/pdf/2205.07230"
+    pdf_path: "reference/papers/video-prediction-interpolation/lu-2022-vfi-transformer.pdf"
+    sha256: "51c872fe932dbf1880a71264a2380eb26b1c16e7bd7186cf2d80f42ffb2acd10"
+    access: downloaded
+    methods:
+      - VFIformer
+      - 跨尺度窗口注意力
+      - U-Net 编解码器
+      - 光流估计与蒸馏
+      - Census 损失
+    datasets:
+      - Vimeo90K
+      - UCF101
+      - Middlebury
+      - SNU-FILM
+    metrics:
+      - PSNR
+      - SSIM
+      - Interpolation Error
+      - 有效感受野
+    relevance: "跨尺度窗口注意力把长距离对应引入插帧，可用于检验 CorrDiff+CfC 是否真正需要扩散，也可作为条件编码器捕获大尺度输送。其计算成本高于 CNN，原模型仅预测中间帧且多帧结果靠递归生成，不利于任意时间坐标与长序列误差控制。"
+    verified_at: "2026-11-23"
+
+  - id: gao-2022-earthformer
+    title: "Earthformer: Exploring Space-Time Transformers for Earth System Forecasting"
+    authors:
+      - Zhihan Gao
+      - Xingjian Shi
+      - Hao Wang
+      - Yi Zhu
+      - Yuyang Wang
+      - Mu Li
+      - Dit-Yan Yeung
+    year: 2022
+    venue: "Advances in Neural Information Processing Systems 35 (NeurIPS 2022)"
+    doi: "10.52202/068431-1841"
+    url: "https://proceedings.neurips.cc/paper_files/paper/2022/hash/a2affd71d15e8fedffe18d0219f4837a-Abstract-Conference.html"
+    oa_url: "https://arxiv.org/pdf/2207.05833"
+    pdf_path: "reference/papers/video-prediction-interpolation/gao-2022-earthformer.pdf"
+    sha256: "befca1b11cd35336ba6c797a3e3828dccdf034468fa6c3cadc30b8ba85659bf6"
+    access: downloaded
+    methods:
+      - Cuboid Attention
+      - 局部与膨胀时空块分解
+      - 全局向量
+      - 层级非自回归编解码器
+      - 时空 Transformer
+    datasets:
+      - MovingMNIST
+      - N-body MNIST
+      - SEVIR
+      - ICAR-ENSO
+    metrics:
+      - MSE
+      - MAE
+      - SSIM
+      - 多阈值 CSI 与 CSI-M
+      - ENSO 预测技巧
+      - GFLOPS
+    relevance: "Cuboid Attention 用局部时空块和全局向量降低注意力成本，并在 SEVIR 与 ENSO 上验证，是 CfC 长时间依赖建模最直接的 Transformer 对照。可将轴向注意力与连续时间记忆混合，但其离散等间隔输入和非自回归确定输出仍不解决任意时刻采样与分布校准。"
+    verified_at: "2026-11-23"
+
+  - id: jain-2024-vidim
+    title: "Video Interpolation with Diffusion Models"
+    authors:
+      - Siddhant Jain
+      - Daniel Watson
+      - Eric Tabellion
+      - Aleksander Hołyński
+      - Ben Poole
+      - Janne Kontkanen
+    year: 2024
+    venue: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2024)"
+    doi: "10.1109/CVPR52733.2024.00701"
+    url: "https://openaccess.thecvf.com/content/CVPR2024/html/Jain_Video_Interpolation_with_Diffusion_Models_CVPR_2024_paper.html"
+    oa_url: "https://arxiv.org/pdf/2404.01203"
+    pdf_path: "reference/papers/video-prediction-interpolation/jain-2024-vidim.pdf"
+    sha256: "8c28e136f80a72d9527b1c2584b28eaf236ef6766f841b0008ca33801b81ac31"
+    access: downloaded
+    methods:
+      - VIDIM 级联视频扩散
+      - 低分辨率插值后空间超分
+      - 时间注意力与联合多帧去噪
+      - 无参数首尾帧条件
+      - Classifier-Free Guidance
+      - v 参数化与连续 log-SNR 目标
+    datasets:
+      - WebVid 与内部视频混合训练集
+      - Davis-7
+      - UCF101-7
+    metrics:
+      - PSNR
+      - SSIM
+      - LPIPS
+      - FID
+      - FVD
+      - 人类偏好评估
+    relevance: "VIDIM 将低分辨率全段生成与高分辨率超分级联，并对全部中间帧联合去噪，直接示范 CorrDiff 空间超分如何与连续时段生成衔接；原始高分辨率首尾帧的无参数条件也可改造成多尺度观测条件。其 PSNR/SSIM 不如回归基线而 FVD 和人类偏好更好，提示天气评估必须区分点误差与真实感；但固定生成 7 帧、双模型各 256 步采样及高分辨率端帧条件限制了直接迁移。"
+    verified_at: "2026-11-23"

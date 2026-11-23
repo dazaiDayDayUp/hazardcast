@@ -1,0 +1,465 @@
+topic: datasets-baselines
+papers:
+  - id: powers-2017-wrf
+    title: "The Weather Research and Forecasting Model: Overview, System Efforts, and Future Directions"
+    authors:
+      - Jordan G. Powers
+      - Joseph B. Klemp
+      - William C. Skamarock
+      - Christopher A. Davis
+      - Jimy Dudhia
+      - David O. Gill
+      - Janice L. Coen
+      - David J. Gochis
+      - Ravan Ahmadov
+      - Steven E. Peckham
+      - Georg A. Grell
+      - John Michalakes
+      - Samuel Trahan
+      - Stanley G. Benjamin
+      - Curtis R. Alexander
+      - Geoffrey J. Dimego
+      - Wei Wang
+      - Craig S. Schwartz
+      - Glen S. Romine
+      - Zhiquan Liu
+      - Chris Snyder
+      - Fei Chen
+      - Michael J. Barlage
+      - Wei Yu
+      - Michael G. Duda
+    year: 2017
+    venue: "Bulletin of the American Meteorological Society, 98(8), 1717-1737"
+    doi: 10.1175/BAMS-D-15-00308.1
+    url: https://journals.ametsoc.org/view/journals/bams/98/8/bams-d-15-00308.1.xml
+    oa_url: https://repository.library.noaa.gov/view/noaa/20592/noaa_20592_DS1.pdf
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - Advanced Research WRF and Nonhydrostatic Mesoscale Model dynamical cores
+      - one-way and two-way nesting
+      - physical parameterization
+      - WRF data assimilation
+      - ensemble and coupled Earth-system prediction
+    datasets:
+      - operational numerical weather prediction
+      - idealized and real-data WRF simulations
+      - regional climate and hazard applications
+    metrics:
+      - forecast verification
+      - case-study evaluation
+      - computational scalability
+    relevance: >-
+      该文界定 CorrDiff 高分辨率训练目标背后的 WRF 动力框架、嵌套、物理参数化和资料同化能力，是区分“学习真实天气”与“学习区域模式代理”的权威依据。它适合指导物理基线和模式误差讨论，但并非 CWA 特定版本或物理配置的可复现实验规范。
+    verified_at: 2026-11-23
+
+  - id: hersbach-2020-era5
+    title: The ERA5 global reanalysis
+    authors:
+      - Hans Hersbach
+      - Bill Bell
+      - Paul Berrisford
+      - Shoji Hirahara
+      - András Horányi
+      - Joaquín Muñoz-Sabater
+      - Julien Nicolas
+      - Carole Peubey
+      - Raluca Radu
+      - Dinand Schepers
+      - Adrian Simmons
+      - Cornel Soci
+      - Saleh Abdalla
+      - Xavier Abellan
+      - Gianpaolo Balsamo
+      - Peter Bechtold
+      - Gionata Biavati
+      - Jean Bidlot
+      - Massimo Bonavita
+      - Giovanna De Chiara
+      - Per Dahlgren
+      - Dick Dee
+      - Michail Diamantakis
+      - Rossana Dragani
+      - Johannes Flemming
+      - Richard Forbes
+      - Manuel Fuentes
+      - Alan Geer
+      - Leo Haimberger
+      - Sean Healy
+      - Robin J. Hogan
+      - Elías Hólm
+      - Marta Janisková
+      - Sarah Keeley
+      - Patrick Laloyaux
+      - Philippe Lopez
+      - Cristina Lupu
+      - Gabor Radnoti
+      - Patricia de Rosnay
+      - Iryna Rozum
+      - Freja Vamborg
+      - Sebastien Villaume
+      - Jean-Noël Thépaut
+    year: 2020
+    venue: "Quarterly Journal of the Royal Meteorological Society, 146(730), 1999-2049"
+    doi: 10.1002/qj.3803
+    url: https://rmets.onlinelibrary.wiley.com/doi/10.1002/qj.3803
+    oa_url: https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/qj.3803
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - IFS Cy41r2
+      - four-dimensional variational data assimilation
+      - ten-member ensemble of data assimilations
+      - hourly global reanalysis
+    datasets:
+      - ERA5
+      - conventional in-situ observations
+      - satellite radiances and remote-sensing observations
+      - ocean waves and land-surface fields
+    metrics:
+      - observation-analysis fits
+      - forecast RMSE and anomaly correlation
+      - observation impact
+      - energy and water cycle diagnostics
+      - precipitation and surface-field evaluation
+    relevance: >-
+      ERA5 是本项目低分辨率动力条件与多数对照模型的共同数据源，该文给出约 31 km 原生网格、逐小时输出、4D-Var 与集合不确定度的来源。它提醒我们不能把 ERA5 当作无误差观测，尤其不能把其降水或历史同化系统变化造成的差异误判为超分辨模型能力。
+    verified_at: 2026-11-23
+
+  - id: chen-2020-radar-assimilation
+    title: Improving Afternoon Thunderstorm Prediction over Taiwan through 3DVar-Based Radar and Surface Data Assimilation
+    authors:
+      - I-Han Chen
+      - Jing-Shan Hong
+      - Ya-Ting Tsai
+      - Chin-Tzu Fong
+    year: 2020
+    venue: "Weather and Forecasting, 35(6), 2603-2620"
+    doi: 10.1175/WAF-D-20-0037.1
+    url: https://journals.ametsoc.org/view/journals/wefo/35/6/waf-d-20-0037.1.xml
+    oa_url: https://journals.ametsoc.org/view/journals/wefo/35/6/waf-d-20-0037.1.pdf
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - WRF 3.8.1 and WRFDA 3.9.1
+      - convective-scale 3DVar
+      - hourly rapid update cycle
+      - large-scale blending
+      - radar and surface observation assimilation
+    datasets:
+      - seven CWA radar sites
+      - 375 Taiwan surface stations
+      - 579 rain gauges
+      - gauge-corrected QPESUMS QPE
+      - NCEP GFS 0.25-degree analysis
+      - 2-km and 10-km WRF forecasts for 29 June-8 July 2017
+    metrics:
+      - fractions skill score with 8-km neighborhood
+      - RMSE
+      - mean error
+      - forecast lead-time sensitivity
+    relevance: >-
+      该文直接解释 CWA 2-km WRF 目标场包含的区域雷达与地面资料同化信息，并证明雷达和地面观测的联合贡献及不同时段作用不同。它为台湾午后对流、冷池和出流边界评估提供物理依据，但仅有 2017 年连续 10 天和少量天气型，不能直接代表全年或台风极端表现。
+    verified_at: 2026-11-23
+
+  - id: stengel-2020-phire
+    title: Adversarial super-resolution of climatological wind and solar data
+    authors:
+      - Karen Stengel
+      - Andrew Glaws
+      - Dylan Hettinger
+      - Ryan N. King
+    year: 2020
+    venue: "Proceedings of the National Academy of Sciences, 117(29), 16805-16815"
+    doi: 10.1073/pnas.1918964117
+    url: https://www.pnas.org/doi/10.1073/pnas.1918964117
+    oa_url: https://www.osti.gov/servlets/purl/1660090
+    pdf_path: reference/papers/deterministic-downscaling/stengel-2020-phire.pdf
+    sha256: 0197865d8aef70fc7e13c04f4a237909b6d4edfa303327dc2bb1d37586fb57bb
+    access: existing
+    methods:
+      - two-stage super-resolution GAN
+      - MSE pretraining
+      - adversarial fine-tuning
+      - fully convolutional residual network
+      - 50-fold wind and 25-fold solar resolution enhancement
+    datasets:
+      - NREL WIND Toolkit 2-km wind
+      - National Solar Radiation Database 4-km irradiance
+      - NCAR CCSM CMIP5 climate simulations
+    metrics:
+      - relative MSE
+      - turbulent kinetic energy spectra
+      - velocity-gradient probability distributions and skewness
+      - semivariograms
+      - input-noise robustness
+    relevance: >-
+      该工作清楚展示逐像素 MSE 与真实小尺度统计之间的权衡，支持本项目在 MAE/RMSE 之外检查能谱、梯度和间歇性。其两级大倍率生成对 CorrDiff 的物理统计评估很有价值，但训练低分辨率场来自高分辨率资料的人工粗化，且逐时刻处理，不解决跨产品偏差或时间相干性。
+    verified_at: 2026-11-23
+
+  - id: leinonen-2021-temporal-gan
+    title: Stochastic Super-Resolution for Downscaling Time-Evolving Atmospheric Fields With a Generative Adversarial Network
+    authors:
+      - Jussi Leinonen
+      - Daniele Nerini
+      - Alexis Berne
+    year: 2021
+    venue: "IEEE Transactions on Geoscience and Remote Sensing, 59(9), 7211-7223"
+    doi: 10.1109/TGRS.2020.3032790
+    url: https://doi.org/10.1109/TGRS.2020.3032790
+    oa_url: https://arxiv.org/pdf/2005.10374
+    pdf_path: reference/papers/datasets-baselines/leinonen-2021-temporal-gan.pdf
+    sha256: 2df786aa20f3a7b97ba5e1fdb5d14bc8786410a7fdf93fa77c165abfcfffd3da
+    access: downloaded
+    methods:
+      - recurrent conditional GAN
+      - stochastic super-resolution
+      - sixteen-fold spatial upsampling
+      - temporally correlated ensemble generation
+      - fully convolutional sequence generator
+    datasets:
+      - Swiss radar precipitation
+      - GOES-16 cloud optical thickness
+      - three-month radar sequence for extended rollout
+    metrics:
+      - RMSE
+      - MS-SSIM
+      - log-spectral distance
+      - CRPS
+      - rank histograms
+      - Kolmogorov-Smirnov and Kullback-Leibler rank-distribution distances
+      - outlier fraction
+    relevance: >-
+      这是与 CorrDiff+CfC 最直接的前置基线之一：它把随机空间超分辨与循环时间状态结合，并用集合秩统计同时检验细节与不确定度。它证明时间条件可以延长生成序列，但单变量、固定倍率和 GAN 框架尚不能回答台湾多变量中间时刻重建及跨产品系统偏差问题。
+    verified_at: 2026-11-23
+
+  - id: chen-2022-rainnet
+    title: "RainNet: A Large-Scale Imagery Dataset and Benchmark for Spatial Precipitation Downscaling"
+    authors:
+      - Xuanhong Chen
+      - Kairui Feng
+      - Naiyuan Liu
+      - Bingbing Ni
+      - Yifan Lu
+      - Zhengyan Tong
+      - Ziang Liu
+    year: 2022
+    venue: Advances in Neural Information Processing Systems 35 (NeurIPS 2022)
+    doi: 10.52202/068431-0712
+    url: https://proceedings.neurips.cc/paper_files/paper/2022/hash/3fbf0c1ea0716c03dea93bb6be78dd6f-Abstract-Conference.html
+    oa_url: https://proceedings.neurips.cc/paper_files/paper/2022/file/3fbf0c1ea0716c03dea93bb6be78dd6f-Paper-Conference.pdf
+    pdf_path: reference/papers/datasets-baselines/chen-2022-rainnet.pdf
+    sha256: f8cc17096b5c59e68ff06928e28e55fd1295d46f96ac67d07248ef1c363fdbb3
+    access: downloaded
+    methods:
+      - real multi-product precipitation pairing
+      - implicit dynamics estimation
+      - five-frame video super-resolution
+      - residual-in-residual dense blocks
+      - fourteen traditional and deep-learning baselines
+      - seventeen-fold leave-one-year-out cross-validation
+    datasets:
+      - NLDAS hourly precipitation at 0.125 degree
+      - NCEP Stage IV radar-gauge precipitation at 0.04 degree
+      - 62424 hourly pairs over the eastern United States
+      - July-November seasons from 2002 to 2018
+    metrics:
+      - mesoscale peak precipitation error
+      - heavy rain region error
+      - cumulative precipitation mean square error
+      - cluster mean distance
+      - heavy rain transition speed
+      - average miss moving degree
+      - PEM and PDEM composite scores
+      - RMSE
+    relevance: >-
+      RainNet 提供少见的真实多传感器低/高分辨率配对，并以按年份留一交叉验证和 14 个基线显示视频方法在降水动力学指标上总体优于单帧方法。它可指导 CfC 时间上下文档位与运动指标设计，但仅限美国东部单变量降水，且留一年份会使用被测年份之后的数据，部署型实验还需另做前向时间划分。
+    verified_at: 2026-11-23
+
+  - id: langguth-2024-downscalebench
+    title: A Benchmark Dataset for Meteorological Downscaling
+    authors:
+      - Michael Langguth
+      - Paula Harder
+      - Irene Schicker
+      - Ankit Patnala
+      - Sebastian Lehner
+      - Konrad Mayer
+      - Markus Dabernig
+    year: 2024
+    venue: ICLR 2024 Workshop on Tackling Climate Change with Machine Learning
+    doi: 10.34734/FZJ-2024-07378
+    url: https://www.climatechange.ai/papers/iclr2024/71
+    oa_url: https://s3.us-east-1.amazonaws.com/climate-change-ai/papers/iclr2024/71/paper.pdf
+    pdf_path: reference/papers/datasets-baselines/langguth-2024-downscalebench.pdf
+    sha256: eec77dffad9f67f1d3d3f3fa3d5960faf25aa3b58432bd87e8821e5733aac4ee
+    access: downloaded
+    methods:
+      - ERA5 and COSMO-REA6 data pairing
+      - DeepRU and Sha U-Net
+      - Wasserstein GAN
+      - SwinIR
+      - SAMOS statistical post-processing
+      - bilinear reference and model skill scores
+    datasets:
+      - ERA5 0.25-degree predictors
+      - COSMO-REA6 approximately 6-km targets
+      - Central Europe and the Alps
+      - 2-m temperature
+      - 100-m wind
+      - global horizontal irradiance
+    metrics:
+      - RMSE and relative skill
+      - mean error of local standard deviation
+      - integrated quadratic distance
+      - vector RMSE and cosine dissimilarity
+      - conditional quantiles
+      - power spectra and histograms
+      - daily irradiance sums and hit-miss rates
+    relevance: >-
+      该基准把预处理好的再分析配对、传统统计方法、确定性网络、GAN、Transformer 和统一诊断放在同一框架，适合作为本项目对照矩阵的模板。其价值主要是任务和工具标准化，而非定论性模型排名；短文仅展示初步结果，局限于中欧三类变量，完整训练划分细节也不能只凭正文复原。
+    verified_at: 2026-11-23
+
+  - id: rasp-2024-weatherbench2
+    title: "WeatherBench 2: A Benchmark for the Next Generation of Data-Driven Global Weather Models"
+    authors:
+      - Stephan Rasp
+      - Stephan Hoyer
+      - Alexander Merose
+      - Ian Langmore
+      - Peter Battaglia
+      - Tyler Russell
+      - Alvaro Sanchez-Gonzalez
+      - Vivian Yang
+      - Rob Carver
+      - Shreya Agrawal
+      - Matthew Chantry
+      - Zied Ben Bouallegue
+      - Peter Dueben
+      - Carla Bromberg
+      - Jared Sisk
+      - Luke Barrington
+      - Aaron Bell
+      - Fei Sha
+    year: 2024
+    venue: "Journal of Advances in Modeling Earth Systems, 16(6), e2023MS004019"
+    doi: 10.1029/2023MS004019
+    url: https://doi.org/10.1029/2023MS004019
+    oa_url: https://arxiv.org/pdf/2308.15560
+    pdf_path: reference/papers/datasets-baselines/rasp-2024-weatherbench2.pdf
+    sha256: fd50ff122d158efef833be8f414539f6be59f0b994be80f3d2c0dca2c65d61da
+    access: downloaded
+    methods:
+      - open-source forecast evaluation
+      - common conservative regridding and area weighting
+      - operational and data-driven baselines
+      - deterministic and probabilistic verification
+      - fixed 2020 evaluation period
+      - model-appropriate analysis for fair initialization comparison
+    datasets:
+      - ERA5
+      - ERA5-initialized IFS hindcasts
+      - ECMWF IFS HRES and ENS
+      - 1990-2019 climatology
+      - GraphCast, Pangu-Weather, FourCastNet-related and other AI forecasts
+    metrics:
+      - RMSE and vector-wind RMSE
+      - anomaly correlation coefficient
+      - CRPS
+      - SEEPS
+      - ensemble spread and skill
+      - regional and extreme-weather diagnostics
+    relevance: >-
+      WeatherBench 2 对本项目最重要的启发是固定公共测试期、公开代码与基线、统一网格和面积权重，并让不同初始条件的模型对各自适当分析场评分。它并非公里尺度降尺度数据集，且统一到 1.5 度会抹去小尺度增益，因此只能借鉴评估协议，不能照搬其分辨率或把全球预报分数当作时空超分辨结论。
+    verified_at: 2026-11-23
+
+  - id: mardani-2025-corrdiff
+    title: Residual corrective diffusion modeling for km-scale atmospheric downscaling
+    authors:
+      - Morteza Mardani
+      - Noah Brenowitz
+      - Yair Cohen
+      - Jaideep Pathak
+      - Chieh-Yu Chen
+      - Cheng-Chin Liu
+      - Arash Vahdat
+      - Mohammad Amin Nabian
+      - Tao Ge
+      - Akshay Subramaniam
+      - Karthik Kashinath
+      - Jan Kautz
+      - Mike Pritchard
+    year: 2025
+    venue: "Communications Earth & Environment, 6, 124"
+    doi: 10.1038/s43247-025-02042-5
+    url: https://www.nature.com/articles/s43247-025-02042-5
+    oa_url: https://www.nature.com/articles/s43247-025-02042-5.pdf
+    pdf_path: reference/corrdiff/Residual corrective diffusion modeling for km-scale atmospheric downscaling.pdf
+    sha256: 9cad8b7e51f30b54c7b7be0c7260ae69fdb49af14876028835e949d8ccf7d13e
+    access: existing
+    methods:
+      - UNet conditional-mean regression
+      - elucidated diffusion model for residual correction
+      - multivariate downscaling and radar-channel synthesis
+      - 32-member probabilistic generation
+      - 12.5-fold spatial downscaling
+    datasets:
+      - ERA5 25-km twelve-channel input
+      - CWA radar-assimilating WRF 2-km hourly target
+      - 2018-2020 training period
+      - 205 randomly selected out-of-sample times from 2021
+      - 2022 frontal case and 2023 typhoon cases
+    metrics:
+      - MAE and CRPS
+      - power spectra
+      - marginal probability distributions
+      - rank histograms
+      - spread-skill ratio
+      - frontal and tropical-cyclone case diagnostics
+    relevance: >-
+      这是项目数据、任务与基线的直接母本，固定了 25-km ERA5 到 2-km CWA WRF 的配对、UNet/随机森林/插值基线及 2021 年留出评估。其逐时刻生成不保证细尺度时间连续性，且集合欠离散、205 个时刻不足以充分采样极端事件，正好构成引入 CfC 与扩展评估的明确空间。
+    verified_at: 2026-11-23
+
+  - id: harder-2025-rainshift
+    title: "RainShift: A Benchmark for Precipitation Downscaling Across Geographies"
+    authors:
+      - Paula Harder
+      - Luca Schmidt
+      - Francis Pelletier
+      - Nicole Ludwig
+      - Matthew Chantry
+      - Christian Lessig
+      - Alex Hernandez-Garcia
+      - David Rolnick
+    year: 2025
+    venue: arXiv preprint arXiv:2507.04930
+    doi: 10.48550/arXiv.2507.04930
+    url: https://arxiv.org/abs/2507.04930
+    oa_url: https://arxiv.org/pdf/2507.04930
+    pdf_path: reference/papers/datasets-baselines/harder-2025-rainshift.pdf
+    sha256: a69a0c8ad360a94787bbf6eda98cc493605ba5b9e8ff1705373cba99dc480d53
+    access: downloaded
+    methods:
+      - zero-shot geographic generalization
+      - deterministic ResNet
+      - Wasserstein GAN with gradient penalty
+      - score-based residual diffusion
+      - quantile-mapping domain alignment
+      - eight-member probabilistic evaluation
+    datasets:
+      - ERA5 0.25-degree nine-channel input
+      - IMERG V07 Final Run 0.1-degree hourly precipitation
+      - land-sea mask and orography
+      - twelve training and six disjoint evaluation regions
+      - 2001-2020 training and 2021-2022 testing
+    metrics:
+      - CRPS
+      - MAE for deterministic models
+      - relative improvement over bilinear interpolation
+      - in-distribution versus out-of-distribution performance drop
+    relevance: >-
+      RainShift 将时间隔离与区域隔离同时纳入基准，证明扩大训练区域并不能消除地理分布偏移，为台湾模型的跨天气型和跨地区泛化测试提供直接范式。其 2.5 倍 ERA5 到 IMERG 任务仍是逐时刻单变量降水，卫星反演误差与预印本状态也限制了结论向 2-km 多变量连续重建的直接外推。
+    verified_at: 2026-11-23

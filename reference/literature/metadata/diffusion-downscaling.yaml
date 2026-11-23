@@ -1,0 +1,388 @@
+topic: diffusion-downscaling
+papers:
+  - id: addison-2022-local-scale
+    title: Machine learning emulation of a local-scale UK climate model
+    authors:
+      - Henry Addison
+      - Elizabeth Kendon
+      - Suman Ravuri
+      - Laurence Aitchison
+      - Peter AG Watson
+    year: 2022
+    venue: NeurIPS 2022 Workshop on Tackling Climate Change with Machine Learning
+    doi: 10.48550/arXiv.2211.16116
+    url: https://arxiv.org/abs/2211.16116
+    oa_url: https://arxiv.org/pdf/2211.16116
+    pdf_path: reference/papers/diffusion-downscaling/addison-2022-local-scale.pdf
+    sha256: 693b815541653b5706d357145ad07336de59ef593d3c42849705cafea43ec1a2
+    access: downloaded
+    methods:
+      - 条件 score-based 扩散模型
+      - NCSN++ U-Net
+      - 850 hPa 相对涡度条件
+      - 可学习位置特征图
+      - 反向 SDE 随机采样
+    datasets:
+      - UKCP18 全球模式 60 km 日数据
+      - UKCP18 对流允许区域模式 2.2 km 降水（目标聚合至 8.8 km）
+      - 英格兰和威尔士区域
+    metrics:
+      - 降水分位数与 Q-Q 图
+      - 对数概率密度
+      - 逐网格时间平均归一化偏差
+    relevance: 这是扩散模型用于区域气候降尺度的早期奠基工作，证明粗尺度动力条件加位置嵌入可以生成具有合理空间结构和尾部分布的对流允许降水。它提示本项目应把地形等静态条件与随机生成分开评估；但单涡度输入、日尺度 8.8 km 输出和单帧建模都不足以回答 CorrDiff+CfC 的多变量时空一致性问题。
+    verified_at: '2026-11-23'
+
+  - id: mardani-2025-corrdiff
+    title: Residual corrective diffusion modeling for km-scale atmospheric downscaling
+    authors:
+      - Morteza Mardani
+      - Noah Brenowitz
+      - Yair Cohen
+      - Jaideep Pathak
+      - Chieh-Yu Chen
+      - Cheng-Chin Liu
+      - Arash Vahdat
+      - Mohammad Amin Nabian
+      - Tao Ge
+      - Akshay Subramaniam
+      - Karthik Kashinath
+      - Jan Kautz
+      - Mike Pritchard
+    year: 2025
+    venue: Communications Earth & Environment 6, 124
+    doi: 10.1038/s43247-025-02042-5
+    url: https://www.nature.com/articles/s43247-025-02042-5
+    oa_url: https://www.nature.com/articles/s43247-025-02042-5.pdf
+    pdf_path: reference/papers/diffusion-downscaling/mardani-2025-corrdiff.pdf
+    sha256: 9cad8b7e51f30b54c7b7be0c7260ae69fdb49af14876028835e949d8ccf7d13e
+    access: existing
+    methods:
+      - 条件均值 U-Net 回归
+      - 残差校正扩散
+      - EDM 去噪参数化
+      - 多变量联合降尺度
+      - 雷达反射率通道合成
+      - 32 成员随机集合
+    datasets:
+      - ERA5 25 km 12 通道输入
+      - 台湾 CWA 雷达同化 WRF 2 km 逐小时目标（2018–2021）
+      - 2021 年 205 个留出时刻
+      - 台风 Haikui 与 Chanthu、锋面个例
+    metrics:
+      - MAE
+      - CRPS
+      - 动能与变量功率谱
+      - 概率密度与极端尾部
+      - spread-skill ratio 与 rank histogram
+      - 台风强度、最大风速半径和轴对称结构
+    relevance: 这是本项目同一 CWA/WRF 数据与 PhysicsNeMo 基线的直接依据，其“条件均值+残差扩散”适合作为 CfC 时间编码器的稳定挂载点，并提供台风、锋面和雷达合成的评估范式。局限是逐时刻独立生成并不保证高分辨率时间连续性，且原论文集合总体欠离散、台风尺寸和强度仍有系统误差。
+    verified_at: '2026-11-23'
+
+  - id: srivastava-2024-video-diffusion
+    title: Precipitation Downscaling with Spatiotemporal Video Diffusion
+    authors:
+      - Prakhar Srivastava
+      - Ruihan Yang
+      - Gavin Kerrigan
+      - Gideon Dresdner
+      - Jeremy McGibbon
+      - Christopher Bretherton
+      - Stephan Mandt
+    year: 2024
+    venue: Advances in Neural Information Processing Systems 37 (NeurIPS 2024)
+    doi: 10.52202/079017-1795
+    url: https://proceedings.neurips.cc/paper_files/paper/2024/hash/669b0bb64ff9eff7a81a7858a54fe7a0-Abstract-Conference.html
+    oa_url: https://proceedings.neurips.cc/paper_files/paper/2024/file/669b0bb64ff9eff7a81a7858a54fe7a0-Paper-Conference.pdf
+    pdf_path: reference/papers/diffusion-downscaling/srivastava-2024-video-diffusion.pdf
+    sha256: 94aaedb837a0c2bc04b426016e1028b4a234c786d02a9035f54d7bdb7bfffafa
+    access: downloaded
+    methods:
+      - SpatioTemporal Video Diffusion（STVD）
+      - 确定性序列降尺度器
+      - 条件残差 DDPM
+      - 时空分解注意力
+      - 5 帧联合生成
+      - 多变量与地形条件
+    datasets:
+      - FV3GFS 11 成员、13 个月全球模拟
+      - 25 km 细网格面积加权粗化至 200 km
+      - 3 小时降水及 11 个辅助通道
+      - 加州与喜马拉雅复杂地形个例
+    metrics:
+      - MSE
+      - 10 样本 CRPS
+      - Earth Mover Distance
+      - 99.999 分位误差
+      - 空间自相关误差
+      - 空间功率谱与年平均降水
+    relevance: STVD 是十篇中与“低分辨率序列到高分辨率序列”最接近的架构参照，直接证明残差扩散也可在序列维联合建模，并用帧数消融量化时间上下文价值。其输入输出仍同为 3 小时间隔、目标为 25 km 且粗输入来自同一模拟的粗化，因此尚未解决本项目由稀疏时间采样插补更密时刻及真实模式偏差的问题。
+    verified_at: '2026-11-23'
+
+  - id: ling-2024-probabilistic-reconstruction
+    title: Diffusion model-based probabilistic downscaling for 180-year East Asian climate reconstruction
+    authors:
+      - Fenghua Ling
+      - Zeyu Lu
+      - Jing-Jia Luo
+      - Lei Bai
+      - Swadhin K. Behera
+      - Dachao Jin
+      - Baoxiang Pan
+      - Huidong Jiang
+      - Toshio Yamagata
+    year: 2024
+    venue: npj Climate and Atmospheric Science
+    doi: 10.1038/s41612-024-00679-1
+    url: https://www.nature.com/articles/s41612-024-00679-1
+    oa_url: https://www.nature.com/articles/s41612-024-00679-1.pdf
+    pdf_path: reference/papers/diffusion-downscaling/ling-2024-probabilistic-reconstruction.pdf
+    sha256: bedb179b4753561b2dee7fbb2fc50cff02f0025dac0d56dbe7644fd36692c5d3
+    access: downloaded
+    methods:
+      - Diffusion Probabilistic Downscaling Model（DPDM）
+      - SR3 风格条件 DDPM
+      - 地形与海陆掩码条件
+      - 重叠 patch 训练与拼接
+      - DDIM 采样
+      - 最多 100 成员集合
+    datasets:
+      - ERA5 1° 六小时输入
+      - ERA5-Land 0.1° 五变量目标
+      - NOAA-20CR 1836–2015 年粗分辨率重建
+      - CRU 站点观测
+      - 东亚复杂地形区域
+    metrics:
+      - RMSE 与 NRMSE
+      - ACC
+      - SSIM 与 PSNR
+      - R² 与模糊度
+      - 集合离散度
+      - 站点相对误差及复合干热事件频率
+    relevance: DPDM 展示了直接条件扩散在多变量、大区域、长时序重建中的可扩展性，其地形条件和集合规模分析可用于设计 CWA 静态通道与成员数实验。它把六小时训练关系用于月尺度应用并出现集合过离散和 patch 边界退化，且没有显式时间动力模型，不能把长期统计可信等同于逐时物理轨迹可信。
+    verified_at: '2026-11-23'
+
+  - id: merizzi-2024-wind-speed
+    title: 'Wind speed super-resolution and validation: from ERA5 to CERRA via diffusion models'
+    authors:
+      - Fabio Merizzi
+      - Andrea Asperti
+      - Stefano Colamonaco
+    year: 2024
+    venue: Neural Computing and Applications 36, 21899–21921
+    doi: 10.1007/s00521-024-10139-9
+    url: https://link.springer.com/article/10.1007/s00521-024-10139-9
+    oa_url: https://link.springer.com/content/pdf/10.1007/s00521-024-10139-9.pdf
+    pdf_path: reference/papers/diffusion-downscaling/merizzi-2024-wind-speed.pdf
+    sha256: 73fee5de50b101b759890cdf1eaf815f07df518fb2cc5189aed91ae3c9fedf3c
+    access: downloaded
+    methods:
+      - 条件去噪扩散
+      - 预上采样残差 U-Net
+      - 四帧 sequence-to-one 条件
+      - 15 成员集合平均
+      - 多架构对照与站点外部验证
+    datasets:
+      - ERA5 约 30 km 逐小时 10 m 风
+      - CERRA 5.5 km 三小时目标
+      - 意大利及周边区域（2010–2019 训练，2009/2020 测试）
+      - IGRA V2 14 个探空站点
+    metrics:
+      - MSE
+      - MAE
+      - PSNR
+      - SSIM 及其时空分布
+      - 一年推理耗时
+    relevance: 该文提供了清楚的多帧输入、单帧输出对照，适合检验 CfC 是否比简单堆叠四个时刻更有效，并提醒不能只相对再分析目标评分，还应尽可能做独立观测验证。它只研究风速且最终对 15 个样本取均值，未充分评价集合校准或连续高分辨率轨迹，不能作为完整时空超分辨方案。
+    verified_at: '2026-11-23'
+
+  - id: sundar-2024-taudiff
+    title: 'TAUDiff: Highly efficient kilometer-scale downscaling using generative diffusion models'
+    authors:
+      - Rahul Sundar
+      - Yucong Hu
+      - Nishant Parashar
+      - Antoine Blanchard
+      - Boyko Dodov
+    year: 2024
+    venue: arXiv preprint arXiv:2412.13627
+    doi: 10.48550/arXiv.2412.13627
+    url: https://arxiv.org/abs/2412.13627
+    oa_url: https://arxiv.org/pdf/2412.13627
+    pdf_path: reference/papers/diffusion-downscaling/sundar-2024-taudiff.pdf
+    sha256: 2b9cd032c3f8149bde576b8aa910a74159ba40e2809024515c359643a8ea6e2a
+    access: downloaded
+    methods:
+      - SimVP 时空条件均值模型
+      - Temporal Attention Unit（TAU）
+      - 小型残差校正扩散
+      - 平流、涡度和散度物理损失
+      - 粗尺度生成后确定性超分辨
+    datasets:
+      - ERA5 欧洲 1980–2023 风场
+      - 球面小波低通构造粗输入
+      - 分位数映射偏差校正 CAM4 1° 风场
+      - ERA5 0.25° 至 CERRA 0.0625° 公里尺度概念验证
+    metrics:
+      - 空间功率谱
+      - 时间功率谱
+      - 涡度分布
+      - 局地风暴计数
+      - 推理耗时
+    relevance: TAUDiff 把时序均值预测、轻量残差扩散和风场物理损失组合起来，是 CfC 替代 TAU 时最直接的结构与消融参照。其公里尺度阶段最后依赖确定性 U-Net，风场、欧洲区域及预印本证据范围有限，极端风险结论主要来自谱和风暴计数而非完整逐事件集合评分。
+    verified_at: '2026-11-23'
+
+  - id: tomasi-2025-latent-diffusion
+    title: Can AI be enabled to perform dynamical downscaling? A latent diffusion model to mimic kilometer-scale COSMO5.0_CLM9 simulations
+    authors:
+      - Elena Tomasi
+      - Gabriele Franch
+      - Marco Cristoforetti
+    year: 2025
+    venue: Geoscientific Model Development 18, 2051–2078
+    doi: 10.5194/gmd-18-2051-2025
+    url: https://gmd.copernicus.org/articles/18/2051/2025/
+    oa_url: https://gmd.copernicus.org/articles/18/2051/2025/gmd-18-2051-2025.pdf
+    pdf_path: reference/papers/diffusion-downscaling/tomasi-2025-latent-diffusion.pdf
+    sha256: adc54defc30970ce8e3ce9f121a61ef360f1ca6f902fd608abeb6404e071a082
+    access: downloaded
+    methods:
+      - DiffScaler / LDM_res
+      - VAE 潜空间残差扩散
+      - U-Net 条件均值
+      - AFNO 条件去噪器
+      - 高分辨率地形与土地覆盖条件
+      - GAN、UNet 和插值对照
+    datasets:
+      - ERA5 约 25 km 14 通道逐小时输入
+      - VHR-REA_IT / COSMO5.0_CLM9 2.2 km 目标
+      - 意大利 2000–2020 数据
+      - Copernicus DEM 与 Global Land Cover
+    metrics:
+      - RMSE
+      - BIAS
+      - R²
+      - Pearson 相关系数
+      - 频率分布与极端尾部
+      - Radially Averaged Power Spectral Density 与运行时间
+    relevance: LDM_res 把 CorrDiff 的残差思想迁入潜空间，为在较长 CWA 序列上降低去噪空间尺寸提供了可复现路径，VAE 单独重建实验也适合定位误差来源。其 VAE 会削弱约 9 km 以下的部分谱能量且模型构造不保证时间一致性，说明潜空间压缩不能无条件视为无损失加速。
+    verified_at: '2026-11-23'
+
+  - id: hess-2025-scale-adaptive
+    title: Fast, scale-adaptive and uncertainty-aware downscaling of Earth system model fields with generative machine learning
+    authors:
+      - Philipp Hess
+      - Michael Aich
+      - Baoxiang Pan
+      - Niklas Boers
+    year: 2025
+    venue: Nature Machine Intelligence 7, 363–373
+    doi: 10.1038/s42256-025-00980-5
+    url: https://www.nature.com/articles/s42256-025-00980-5
+    oa_url: https://arxiv.org/pdf/2403.02774
+    pdf_path: reference/papers/diffusion-downscaling/hess-2025-scale-adaptive.pdf
+    sha256: c293a5e35bb0753a9ff645c8444c01ec19f79c1bde419f4bc2dcb765beca3d6e
+    access: downloaded
+    methods:
+      - 无条件 score-based 扩散先验
+      - consistency model 单步生成
+      - 噪声强度控制空间校正尺度
+      - 零样本跨 ESM 应用
+      - QDM 预处理
+      - 集合离散度调节
+    datasets:
+      - ERA5 0.25° 日降水
+      - POEM ESM 3°×3.75°
+      - GFDL-ESM4 与 SpeedyWeather.jl
+      - CMIP6 SSP5-8.5 未来情景
+    metrics:
+      - CRPS 与 CRPSS
+      - 空间功率谱密度
+      - 大尺度 Pearson 相关
+      - MAE 与 RMSE
+      - 95 分位降水误差
+      - 时间自相关与采样耗时
+    relevance: 该文把“保留可信大尺度、重建不可信小尺度”做成可控噪声条件，并展示跨 ESM 零样本迁移，对未来把 CorrDiff 用于有偏预报输入很有价值。其重点是生成范式与计算效率而非公里尺度多变量时序，全球日均降水结果不能直接外推到台湾逐小时风温雷达任务，通用一致性采样细节也不属于本主题后续重点。
+    verified_at: '2026-11-23'
+
+  - id: brenowitz-2025-cbottle
+    title: 'Climate in a Bottle: Towards a Generative Foundation Model for the Kilometer-Scale Global Atmosphere'
+    authors:
+      - Noah D. Brenowitz
+      - Tao Ge
+      - Akshay Subramaniam
+      - Peter Manshausen
+      - Aayush Gupta
+      - David M. Hall
+      - Morteza Mardani
+      - Arash Vahdat
+      - Karthik Kashinath
+      - Michael S. Pritchard
+    year: 2025
+    venue: arXiv preprint arXiv:2505.06474
+    doi: 10.48550/arXiv.2505.06474
+    url: https://arxiv.org/abs/2505.06474
+    oa_url: https://arxiv.org/pdf/2505.06474
+    pdf_path: reference/papers/diffusion-downscaling/brenowitz-2025-cbottle.pdf
+    sha256: 6cd6c60fbf53770f1444672bbd17939d7b95f031e8ca11b6bdbc5f924e2ca850
+    access: downloaded
+    methods:
+      - 全球粗尺度扩散生成器
+      - HEALPix 球面网格
+      - patch-based 16 倍超分辨扩散
+      - SST 与太阳位置条件
+      - 掩码多模态训练
+      - 热带气旋分类器引导
+    datasets:
+      - ERA5 1980–2018 逐小时再分析
+      - ICON Cycle 3 全球约 5 km 模拟
+      - inputs4MIPs 海表温度
+      - IBTrACS 热带气旋路径
+    metrics:
+      - fair CRPS
+      - 概率密度与功率谱
+      - 日变化、季节循环及长期趋势
+      - ENSO 与 NAM 变率
+      - 热带气旋出现气候统计
+      - 极端天气趋势
+    relevance: cBottle 将 CorrDiff 式区域生成推进到全球 5 km 多变量级联扩散，其按谱选择噪声范围、patch 拼接和极端事件引导可直接启发大区域扩展与稀少台风采样。它主要采样气候状态而非从低时间频率输入重建连续区域轨迹，全球训练资源和 ERA5 到 ICON 的个例展示也与当前 CWA 对照实验存在明显尺度差距。
+    verified_at: '2026-11-23'
+
+  - id: aich-2026-conditional-diffusion
+    title: Conditional diffusion models for downscaling and bias correction of Earth system model precipitation
+    authors:
+      - Michael Aich
+      - Philipp Hess
+      - Baoxiang Pan
+      - Sebastian Bathiany
+      - Yu Huang
+      - Niklas Boers
+    year: 2026
+    venue: Geoscientific Model Development 19
+    doi: 10.5194/gmd-19-1791-2026
+    url: https://gmd.copernicus.org/articles/19/1791/2026/
+    oa_url: https://gmd.copernicus.org/articles/19/1791/2026/gmd-19-1791-2026.pdf
+    pdf_path: reference/papers/diffusion-downscaling/aich-2026-conditional-diffusion.pdf
+    sha256: 3fc2c75697c2cfaba7de7c033efec1998a540ff053973f430e06ac579fb4a1a4
+    access: downloaded
+    methods:
+      - 共享嵌入空间
+      - 条件扩散学习观测嵌入逆映射
+      - QDM 与谱匹配加噪
+      - 空间校正尺度控制
+      - 非配对 ESM/观测学习
+      - 50 成员集合
+    datasets:
+      - ERA5 0.25° 日降水
+      - GFDL-ESM4 约 1° 历史与 SSP5-8.5
+      - MPI-ESM-HR 迁移实验
+      - 南美洲主体及南亚区域实验
+    metrics:
+      - 空间功率谱与直方图
+      - SSIM 与 Pearson 相关
+      - MAE 与 RMSE
+      - R95p 与 Rx1Day
+      - 极端降水重现期及 CDD/CWD
+      - CRPS 与 spread-skill
+    relevance: 该框架在观测和 ESM 不配对时仍能联合偏差校正与降尺度，并系统检验极端指数、集合校准和未来趋势，适合作为真实预报输入偏差实验的设计参照。它依赖 QDM、区域适配和人为选定谱交叉尺度，仍是单变量日降水快照模型，小尺度时间连续性与最稀有极端受训练数据限制。
+    verified_at: '2026-11-23'

@@ -1,0 +1,303 @@
+topic: evaluation-spectra-extremes
+papers:
+  - id: harris-2001-multiscale
+    title: Multiscale Statistical Properties of a High-Resolution Precipitation Forecast
+    authors:
+      - Daniel Harris
+      - Efi Foufoula-Georgiou
+      - Kelvin K. Droegemeier
+      - Jason J. Levit
+    year: 2001
+    venue: Journal of Hydrometeorology, 2(4), 406–418
+    doi: "10.1175/1525-7541(2001)002<0406:MSPOAH>2.0.CO;2"
+    url: "https://doi.org/10.1175/1525-7541(2001)002%3C0406:MSPOAH%3E2.0.CO;2"
+    oa_url: https://efi.eng.uci.edu/papers/efg_014.pdf
+    pdf_path: reference/papers/evaluation-spectra-extremes/harris-2001-multiscale.pdf
+    sha256: 79a2ed8c2283c4b6a84d4c3d541beb08a616db9bbfcf407a6ffb01e1ef04d9ce
+    access: downloaded
+    methods:
+      - Fourier 功率谱的多尺度变异性诊断
+      - 结构函数与矩—尺度分析
+      - 雷达观测和云分辨模式的有效分辨率比较
+    datasets:
+      - 1999-06-03 美国南部平原风暴 NEXRAD-KAMA 2 km 雷达反射率
+      - 同次风暴 ARPS 3 km 高分辨率降水预报
+    metrics:
+      - Fourier power spectrum
+      - structure function
+      - moment-scale exponent K(q)
+      - 约 5 倍网格距的小尺度变异性衰减判据
+    relevance: 该文把“场看起来细腻”转化为随尺度变化的方差、相关性与间歇性检验，可直接诊断 CorrDiff 是否补足回归均值丢失的高波数能量。其统计量基本不惩罚风暴相位或位置误差，因此必须与 FSS/对象指标联用；单风暴结论也不能直接当作所有天气型的固定有效分辨率。
+    verified_at: "2026-11-23"
+
+  - id: davis-2006-object
+    title: "Object-Based Verification of Precipitation Forecasts. Part I: Methodology and Application to Mesoscale Rain Areas"
+    authors:
+      - Christopher Davis
+      - Barbara Brown
+      - Randy Bullock
+    year: 2006
+    venue: Monthly Weather Review, 134(7), 1772–1784
+    doi: 10.1175/MWR3145.1
+    url: https://journals.ametsoc.org/view/journals/mwre/134/7/mwr3145.1.xml
+    oa_url: https://journals.ametsoc.org/view/journals/mwre/134/7/mwr3145.1.pdf
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - 卷积平滑与阈值分割降水对象
+      - 基于质心距离的对象匹配
+      - 对象几何和内部强度分布诊断
+    datasets:
+      - 2001 年 7–8 月美国大陆 WRF 22 km、3 h 累积降水预报
+      - NCEP Stage IV 4 km 雷达—雨量计融合分析并重网格至 22 km
+    metrics:
+      - 对象面积、质心、轴向、纵横比和曲率
+      - 对象内降水第 25/90 百分位及偏差
+      - 对象 CSI、匹配率和漏报/空报对象
+    relevance: MODE 的前身方法能把 CorrDiff+CfC 的错误拆成位置、面积、形状和强度，而非只报告一个像素误差，并可扩展为对象轨迹以检查时间超分辨中的传播和生消。对象定义对卷积半径、阈值、最小面积和匹配规则敏感，且原文只做同刻匹配，必须报告参数敏感性并另外设计时空追踪。
+    verified_at: "2026-11-23"
+
+  - id: roberts-2008-fss
+    title: Scale-Selective Verification of Rainfall Accumulations from High-Resolution Forecasts of Convective Events
+    authors:
+      - Nigel M. Roberts
+      - Humphrey W. Lean
+    year: 2008
+    venue: Monthly Weather Review, 136(1), 78–97
+    doi: 10.1175/2007MWR2123.1
+    url: https://doi.org/10.1175/2007MWR2123.1
+    oa_url: https://centaur.reading.ac.uk/31220/1/Roberts2008a.pdf
+    pdf_path: reference/papers/evaluation-spectra-extremes/roberts-2008-fss.pdf
+    sha256: 422a57b5d7aa33ff46622a10e5cd4ab2eb0e2a81286a8205766b4511c26944ef
+    access: downloaded
+    methods:
+      - 邻域超过阈值网格比例比较
+      - 跨降水阈值和空间窗口的尺度选择检验
+      - 以目标 FSS 定义可用技巧尺度
+    datasets:
+      - 2003–2004 年 10 个英国夏季对流日、40 段预报
+      - Met Office Unified Model 12/4/1 km 降水预报与雷达降水
+    metrics:
+      - Fractions Skill Score (FSS)
+      - fractions MSE 及其 skill score
+      - FSS 达到 0.5+0.5f_o 时对应的最小技巧尺度
+    relevance: FSS 以“多大空间尺度上仍可信”回答公里尺度降尺度最核心的问题，适合在不同阈值、提前期和物理距离窗口下比较 CorrDiff、CfC 及其组合。它主要检验邻域内事件频率而非对象强度或谱真实性，窗口增大还会牺牲锐度，不能单独用来证明生成了正确的小尺度细节。
+    verified_at: "2026-11-23"
+
+  - id: wernli-2008-sal
+    title: SAL—A Novel Quality Measure for the Verification of Quantitative Precipitation Forecasts
+    authors:
+      - Heini Wernli
+      - Marcus Paulat
+      - Martin Hagen
+      - Christoph Frei
+    year: 2008
+    venue: Monthly Weather Review, 136(11), 4470–4487
+    doi: 10.1175/2008MWR2415.1
+    url: https://journals.ametsoc.org/view/journals/mwre/136/11/2008mwr2415.1.xml
+    oa_url: https://elib.dlr.de/56501/1/WernliPaulatHagenFrei2008.pdf
+    pdf_path: reference/papers/evaluation-spectra-extremes/wernli-2008-sal.pdf
+    sha256: 9c57faf0a824fa3894e5b069b0bf17a64c3038d95cd07cdc54a02c429dd8db9e
+    access: downloaded
+    methods:
+      - 域内结构、振幅、位置三分解
+      - 独立识别预报与观测对象而不逐对匹配
+      - SAL 分布图和持久性/随机预报参照
+    datasets:
+      - 2001–2004 年夏季德国流域日累积降水
+      - COSMO-aLMo 7 km 区域模式与 ECMWF 全球模式及观测分析
+      - 合成降水场案例
+    metrics:
+      - Structure component S
+      - Amplitude component A
+      - Location component L（质心位移与对象离散度）
+    relevance: SAL 能区分生成场“总雨量正确但过大过平”与“位置偏移”等常见失真，是检验 CorrDiff 随机纹理是否改变降水体形态的轻量补充。它不匹配单个对象，S 同时混合大小和峰度且依赖区域、阈值及归一化，不能替代 MODE 的对象级误差或时间连续性评估。
+    verified_at: "2026-11-23"
+
+  - id: ferro-2011-extremal
+    title: "Extremal Dependence Indices: Improved Verification Measures for Deterministic Forecasts of Rare Binary Events"
+    authors:
+      - Christopher A. T. Ferro
+      - David B. Stephenson
+    year: 2011
+    venue: Weather and Forecasting, 26(5), 699–713
+    doi: 10.1175/WAF-D-10-05030.1
+    url: https://doi.org/10.1175/WAF-D-10-05030.1
+    oa_url: https://empslocal.ex.ac.uk/people/staff/ferro/Publications/ferro-stephenson2011copyright.pdf
+    pdf_path: reference/papers/evaluation-spectra-extremes/ferro-2011-extremal.pdf
+    sha256: 132c43dddad2763e310bc2cb4d4f6511d9d011ade81245c0dd6fa4caade05f25
+    access: downloaded
+    methods:
+      - 稀有二值事件的列联表极限性质分析
+      - 对 EDS/SEDS 的可操纵性与基准率依赖修正
+      - 非对称和对称极端依赖指数
+    datasets:
+      - 1998–2003 年苏格兰 Eskdalemuir 12 km Unified Model 6 h 降水预报
+      - 同站雨量计观测及一系列稀有降水阈值
+    metrics:
+      - Extremal Dependence Index (EDI)
+      - Symmetric Extremal Dependence Index (SEDI)
+      - 命中率、虚警率、基准率与 ROC 等值线
+    relevance: EDI/SEDI 在高阈值事件中不会像许多传统列联评分那样简单退化，可用于检查模型对极端降水或大风发生位置的判别能力，并比较不同重现期阈值。它们不衡量极端量级误差、空间结构或集合概率校准；用于 CorrDiff 集合前需明确阈值化与成员汇总方式，并按作者建议先处理预报偏差。
+    verified_at: "2026-11-23"
+
+  - id: scheuerer-2015-variogram
+    title: Variogram-Based Proper Scoring Rules for Probabilistic Forecasts of Multivariate Quantities
+    authors:
+      - Michael Scheuerer
+      - Thomas M. Hamill
+    year: 2015
+    venue: Monthly Weather Review, 143(4), 1321–1334
+    doi: 10.1175/MWR-D-14-00269.1
+    url: https://journals.ametsoc.org/view/journals/mwre/143/4/mwr-d-14-00269.1.xml
+    oa_url: https://repository.library.noaa.gov/view/noaa/22327/noaa_22327_DS1.pdf
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - 基于分量两两差分的 variogram 适当评分
+      - 距离加权和不同阶数 p 的依赖结构比较
+      - 与 energy score、Dawid–Sebastiani score 的模拟诊断对比
+    datasets:
+      - 不同均值、方差和相关误设的多维高斯模拟集合
+      - 美国 Colorado 多站点风速集合预报
+    metrics:
+      - Variogram Score of order p (VS-p)
+      - Energy Score (ES)
+      - Dawid–Sebastiani Score (DSS)
+      - 对相关误设的区分能力与小集合敏感性
+    relevance: VS-p 能检查 CorrDiff 样本是否维持站间、变量间和时刻间依赖，比只对每个变量分别评分更接近多变量物理一致性目标；距离权重也可突出近邻公里尺度结构。它并非严格适当且对全部分量共有偏差不敏感，跨不同气象变量还需标准化或物理变换，并应另配质量、能量和动力约束诊断。
+    verified_at: "2026-11-23"
+
+  - id: harris-2022-downscaling
+    title: A Generative Deep Learning Approach to Stochastic Downscaling of Precipitation Forecasts
+    authors:
+      - Lucy Harris
+      - Andrew T. T. McRae
+      - Matthew Chantry
+      - Peter D. Dueben
+      - Tim N. Palmer
+    year: 2022
+    venue: Journal of Advances in Modeling Earth Systems
+    doi: 10.1029/2022MS003120
+    url: https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022MS003120
+    oa_url: https://arxiv.org/pdf/2204.02028v2
+    pdf_path: reference/papers/evaluation-spectra-extremes/harris-2022-downscaling.pdf
+    sha256: 77d58930ca599eef176e23f04d98ff352ae0f58ff8d17c45f9ea16bf51a6ede5
+    access: downloaded
+    methods:
+      - GAN 与 VAE-GAN 十倍随机降水降尺度
+      - 径向平均功率谱和谱距离评估
+      - 强降水分层检验与 ecPoint 等基线比较
+    datasets:
+      - 2016–2020 年英国区域 ECMWF IFS 业务预报（插值至约 10 km）
+      - Met Office NIMROD 1 km 雷达小时降水真值
+    metrics:
+      - Radially Averaged Power Spectral Density (RAPSD)
+      - Radially Averaged Log Spectral Distance (RALSD)
+      - rank histogram、ROC、Precision–Recall
+      - 像素和 pooled CRPS、强降分子集表现
+    relevance: 该文提供了与本项目最接近的生成式降尺度评估范式：同时报告逐样本 RAPSD/RALSD、集合校准和强降水表现，而不是只看图像或平均误差。其径向平均会丢弃对流线的方向性，低雨量和 IFS—雷达错位也会影响谱与校准结果；它基本不处理中间时刻重建和跨变量物理关系。
+    verified_at: "2026-11-23"
+
+  - id: necker-2024-ensemble
+    title: The fractions skill score for ensemble forecast verification
+    authors:
+      - Tobias Necker
+      - Ludwig Wolfgruber
+      - Lukas Kugler
+      - Martin Weissmann
+      - Manfred Dorninger
+      - Stefano Serafin
+    year: 2024
+    venue: Quarterly Journal of the Royal Meteorological Society, 150(764), 4457–4477
+    doi: 10.1002/qj.4824
+    url: https://rmets.onlinelibrary.wiley.com/doi/10.1002/qj.4824
+    oa_url: https://phaidra.univie.ac.at/detail/o:2104776
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - 四种集合 FSS 定义的系统比较
+      - 集合大小、邻域大小和事件频率敏感性分析
+      - 概率技巧空间尺度与集合大小关系推导
+    datasets:
+      - 高影响天气时段的高分辨率 1000 成员降水集合预报
+    metrics:
+      - probabilistic FSS (pFSS)
+      - 四种 ensemble-based FSS 变体
+      - probabilistic skilful spatial scale
+      - pFSS 随集合大小变化的关系
+    relevance: 该文直接针对 CorrDiff 可采多样本这一特点，说明“先平均再 FSS”和不同集合 FSS 公式并不等价，并推荐集合大小行为较合理的 pFSS。项目应固定成员数、报告有限集合修正和 pFSS 技巧尺度；但单一高影响时段及大集合实验不能替代跨季节、跨天气型验证，也不评估谱或对象形态。
+    verified_at: "2026-11-23"
+
+  - id: pathak-2026-stormcast
+    title: Kilometer-Scale Convection Allowing Model Emulation using Generative Diffusion Modeling
+    authors:
+      - Jaideep Pathak
+      - Yair Cohen
+      - Piyush Garg
+      - Peter Harrington
+      - Noah Brenowitz
+      - Dale Durran
+      - Morteza Mardani
+      - Arash Vahdat
+      - Shaoming Xu
+      - Karthik Kashinath
+      - Michael Pritchard
+    year: 2026
+    venue: Science Advances 12(5), eadv0423
+    doi: 10.1126/sciadv.adv0423
+    url: https://www.science.org/doi/10.1126/sciadv.adv0423
+    oa_url: https://arxiv.org/pdf/2408.10958
+    pdf_path: reference/papers/evaluation-spectra-extremes/pathak-2024-stormcast.pdf
+    sha256: ea942f8ec855008a781c1c3560d93dc209598b2a2fbe3bd5f864b96aa697710a
+    access: downloaded
+    methods:
+      - CorrDiff 式回归—扩散分解的小时级自回归 StormCast
+      - 多变量功率谱与概率分布滚动评估
+      - 湿上升运动和冷池的跨变量形态诊断
+    datasets:
+      - 美国中部 3 km HRRR 分析/预报与 1 h 状态序列
+      - ERA5 和 GFS 大尺度条件场
+      - MRMS 组合雷达反射率及少量 MPAS 集合参照
+    metrics:
+      - 20/30/40 dBZ 阈值和 15/45 km 窗口 FSS
+      - 多变量功率谱相对误差与概率分布
+      - PMM 集合均值及 RMSE
+      - 湿焓、边界层散度、反射率共置和冷池风温梯度
+    relevance: StormCast 将 FSS、逐变量频谱和湿对流跨变量形态放在同一评估框架，最直接展示如何检验生成模型是否学到公里尺度物理而不只是纹理。其物理一致性主要是少量案例的共置诊断，5 成员集合与 HRRR 确定性对照并不完全公平，且 1 h 采样无法解析许多对流内部时间过程，不能照搬为本项目的充分验证。
+    verified_at: "2026-11-23"
+
+  - id: sundar-2025-taudiff
+    title: "TAUDiff: Highly efficient kilometer-scale downscaling using generative diffusion models"
+    authors:
+      - Rahul Sundar
+      - Yucong Hu
+      - Nishant Parashar
+      - Antoine Blanchard
+      - Boyko Dodov
+    year: 2025
+    venue: arXiv:2412.13627v2
+    doi: 10.48550/arXiv.2412.13627
+    url: https://arxiv.org/abs/2412.13627v2
+    oa_url: https://arxiv.org/pdf/2412.13627v2
+    pdf_path: reference/papers/evaluation-spectra-extremes/sundar-2025-taudiff.pdf
+    sha256: 2b9cd032c3f8149bde576b8aa910a74159ba40e2809024515c359643a8ea6e2a
+    access: downloaded
+    methods:
+      - 时序注意均值模型与小规模校正扩散组合
+      - 空间谱、地点时间谱和涡度形态联合诊断
+      - 平流、涡度和散度约束及极端风暴计数
+    datasets:
+      - 欧洲 ERA5 风场（1980–2020 训练、2021–2023 验证）
+      - 偏差校正 CAM4 1° 风场及 40 年降尺度试验
+      - ERA5 0.25° 到 CERRA 0.0625° 的概念验证（2011–2020 训练、2010 测试）
+    metrics:
+      - 空间功率谱与选点时间功率谱
+      - 涡度分布和等值线形态
+      - 局地风暴计数
+      - 推理时间及每年数据生成成本
+    relevance: TAUDiff 与 CorrDiff+CfC 的时间建模范式高度相似，提醒评估必须同时检查空间和时间频谱、涡度/散度形态及长尾风暴频次，防止单时刻谱正确而传播速度错误。其公里尺度部分仍是用低分辨率生成后接确定性 U-Net 的概念验证，极端结论主要是风暴计数而非完整极值分布，且预印本尚缺多变量观测和更严格极值统计验证。
+    verified_at: "2026-11-23"

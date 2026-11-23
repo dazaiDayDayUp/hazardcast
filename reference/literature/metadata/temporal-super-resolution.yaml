@@ -1,0 +1,357 @@
+topic: temporal-super-resolution
+papers:
+  - id: jiang-2018-superslomo
+    title: "Super SloMo: High Quality Estimation of Multiple Intermediate Frames for Video Interpolation"
+    authors:
+      - Huaizu Jiang
+      - Deqing Sun
+      - Varun Jampani
+      - Ming-Hsuan Yang
+      - Erik Learned-Miller
+      - Jan Kautz
+    year: 2018
+    venue: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR 2018), pp. 9000-9008"
+    doi: 10.1109/CVPR.2018.00938
+    url: https://openaccess.thecvf.com/content_cvpr_2018/html/Jiang_Super_SloMo_High_CVPR_2018_paper.html
+    oa_url: https://openaccess.thecvf.com/content_cvpr_2018/papers/Jiang_Super_SloMo_High_CVPR_2018_paper.pdf
+    pdf_path: reference/papers/temporal-super-resolution/jiang-2018-superslomo.pdf
+    sha256: bbf6ce3f83c1cb99855842825b90aaeae5b1f22eb1ebb491168d09b8442e8e5d
+    access: downloaded
+    methods:
+      - 双向光流估计与中间时刻光流细化
+      - U-Net 可见性图、双向 warping 与自适应融合
+      - 可变长度多帧插值
+      - 重建、感知、warping 与平滑联合损失
+    datasets:
+      - Adobe240-fps 与 YouTube240-fps（1132 段训练视频）
+      - Middlebury、UCF101、slowflow 与高帧率 Sintel
+      - KITTI 2012（光流评估）
+    metrics:
+      - PSNR
+      - SSIM
+      - 插值误差 IE
+      - 光流端点误差 EPE
+    relevance: >-
+      该文确立了由两个已知端点按目标时刻并行生成任意数量中间帧的经典范式，可作为 CfC 连续时间重建的确定性光流对照。
+      其运动边界与遮挡处理有助于设计平流天气场基线，但自然视频的亮度恒常假设、单帧确定输出和缺乏守恒约束不能直接处理降水生消及多变量物理耦合。
+    verified_at: "2026-11-23"
+
+  - id: fukami-2021-spatiotemporal
+    title: "Machine-learning-based spatio-temporal super resolution reconstruction of turbulent flows"
+    authors:
+      - Kai Fukami
+      - Koji Fukagata
+      - Kunihiko Taira
+    year: 2021
+    venue: "Journal of Fluid Mechanics 909, A9"
+    doi: 10.1017/jfm.2020.948
+    url: https://doi.org/10.1017/jfm.2020.948
+    oa_url: https://arxiv.org/pdf/2004.11566
+    pdf_path: reference/papers/temporal-super-resolution/fukami-2021-spatiotemporal.pdf
+    sha256: 25741d19487fb24401a9ad86041b2ddb27ae98b72c32b09446cdf19cf4b67eb7
+    access: downloaded
+    methods:
+      - 下采样跳跃连接与多尺度卷积模型（DSC/MS）
+      - 先空间超分辨、后时间 inbetweening 的分阶段重建
+      - L2 监督训练与空间—时间顺序消融
+      - 二维及三维卷积重建
+    datasets:
+      - 二维圆柱绕流 DNS（Re_D=100）
+      - 二维衰减均匀各向同性湍流 DNS
+      - 三维湍流槽道流 DNS（Re_tau=180）
+    metrics:
+      - 相对 L2 误差
+      - 动能谱与涡量概率密度
+      - 时间两点相关系数
+      - 速度脉动均方根与雷诺应力
+    relevance: >-
+      该文直接比较空间与时间超分辨的先后顺序，为“先 CfC 时间重建还是先 CorrDiff 空间降尺度”提供了必须保留的分解式对照。
+      结果同时表明可重建性受端点时间相关性控制，且 L2 模型偏向低波数；但实验限于少数 DNS 流场和确定性监督，尚不能说明真实天气跨 regime 泛化或概率重建能力。
+    verified_at: "2026-11-23"
+
+  - id: tatsubori-2022-precipitation
+    title: "Deep Temporal Interpolation of Radar-Based Precipitation"
+    authors:
+      - Michiaki Tatsubori
+      - Takao Moriyama
+      - Tatsuya Ishikawa
+      - Paolo Fraccaro
+      - Anne Jones
+      - Blair Edwards
+      - Julian Kuehnert
+      - Sekou L. Remy
+    year: 2022
+    venue: "ICASSP 2022 - 2022 IEEE International Conference on Acoustics, Speech and Signal Processing, pp. 1685-1689"
+    doi: 10.1109/ICASSP43922.2022.9747829
+    url: https://doi.org/10.1109/ICASSP43922.2022.9747829
+    oa_url: https://arxiv.org/pdf/2203.01277
+    pdf_path: reference/papers/temporal-super-resolution/tatsubori-2022-precipitation.pdf
+    sha256: 8a9736aed67065837ab18c7eea3ea1e5dc70eb0b639e236fbc113e7be60fe44a
+    access: downloaded
+    methods:
+      - Super SloMo 光流插值的降水适配
+      - 增加强度变化维度的三维流场
+      - 地形及光流—地形梯度点积特征
+      - 以连续低频观测构造自监督中间帧目标
+    datasets:
+      - Meteonet 雷达降水（法国 Aude 2018 年洪水事件）
+      - SRTM 数字高程模型
+      - Integrated Flood Model 洪水范围敏感性实验
+    metrics:
+      - 平均绝对误差 MAE
+      - 相对线性插值的误差降低幅度
+      - 洪水范围差异图
+    relevance: >-
+      这是从稀疏雷达观测恢复 5 分钟降水演变的直接先例，其强度生消通道、地形条件和自监督构造都可移植到 CfC 时间编码器。
+      它还把插值误差传递到洪水影响模型，适合作为下游评估范式；局限是仅验证一个区域和一次山洪过程，确定性 warping 对强对流新生、消散及重建不确定性覆盖不足。
+    verified_at: "2026-11-23"
+
+  - id: ren-2023-physr
+    title: "PhySR: Physics-informed deep super-resolution for spatiotemporal data"
+    authors:
+      - Pu Ren
+      - Chengping Rao
+      - Yang Liu
+      - Zihan Ma
+      - Qi Wang
+      - Jian-Xun Wang
+      - Hao Sun
+    year: 2023
+    venue: "Journal of Computational Physics 492, 112438"
+    doi: 10.1016/j.jcp.2023.112438
+    url: https://doi.org/10.1016/j.jcp.2023.112438
+    oa_url: https://arxiv.org/pdf/2208.01462
+    pdf_path: reference/papers/temporal-super-resolution/ren-2023-physr.pdf
+    sha256: fccd6e5e3f6c901554faaa4229d17a4343ae3c97e9caee8366b8fc1ed29e1cb4
+    access: downloaded
+    methods:
+      - 时间插值与 ConvLSTM 时间细化
+      - 低分辨率潜空间残差特征提取和 PixelShuffle 空间重建
+      - 高阶有限差分 PDE 残差软约束
+      - Dirichlet、Neumann 与周期边界硬编码
+    datasets:
+      - 二维 Rayleigh-Bénard 对流
+      - 二维 Gray-Scott 反应扩散系统
+      - 三维 Gray-Scott 反应扩散系统
+    metrics:
+      - 相对全场 L2 误差
+      - 可训练参数量
+      - 训练时间与推理时间
+    relevance: >-
+      PhySR 给出了“插值初值—循环时间细化—空间超分辨—物理修正”的清晰模块化路线，可将 ConvLSTM 替换为 CfC、将空间重建替换为 CorrDiff 形成物理增强基线。
+      其边界硬编码和有限差分残差值得借鉴，但已知 PDE、规则网格和较密时间步的假设较强，物理软损失还存在权重调节困难，且未在观测天气场上验证。
+    verified_at: "2026-11-23"
+
+  - id: srivastava-2024-video-diffusion
+    title: "Precipitation Downscaling with Spatiotemporal Video Diffusion"
+    authors:
+      - Prakhar Srivastava
+      - Ruihan Yang
+      - Gavin Kerrigan
+      - Gideon Dresdner
+      - Jeremy McGibbon
+      - Christopher Bretherton
+      - Stephan Mandt
+    year: 2024
+    venue: "Advances in Neural Information Processing Systems 37 (NeurIPS 2024)"
+    doi: 10.52202/079017-1795
+    url: https://proceedings.neurips.cc/paper_files/paper/2024/hash/669b0bb64ff9eff7a81a7858a54fe7a0-Abstract-Conference.html
+    oa_url: https://proceedings.neurips.cc/paper_files/paper/2024/file/669b0bb64ff9eff7a81a7858a54fe7a0-Paper-Conference.pdf
+    pdf_path: reference/papers/temporal-super-resolution/srivastava-2024-video-diffusion.pdf
+    sha256: 94aaedb837a0c2bc04b426016e1028b4a234c786d02a9035f54d7bdb7bfffafa
+    access: downloaded
+    methods:
+      - 确定性降尺度器与随机残差视频扩散（STVD）
+      - 五帧时间上下文与时间注意力
+      - 多变量气象和地形条件
+      - 对数降水变换与 DDIM 集合采样
+    datasets:
+      - FV3GFS 11 成员、13 个月全球模拟集合
+      - 25 km/3 小时参考场及人工粗化至 200 km 的配对数据
+      - 加利福尼亚和喜马拉雅区域案例
+    metrics:
+      - CRPS
+      - MSE
+      - Earth Mover's Distance（EMD）
+      - 99.999 百分位误差
+      - 空间自相关误差 SAE
+    relevance: >-
+      “确定性条件均值加扩散残差”可直接映射为 CfC 预测大尺度时间演变、CorrDiff 生成高频残差的组合方案，时间注意力的消融也支持显式时序建模。
+      但该任务只做 8 倍空间降尺度，输入输出均为 3 小时间隔，并未补出缺失时刻；训练依赖配对的粗细模拟，且作者警告跨区域分布偏移可能导致极端风险偏差。
+    verified_at: "2026-11-23"
+
+  - id: leinonen-2025-modafno
+    title: "Modulated Adaptive Fourier Neural Operators for Temporal Interpolation of Weather Forecasts"
+    authors:
+      - Jussi Leinonen
+      - Boris Bonev
+      - Thorsten Kurth
+      - Yair Cohen
+    year: 2025
+    venue: "International Conference on Learning Representations (ICLR 2025)"
+    doi: null
+    url: https://openreview.net/forum?id=MG2aefhSm6
+    oa_url: https://arxiv.org/pdf/2410.18904
+    pdf_path: reference/papers/temporal-super-resolution/leinonen-2025-modafno.pdf
+    sha256: 28932bc2e74cdefe1af0b3b73f80b82d8651e89a7f1cff59247d76ce53e4d3d8
+    access: downloaded
+    methods:
+      - 目标时刻正弦嵌入与 MLP 调制
+      - AFNO 空间和频谱前馈层的 scale-shift 条件化
+      - 双端点多变量全球大气状态插值
+      - 纬度面积加权 MSE 训练
+    datasets:
+      - ERA5 全球 0.25 度、73 个大气变量（1980-2017）
+      - 6 小时输入至 1 小时重建
+      - Storm Ophelia、Hurricane Irma 与 2017 年欧洲热浪
+    metrics:
+      - 标准化 RMSE 及其分位数分布
+      - 飓风云系与轨迹案例
+      - 热浪日最高温度重建
+    relevance: >-
+      时间嵌入调制证明单个网络可承担多个目标时刻的重建，为 CfC 的连续时间状态查询及 CorrDiff 的时间条件化提供了强基线。
+      它在 6 小时到 1 小时任务上较线性插值约降低一半 RMSE，但半小时查询出现严重伪影，说明“连续时间输入”并不等于连续时间泛化；确定性输出、95 TB 数据和大规模训练成本也限制直接复现。
+    verified_at: "2026-11-23"
+
+  - id: wang-2025-temdeep
+    title: "TemDeep: a self-supervised framework for temporal downscaling of atmospheric fields at arbitrary time resolutions"
+    authors:
+      - Liwen Wang
+      - Qian Li
+      - Qi Lv
+      - Xuan Peng
+      - Wei You
+    year: 2025
+    venue: "Geoscientific Model Development 18(8), 2427-2442"
+    doi: 10.5194/gmd-18-2427-2025
+    url: https://gmd.copernicus.org/articles/18/2427/2025/
+    oa_url: https://gmd.copernicus.org/articles/18/2427/2025/gmd-18-2427-2025.pdf
+    pdf_path: reference/papers/temporal-super-resolution/wang-2025-temdeep.pdf
+    sha256: 86481f4acc0033650834c826987d4aad677ebc3d5c9574a90bd6f71317b2cf61
+    access: downloaded
+    methods:
+      - 编码器—解码器场预测与双向流估计
+      - 快速转变样本预训练和时间相干自监督
+      - 时空连续性正则化
+      - 地形卷积条件与任意目标时刻合成
+    datasets:
+      - ERA5 中国区域 0.25 度数据（2001-2020 训练、2021 测试）
+      - 2 m 温度、850 hPa 位势高度与相对湿度
+      - SRTM 15 km 地形数据
+    metrics:
+      - 相对线性插值的信息恢复率 Re
+      - 流场一致度 CS
+      - 时空连续度 CT
+      - 2-5 小时至 1 小时的多倍率对比
+    relevance: >-
+      TemDeep 展示仅用既有低频序列构造中间时刻监督的训练路径，可缓解高频标签不足，并适合与 CfC 的不规则时间采样训练结合。
+      其多时间倍率消融和地形条件具有直接实验价值；不过验证变量均较平滑，连续性正则会抑制真实非线性变化，不能据此推断对零膨胀、间歇性降水或生成式不确定性同样有效。
+    verified_at: "2026-11-23"
+
+  - id: glawion-2025-spategan
+    title: "Global spatio-temporal ERA5 precipitation downscaling to km and sub-hourly scale using generative AI"
+    authors:
+      - Luca Glawion
+      - Julius Polz
+      - Harald Kunstmann
+      - Benjamin Fersch
+      - Christian Chwala
+    year: 2025
+    venue: "npj Climate and Atmospheric Science 8, 219"
+    doi: 10.1038/s41612-025-01103-y
+    url: https://www.nature.com/articles/s41612-025-01103-y
+    oa_url: https://www.nature.com/articles/s41612-025-01103-y.pdf
+    pdf_path: reference/papers/temporal-super-resolution/glawion-2025-spategan.pdf
+    sha256: 945a491376717e2bd5127bcc80b04a25c20774a12bb9164c4ed4fb4eef14b5a7
+    access: downloaded
+    methods:
+      - spateGAN-ERA5 条件生成对抗网络
+      - 三维卷积残差块与时空联合视频超分辨
+      - 长时上下文、多成员随机生成与重叠块拼接
+      - 粗尺度降水量约束
+    datasets:
+      - ERA5 降水（24 km、1 小时输入）
+      - 德国 RADKLIM-YW 雷达定量降水估计训练集
+      - 德国、美国 MRMS、澳大利亚及热带区域的 2021 年外推评估
+      - 2 km、10 分钟目标场
+    metrics:
+      - CRPS、MAE 与 RMSE
+      - FSS/mFSS 与集合 FSS
+      - RAPSD 与时间功率谱
+      - 秩直方图、雨强分布和空间各向异性
+    relevance: >-
+      该文与项目的公里级、次小时降水时空重建目标最接近，证明生成模型可同时恢复对流结构、平流和极端雨强，并提供 GAN 对 CorrDiff+CfC 的强现实基线。
+      其集合与时空结构评估尤其值得复用；但空间 12 倍、时间 6 倍的倍率固定，粗尺度 ERA5 偏差不会被自动纠正，部分区域存在谱偏差且集合仍略欠离散。
+    verified_at: "2026-11-23"
+
+  - id: schmidt-2025-coherent-diffusion
+    title: "A Generative Framework for Probabilistic, Spatiotemporally Coherent Downscaling of Climate Simulation"
+    authors:
+      - Jonathan Schmidt
+      - Luca Schmidt
+      - Felix M. Strnad
+      - Nicole Ludwig
+      - Philipp Hennig
+    year: 2025
+    venue: "npj Climate and Atmospheric Science 8, 270"
+    doi: 10.1038/s41612-025-01157-y
+    url: https://www.nature.com/articles/s41612-025-01157-y
+    oa_url: https://www.nature.com/articles/s41612-025-01157-y.pdf
+    pdf_path: reference/papers/temporal-super-resolution/schmidt-2025-coherent-diffusion.pdf
+    sha256: e1f276158992f451b0219b3eacaa759ce5d91103b6ef11ba6493fe7e4c51f4dd
+    access: downloaded
+    methods:
+      - 分数扩散时空先验与 score-based data assimilation
+      - 多变量、任意长度联合轨迹采样
+      - 空间面积平均和时间抽稀构成观测算子
+      - 后验条件化与分位数映射偏差校正
+    datasets:
+      - COSMO-REA6 约 6 km、1 小时再分析（2006-2014）
+      - 10 m 双向风、2 m 温度与海平面气压
+      - CMIP6 MPI-ESM1.2-HR 与 HadGEM3-GC3.1-LM（约 100 km、6 小时）
+      - 欧洲区域 16 倍空间、6 倍时间联合降尺度
+    metrics:
+      - 概率积分变换 PIT 校准
+      - 功率谱密度
+      - 变量值分布与极端分位数
+      - 集合轨迹的时空一致性与分布覆盖
+    relevance: >-
+      该框架把 CorrDiff 类扩散模型作为高分辨率时空联合先验，再用稀疏粗场观测算子约束后验，避免逐时刻独立生成造成的变量和时间不一致。
+      分变量 PIT 并不都平坦：两个风速分量校准较好，海平面气压略欠自信且过多预测极端值，地表温度分布略窄且低估尾部事件，因此整体校准不能替代逐变量诊断。
+      这为 CfC 提供两种角色：学习潜状态动力学或构造后验条件；主要代价是整条多变量轨迹的显存与采样开销，当前仅验证小区域，且物理规律只是数据中的隐式先验而非严格约束。
+    verified_at: "2026-11-23"
+
+  - id: defez-2026-scale-adaptive
+    title: "A Scale-Adaptive Framework for Joint Spatiotemporal Super-Resolution with Diffusion Models"
+    authors:
+      - Max Defez
+      - Filippo Quarenghi
+      - Mathieu Vrac
+      - Stephan Mandt
+      - Tom Beucler
+    year: 2026
+    venue: "arXiv:2604.21903v2"
+    doi: 10.48550/arXiv.2604.21903
+    url: https://arxiv.org/abs/2604.21903
+    oa_url: https://arxiv.org/pdf/2604.21903v2
+    pdf_path: reference/papers/temporal-super-resolution/defez-2026-scale-adaptive.pdf
+    sha256: 72f81c1fa922b3864ffe692c7d56e2487f765bbcc50be78b08326d8e5f56a7c8
+    access: downloaded
+    methods:
+      - 注意力确定性条件均值与残差条件扩散
+      - 各主要倍率分别训练并复用架构；邻近目标可先轻量插值到已学习分辨率再复用对应模型
+      - 可选质量守恒变换与弱降水阈值
+      - 空间 1-25 倍、时间 1-6 倍联合超分辨
+    datasets:
+      - 法国 Coméphore 雷达—雨量计降水再分析（1 km、1 小时）
+      - 2023 年训练、2024 年测试及空间四折划分
+      - GLO-90 地形数据
+    metrics:
+      - MSE、MAE 与 99 百分位误差
+      - CRPS、PITD 与集合 spread-error 诊断
+      - SSIM、EMD、LSD 与 RAPSD
+    relevance: >-
+      这是与 CfC 条件均值加 CorrDiff 残差生成最直接对应的近期工作，同时把倍率适配、质量守恒和概率校准放入同一实验框架。
+      主要倍率组合仍分别训练且不共享权重；例外是邻近目标可先用轻量插值对齐到最近的已学习分辨率，再复用对应模型，但这并非任意倍率的零样本权重共享。
+      其结果提醒确定性模型可在逐点指标上更好而扩散模型改善谱和 CRPS；像素尺度集合欠离散，1000 步采样昂贵，且目前仍是预印本。
+    verified_at: "2026-11-23"

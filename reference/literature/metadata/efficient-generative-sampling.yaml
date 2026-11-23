@@ -1,0 +1,338 @@
+topic: efficient-generative-sampling
+papers:
+  - id: ho-2020-ddpm
+    title: Denoising Diffusion Probabilistic Models
+    authors:
+      - Jonathan Ho
+      - Ajay Jain
+      - Pieter Abbeel
+    year: 2020
+    venue: NeurIPS 2020
+    doi: null
+    url: https://proceedings.neurips.cc/paper/2020/hash/4c5bcfec8584af0d967f1ab10179ca4b-Abstract.html
+    oa_url: https://arxiv.org/pdf/2006.11239
+    pdf_path: reference/papers/efficient-generative-sampling/ho-2020-ddpm.pdf
+    sha256: aee5e07a802e8dfd2a386374c94fd61d1d056cb7e1e0fec4f28e8120ff5d8505
+    access: downloaded
+    methods:
+      - 去噪扩散概率模型
+      - 加权变分下界
+      - 噪声预测参数化
+      - 马尔可夫反向采样
+    datasets:
+      - CIFAR-10
+      - LSUN 256×256
+    metrics:
+      - FID
+      - Inception Score
+      - bits/dim
+    relevance: >-
+      DDPM 给出训练目标、噪声预测和反向链的基础对照，可用于检查 CorrDiff 残差生成器是否只是改变参数化而真正改善质量。
+      但原始高质量采样依赖很长的顺序链，直接叠加 CfC 时间状态会放大显存和延迟，因此应作为精度上界而非高效方案。
+    verified_at: '2026-11-23'
+  - id: song-2021-ddim
+    title: Denoising Diffusion Implicit Models
+    authors:
+      - Jiaming Song
+      - Chenlin Meng
+      - Stefano Ermon
+    year: 2021
+    venue: ICLR 2021
+    doi: null
+    url: https://openreview.net/forum?id=St1giarCHLP
+    oa_url: https://arxiv.org/pdf/2010.02502
+    pdf_path: reference/papers/efficient-generative-sampling/song-2021-ddim.pdf
+    sha256: 07cb8796d7c100bf7c02bc575f16aab72c32630a8f85abd54ad45dc4f63e80fb
+    access: downloaded
+    methods:
+      - 非马尔可夫前向过程
+      - 确定性隐式采样
+      - 跳步采样
+      - DDIM-ODE 对应
+    datasets:
+      - CIFAR-10
+      - CelebA 64×64
+      - LSUN Bedrooms 256×256
+    metrics:
+      - FID
+      - 采样耗时
+      - 重构 MSE
+    relevance: >-
+      DDIM 可复用 DDPM 训练权重并以跳步、确定性轨迹减少网络调用，是 CorrDiff+CfC 最先应做的低成本推理对照。
+      确定性轨迹也便于固定初始噪声比较多个时间样本和开展蒸馏，但过少步数仍有离散化误差，且可能改变集合多样性与极端天气尾部覆盖。
+    verified_at: '2026-11-23'
+  - id: song-2021-score-sde
+    title: Score-Based Generative Modeling through Stochastic Differential Equations
+    authors:
+      - Yang Song
+      - Jascha Sohl-Dickstein
+      - Diederik P. Kingma
+      - Abhishek Kumar
+      - Stefano Ermon
+      - Ben Poole
+    year: 2021
+    venue: ICLR 2021 (Oral)
+    doi: null
+    url: https://openreview.net/forum?id=PxTIG12RRHS
+    oa_url: https://arxiv.org/pdf/2011.13456
+    pdf_path: reference/papers/efficient-generative-sampling/song-2021-score-sde.pdf
+    sha256: b244b740e60628d01bc3d4b98d721c2343be1fb9b67ad22593c8555e66f4d4a6
+    access: downloaded
+    methods:
+      - 连续时间 score SDE
+      - 反向时间 SDE
+      - probability flow ODE
+      - predictor-corrector 采样
+      - VE/VP/sub-VP SDE
+    datasets:
+      - CIFAR-10
+      - CelebA-HQ 1024×1024
+      - FFHQ 1024×1024
+    metrics:
+      - FID
+      - Inception Score
+      - bits/dim
+      - NFE
+    relevance: >-
+      该框架统一随机与确定性生成轨迹，是理解 CorrDiff 的 EDM 采样、校正步和 ODE 求解器之间关系的理论底座。
+      CfC 的连续时间状态可与去噪网络结合，但必须区分神经状态时间与扩散噪声时间；通用求解器仍较慢且校正器超参数较多，不能直接宣称降低天气推理成本。
+    verified_at: '2026-11-23'
+  - id: salimans-2022-progressive-distillation
+    title: Progressive Distillation for Fast Sampling of Diffusion Models
+    authors:
+      - Tim Salimans
+      - Jonathan Ho
+    year: 2022
+    venue: ICLR 2022
+    doi: null
+    url: https://openreview.net/forum?id=TIdIXIpzhoI
+    oa_url: https://arxiv.org/pdf/2202.00512
+    pdf_path: reference/papers/efficient-generative-sampling/salimans-2022-progressive-distillation.pdf
+    sha256: cff438be94fd82afe02aaee34b2fb984c92861755128259ffc136a855ef60100
+    access: downloaded
+    methods:
+      - 确定性采样器渐进蒸馏
+      - 学生-教师步数减半
+      - v 参数化
+      - 少步训练稳定化
+    datasets:
+      - CIFAR-10
+      - ImageNet 64×64
+      - LSUN Bedrooms 128×128
+      - LSUN Churches 128×128
+    metrics:
+      - FID
+      - 模型调用次数
+      - 蒸馏训练成本
+    relevance: >-
+      原论文仅在 CIFAR-10、ImageNet 64×64 和 LSUN 128×128 上验证渐进蒸馏，包括把多步教师逐步压缩到少步学生；这些结果不是天气时空生成证据。
+      将同一方法迁移到 CorrDiff+CfC 只是待验证方案，需要重新测量长时段、多成员生成的质量与延迟；若加入 CfC，还应蒸馏完整的时空轨迹而非孤立单帧去噪器，并检查多轮教师训练成本、学生容量及天气分布漂移下的误差累积。
+    verified_at: '2026-11-23'
+  - id: rombach-2022-latent-diffusion
+    title: High-Resolution Image Synthesis with Latent Diffusion Models
+    authors:
+      - Robin Rombach
+      - Andreas Blattmann
+      - Dominik Lorenz
+      - Patrick Esser
+      - Björn Ommer
+    year: 2022
+    venue: CVPR 2022
+    doi: 10.1109/CVPR52688.2022.01042
+    url: https://openaccess.thecvf.com/content/CVPR2022/html/Rombach_High-Resolution_Image_Synthesis_With_Latent_Diffusion_Models_CVPR_2022_paper.html
+    oa_url: https://arxiv.org/pdf/2112.10752
+    pdf_path: reference/papers/efficient-generative-sampling/rombach-2022-latent-diffusion.pdf
+    sha256: 46ede043a8dc07ca1f0f445620523fe1ad8b2436bd83856a3835612a47e9f79e
+    access: downloaded
+    methods:
+      - 感知压缩自编码器
+      - 潜空间扩散
+      - cross-attention 条件注入
+      - 卷积式高分辨率解码
+    datasets:
+      - ImageNet
+      - CelebA-HQ
+      - FFHQ
+      - LSUN
+      - LAION-400M
+    metrics:
+      - FID
+      - PSNR
+      - SSIM
+      - LPIPS
+      - 训练与采样计算量
+    relevance: >-
+      在低维天气潜空间运行 CorrDiff 和 CfC，可同时降低每步显存、序列长度与长时 rollout 成本，并按空间压缩率做系统对照。
+      自编码器可能成为定量降水、极端值和精细尺度的重建瓶颈，还会引入解码开销；物理守恒与变量间关系必须在潜空间压缩前后分别评估。
+    verified_at: '2026-11-23'
+  - id: karras-2022-edm
+    title: Elucidating the Design Space of Diffusion-Based Generative Models
+    authors:
+      - Tero Karras
+      - Miika Aittala
+      - Timo Aila
+      - Samuli Laine
+    year: 2022
+    venue: NeurIPS 2022
+    doi: 10.52202/068431-1926
+    url: https://proceedings.neurips.cc/paper_files/paper/2022/hash/a98846e9d9cc01cfb87eb694d946ce6b-Abstract-Conference.html
+    oa_url: https://arxiv.org/pdf/2206.00364
+    pdf_path: reference/papers/efficient-generative-sampling/karras-2022-edm.pdf
+    sha256: 0cf53de9ac234366fdba08d472afa236d46edd8202fda340f579aa2db866087a
+    access: downloaded
+    methods:
+      - EDM 模块化设计空间
+      - σ 依赖预条件
+      - 噪声分布与损失加权
+      - Heun 二阶采样
+      - σ 时间步离散化
+    datasets:
+      - CIFAR-10
+      - ImageNet 64×64
+      - FFHQ 64×64
+    metrics:
+      - FID
+      - NFE
+      - 训练能耗
+    relevance: >-
+      EDM 是 CorrDiff 的直接方法祖先，其预条件、噪声采样、损失加权和 Heun 求解器应拆成可独立消融的组件，而非把后续加速全部归因于 CfC。
+      35 次网络调用已显著优于早期设计，但原文明确指出高分辨率参数可能需重调；天气变量尺度、极端权重和 CfC 状态耦合也会改变最适 σ 配置。
+    verified_at: '2026-11-23'
+  - id: lu-2022-dpm-solver
+    title: 'DPM-Solver: A Fast ODE Solver for Diffusion Probabilistic Model Sampling in Around 10 Steps'
+    authors:
+      - Cheng Lu
+      - Yuhao Zhou
+      - Fan Bao
+      - Jianfei Chen
+      - Chongxuan Li
+      - Jun Zhu
+    year: 2022
+    venue: NeurIPS 2022
+    doi: 10.52202/068431-0418
+    url: https://proceedings.neurips.cc/paper_files/paper/2022/hash/260a14acce2a89dad36adc8eefe7c59e-Abstract-Conference.html
+    oa_url: https://arxiv.org/pdf/2206.00927
+    pdf_path: reference/papers/efficient-generative-sampling/lu-2022-dpm-solver.pdf
+    sha256: 4a14cb652bb4996c6bfdd717b0bf71d6a5c92cf9e09abdc3173106213f4fd671
+    access: downloaded
+    methods:
+      - 扩散 ODE 半线性精确解
+      - 指数加权积分
+      - 一至三阶专用求解器
+      - 自适应步长
+      - 免训练少步采样
+    datasets:
+      - CIFAR-10
+      - ImageNet 64×64
+      - ImageNet 256×256
+    metrics:
+      - FID
+      - NFE
+      - 实际运行时间
+      - 收敛阶数
+    relevance: >-
+      DPM-Solver 在约 10–20 次网络调用内保持质量且无需重训，适合作为 CorrDiff+CfC 相对 EDM-Heun 的第二阶段推理加速对照。
+      其价值是减少整个时空网络的重复调用而非只优化单层；但需正确转换噪声/数据预测参数化，并重新检验确定性少步采样对集合离散度、极端事件和条件引导的影响。
+    verified_at: '2026-11-23'
+  - id: song-2023-consistency-models
+    title: Consistency Models
+    authors:
+      - Yang Song
+      - Prafulla Dhariwal
+      - Mark Chen
+      - Ilya Sutskever
+    year: 2023
+    venue: ICML 2023, PMLR 202
+    doi: null
+    url: https://proceedings.mlr.press/v202/song23a.html
+    oa_url: https://arxiv.org/pdf/2303.01469
+    pdf_path: reference/papers/efficient-generative-sampling/song-2023-consistency-models.pdf
+    sha256: b36df36eb96abcad5ad67173952258c34f2ba0624c15acaaf38bebf855074043
+    access: downloaded
+    methods:
+      - consistency distillation
+      - consistency training
+      - probability flow ODE 轨迹自洽
+      - 一步与多步生成
+      - 零样本逆问题
+    datasets:
+      - CIFAR-10
+      - ImageNet 64×64
+      - LSUN 256×256
+    metrics:
+      - FID
+      - Inception Score
+      - Precision
+      - Recall
+      - NFE
+    relevance: >-
+      一致性函数把同一 ODE 轨迹上的任意噪声状态直接映射到数据，可把 CorrDiff+CfC 的推理推进到一至数步，并保留多步换质量的接口。
+      对时序超分辨可探索跨物理时刻共享的一致性约束，但不能把轨迹自洽等同于天气动力一致性；额外训练稳定性、少步多样性和极端场误差仍是主要风险。
+    verified_at: '2026-11-23'
+  - id: peebles-2023-dit
+    title: Scalable Diffusion Models with Transformers
+    authors:
+      - William Peebles
+      - Saining Xie
+    year: 2023
+    venue: ICCV 2023
+    doi: 10.1109/ICCV51070.2023.00387
+    url: https://openaccess.thecvf.com/content/ICCV2023/html/Peebles_Scalable_Diffusion_Models_with_Transformers_ICCV_2023_paper.html
+    oa_url: https://arxiv.org/pdf/2212.09748
+    pdf_path: reference/papers/efficient-generative-sampling/peebles-2023-dit.pdf
+    sha256: 5fbb0ec35e3ae76826240171ca63ed4c27de6cb43180367453019e9d28a8b076
+    access: downloaded
+    methods:
+      - Diffusion Transformer
+      - 潜空间 patch 化
+      - adaLN-Zero 条件调制
+      - 模型与 token 数扩展
+    datasets:
+      - ImageNet 256×256
+      - ImageNet 512×512
+    metrics:
+      - FID
+      - sFID
+      - Inception Score
+      - Precision/Recall
+      - Gflops
+      - 采样步数
+    relevance: >-
+      DiT 说明 patch 大小、token 数和骨干计算量可系统调节，为 CorrDiff 的空间 patch 或时空 token 与 CfC 时间模块组合提供可扩展骨架。
+      它降低的是单次前传或改善算力利用，并不自动减少扩散步数；全局注意力的平方复杂度、跨区域边界与天气变量条件注入仍需专门控制。
+    verified_at: '2026-11-23'
+  - id: karras-2024-edm2
+    title: Analyzing and Improving the Training Dynamics of Diffusion Models
+    authors:
+      - Tero Karras
+      - Miika Aittala
+      - Jaakko Lehtinen
+      - Janne Hellsten
+      - Timo Aila
+      - Samuli Laine
+    year: 2024
+    venue: CVPR 2024
+    doi: 10.1109/CVPR52733.2024.02282
+    url: https://openaccess.thecvf.com/content/CVPR2024/html/Karras_Analyzing_and_Improving_the_Training_Dynamics_of_Diffusion_Models_CVPR_2024_paper.html
+    oa_url: https://arxiv.org/pdf/2312.02696
+    pdf_path: reference/papers/efficient-generative-sampling/karras-2024-edm2.pdf
+    sha256: 59e52f098c955ef1fc9b413b1fa2fd2eee5e6efefc1e065f25ac49113f1b00e4
+    access: downloaded
+    methods:
+      - 幅度保持网络层
+      - 激活/权重/更新量级控制
+      - post-hoc EMA
+      - 轻量无条件模型引导
+      - 确定性少步采样
+    datasets:
+      - ImageNet 512×512
+      - ImageNet 64×64
+    metrics:
+      - FID
+      - NFE
+      - 模型计算复杂度
+      - 训练与调参成本
+    relevance: >-
+      EDM2 通过稳定训练动力学、事后选择 EMA 和较小无条件网络降低训练搜索及条件引导成本，可直接启发 CorrDiff+CfC 的骨干改造和廉价超参扫描。
+      其重点不是进一步压缩求解步数，且结论主要来自 ADM 类 U-Net 与 ImageNet；迁移到带循环状态的 CfC、区域天气和物理约束时需重新验证幅度假设。
+    verified_at: '2026-11-23'

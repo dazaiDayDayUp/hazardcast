@@ -1,0 +1,315 @@
+topic: probabilistic-calibration
+papers:
+  - id: anderson-1996-binned-probability
+    title: A Method for Producing and Evaluating Probabilistic Forecasts from Ensemble Model Integrations
+    authors:
+      - Jeffrey L. Anderson
+    year: 1996
+    venue: Journal of Climate 9(7), 1518-1530
+    doi: "10.1175/1520-0442(1996)009<1518:AMFPAE>2.0.CO;2"
+    url: "https://doi.org/10.1175/1520-0442(1996)009%3C1518:AMFPAE%3E2.0.CO;2"
+    oa_url: https://www.gfdl.noaa.gov/bibliography/related_files/jla9603.pdf
+    pdf_path: reference/papers/probabilistic-calibration/anderson-1996-binned-probability.pdf
+    sha256: 5fecfbf503e2bcd2adf48a17a6afe8e7c6fbcc406dc94e69523cdb4ef2a61be3
+    access: downloaded
+    methods:
+      - binned probability ensemble (BPE)
+      - rank histogram / Talagrand diagram
+      - chi-square uniformity test
+      - perfect-model ensemble validation
+    datasets:
+      - Lorenz three-variable model synthetic ensembles
+      - AMIP nine-member T42 GCM integrations (1979-1988)
+      - NMC/ECMWF analyses and station precipitation climatology
+    metrics:
+      - verification-rank frequencies
+      - chi-square significance
+      - ensemble-mean RMSE
+      - anomaly correlation
+    relevance: 该文把集合成员排序形成的等概率区间用于概率预报与秩一致性检验，是 CorrDiff 多随机样本逐格点 rank histogram 诊断的奠基来源。它可直接用于发现降水或风场的系统偏差和离散度不足，但只检查一元边际一致性，不能证明 CorrDiff+CfC 重建场的时空联合分布正确。
+    verified_at: 2026-11-23
+
+  - id: whitaker-1998-spread-skill
+    title: The Relationship between Ensemble Spread and Ensemble Mean Skill
+    authors:
+      - Jeffrey S. Whitaker
+      - Andrew F. Loughe
+    year: 1998
+    venue: Monthly Weather Review 126(12), 3292-3302
+    doi: "10.1175/1520-0493(1998)126<3292:TRBESA>2.0.CO;2"
+    url: "https://doi.org/10.1175/1520-0493(1998)126%3C3292:TRBESA%3E2.0.CO;2"
+    oa_url: https://journals.ametsoc.org/view/journals/mwre/126/12/1520-0493_1998_126_3292_trbesa_2.0.co_2.xml
+    pdf_path: null
+    sha256: null
+    access: metadata-only
+    methods:
+      - spread-error correlation
+      - stochastic spread-skill model
+      - quintile contingency tables
+      - linear quasigeostrophic perturbation model
+    datasets:
+      - NCEP 17-member operational ensemble, 250-hPa streamfunction (two winters)
+      - NCEP-NCAR reanalysis
+      - five-level quasigeostrophic model simulations over 21 winters
+    metrics:
+      - ensemble spread
+      - ensemble-mean RMSE
+      - spread-error correlation
+      - conditional error probabilities by spread quintile
+    relevance: 该文说明即使完美集合也不必有很高的 spread-error 相关，且极端 spread 比常态 spread 更能预测误差。对本项目而言，应同时报告 spread 与集合均值误差的分层关系，而不能凭低相关性否定 CorrDiff+CfC 集合；但其大尺度 250-hPa 流函数结论不能直接外推到公里尺度降水。
+    verified_at: 2026-11-23
+
+  - id: hamill-2001-rank-histogram
+    title: Interpretation of Rank Histograms for Verifying Ensemble Forecasts
+    authors:
+      - Thomas M. Hamill
+    year: 2001
+    venue: Monthly Weather Review 129(3), 550-560
+    doi: "10.1175/1520-0493(2001)129<0550:IORHFV>2.0.CO;2"
+    url: "https://doi.org/10.1175/1520-0493(2001)129%3C0550:IORHFV%3E2.0.CO;2"
+    oa_url: https://opensky.ucar.edu/system/files/2024-08/articles_10257.pdf
+    pdf_path: reference/papers/probabilistic-calibration/hamill-2001-rank-histogram.pdf
+    sha256: e047743a6422ff471930c31ba1513f119d96ec058599b445cd68759bed69979f
+    access: downloaded
+    methods:
+      - rank-histogram reliability diagnosis
+      - conditional-bias and nonrandom-sampling counterexamples
+      - observation-error perturbation
+      - spatially and temporally independent sampling for uniformity tests
+    datasets:
+      - synthetic Gaussian ensembles
+      - quasigeostrophic channel-model perfect-model ensembles
+    metrics:
+      - rank-histogram uniformity
+      - chi-square test
+      - rank differences at spatial and temporal lags
+    relevance: 该文给出 U 形、钟形和倾斜 rank histogram 的解释，也证明平坦直方图可能被相反条件偏差抵消。项目应按变量、区域、时效、季节和降水强度分别诊断 CorrDiff+CfC，并处理零降水并列秩和时空相关样本；否则全局平坦图会制造虚假的安全感。
+    verified_at: 2026-11-23
+
+  - id: raftery-2005-bma
+    title: Using Bayesian Model Averaging to Calibrate Forecast Ensembles
+    authors:
+      - Adrian E. Raftery
+      - Tilmann Gneiting
+      - Fadoua Balabdaoui
+      - Michael Polakowski
+    year: 2005
+    venue: Monthly Weather Review 133(5), 1155-1174
+    doi: 10.1175/MWR2906.1
+    url: https://doi.org/10.1175/MWR2906.1
+    oa_url: https://sites.stat.washington.edu/raftery/Research/PDF/fadoua2005.pdf
+    pdf_path: reference/papers/probabilistic-calibration/raftery-2005-bma.pdf
+    sha256: a41635d7cfa54c24bc4033241cdacf9b7cab8a522c4ac9b0626bbbee2277bbca
+    access: downloaded
+    methods:
+      - ensemble Bayesian model averaging (BMA)
+      - member-specific bias correction
+      - Gaussian mixture predictive distributions
+      - EM maximum-likelihood and minimum-CRPS estimation
+      - rolling training windows
+    datasets:
+      - University of Washington five-member MM5 ensemble
+      - 48-h surface temperature and sea-level-pressure forecasts in the Pacific Northwest (January-June 2000)
+      - synthetic ensemble experiments
+    metrics:
+      - prediction-interval coverage and width
+      - CRPS
+      - ignorance score
+      - PIT and rank histograms
+      - RMSE and MAE
+    relevance: BMA 为原始 CorrDiff 集合提供了可解释的后处理基线：成员偏差、权重和总体方差共同修正过自信，并可用覆盖率与区间宽度同时检查。其正态混合和逐变量独立建模不适合直接描述零膨胀降水及 CfC 序列依赖，因此更适合作为温度、气压等变量的对照，而非完整的时空生成模型。
+    verified_at: 2026-11-23
+
+  - id: gneiting-2007-calibration-sharpness
+    title: Probabilistic Forecasts, Calibration and Sharpness
+    authors:
+      - Tilmann Gneiting
+      - Fadoua Balabdaoui
+      - Adrian E. Raftery
+    year: 2007
+    venue: "Journal of the Royal Statistical Society Series B: Statistical Methodology 69(2), 243-268"
+    doi: 10.1111/j.1467-9868.2007.00587.x
+    url: https://doi.org/10.1111/j.1467-9868.2007.00587.x
+    oa_url: https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jrssb.pdf
+    pdf_path: reference/papers/probabilistic-calibration/gneiting-2007-calibration-sharpness.pdf
+    sha256: 5ca1dc51db5fc619ed757bf1b79f3601408d579373c43d6dc06d601d51b271ea
+    access: downloaded
+    methods:
+      - probabilistic, exceedance and marginal calibration
+      - probability integral transform (PIT)
+      - sharpness-subject-to-calibration principle
+      - marginal calibration plots and sharpness diagrams
+    datasets:
+      - synthetic forecast scenarios
+      - Stateline wind energy centre wind-speed forecasts in the US Pacific Northwest
+    metrics:
+      - PIT histogram
+      - calibration plots
+      - prediction-interval width
+      - proper scoring rules
+    relevance: “在校准约束下最大化锐度”可作为 CorrDiff+CfC 概率重建的统一目标，避免仅靠放宽集合或复制气候分布来改善覆盖率。PIT、条件覆盖和区间宽度适合补充扩散模型的 CRPS；但这些一元诊断仍不检验公里尺度场和连续时间轨迹的联合校准。
+    verified_at: 2026-11-23
+
+  - id: gneiting-2007-scoring-rules
+    title: Strictly Proper Scoring Rules, Prediction, and Estimation
+    authors:
+      - Tilmann Gneiting
+      - Adrian E. Raftery
+    year: 2007
+    venue: Journal of the American Statistical Association 102(477), 359-378
+    doi: 10.1198/016214506000001437
+    url: https://doi.org/10.1198/016214506000001437
+    oa_url: https://sites.stat.washington.edu/raftery/Research/PDF/Gneiting2007jasa.pdf
+    pdf_path: reference/papers/probabilistic-calibration/gneiting-2007-scoring-rules.pdf
+    sha256: d31a0c5f0ae8fec1a0a6544db5d056645b2d7296d71b44a2e8efb293c7d87ba2
+    access: downloaded
+    methods:
+      - strictly proper scoring rules
+      - continuous ranked probability score (CRPS)
+      - energy score
+      - optimum-score estimation
+      - quantile and interval scores
+    datasets:
+      - theoretical examples
+      - Pacific Northwest ensemble weather-forecast case study
+    metrics:
+      - CRPS
+      - logarithmic score
+      - Brier score
+      - energy score
+      - quantile and interval scores
+    relevance: 该文为以 CRPS 训练或筛选 CorrDiff+CfC 提供严格适当性依据，并给出从一元 CRPS 到多变量 energy score 的理论连接。CRPS 适合约束逐点分布而不鼓励虚报不确定性，但平均逐点 CRPS 对时空相关结构不敏感，不能替代频谱、联合秩和极端事件评估。
+    verified_at: 2026-11-23
+
+  - id: moller-2013-bma-copulas
+    title: Multivariate probabilistic forecasting using ensemble Bayesian model averaging and copulas
+    authors:
+      - Annette Möller
+      - Alex Lenkoski
+      - Thordis L. Thorarinsdottir
+    year: 2013
+    venue: Quarterly Journal of the Royal Meteorological Society 139(673), 982-991
+    doi: 10.1002/qj.2009
+    url: https://doi.org/10.1002/qj.2009
+    oa_url: https://arxiv.org/pdf/1202.3956
+    pdf_path: reference/papers/probabilistic-calibration/moller-2013-bma-copulas.pdf
+    sha256: bcf0448cee4c2b6005830c41868b3b43f2395861999e0d66c2ad6894227dcac4
+    access: downloaded
+    methods:
+      - ensemble BMA marginal postprocessing
+      - Gaussian copula dependence reconstruction
+      - multivariate rank ordering
+      - joint ensemble sampling
+    datasets:
+      - University of Washington eight-member mesoscale ensemble
+      - 60 Pacific Northwest stations (2008; 2006-2007 training data)
+      - daily maximum/minimum temperature, sea-level pressure, precipitation and maximum wind speed
+    metrics:
+      - multivariate rank histogram and reliability index
+      - energy score
+      - univariate CRPS
+      - calibration and sharpness
+    relevance: 该文把逐变量校准后的边缘分布与 Gaussian copula 组合，为 CorrDiff+CfC 多变量、跨时刻样本重建提供了显式基线。它提醒项目不能把每个格点或时刻独立后处理后就算联合可靠；不过高斯依赖难以表达对流降水的非对称尾部和复杂时空演变。
+    verified_at: 2026-11-23
+
+  - id: schefzik-2013-ensemble-copula
+    title: Uncertainty Quantification in Complex Simulation Models Using Ensemble Copula Coupling
+    authors:
+      - Roman Schefzik
+      - Thordis L. Thorarinsdottir
+      - Tilmann Gneiting
+    year: 2013
+    venue: Statistical Science 28(4), 616-640
+    doi: 10.1214/13-STS443
+    url: https://doi.org/10.1214/13-STS443
+    oa_url: https://arxiv.org/pdf/1302.7149
+    pdf_path: reference/papers/probabilistic-calibration/schefzik-2013-ensemble-copula.pdf
+    sha256: 57a45519e265010e57da85cbc489c6e358140bda7d30bb70890806993bf9d32b
+    access: downloaded
+    methods:
+      - ensemble copula coupling (ECC-Q, ECC-R, ECC-T)
+      - empirical copula from raw-ensemble ranks
+      - BMA and nonhomogeneous regression marginals
+      - Schaake shuffle and rank reordering
+    datasets:
+      - 50-member ECMWF ensemble over Germany
+      - temperature, pressure, precipitation and wind forecasts
+      - Berlin, Frankfurt and Hamburg case studies (May 2010-April 2011 test period)
+    metrics:
+      - CRPS
+      - energy score
+      - multivariate rank histogram
+      - reliability index
+    relevance: ECC 可先校准 CorrDiff 各变量和时效的边缘分布，再按原始集合秩次重排，以低成本保留空间、变量和时间依赖，适合作为 CfC 时空超分辨的后处理对照。其关键局限是继承原始集合 copula：若扩散样本或 CfC 轨迹本身缺少合理相关结构，ECC 不会自动修复。
+    verified_at: 2026-11-23
+
+  - id: rasp-2018-neural-postprocessing
+    title: Neural Networks for Postprocessing Ensemble Weather Forecasts
+    authors:
+      - Stephan Rasp
+      - Sebastian Lerch
+    year: 2018
+    venue: Monthly Weather Review 146(11), 3885-3900
+    doi: 10.1175/MWR-D-18-0187.1
+    url: https://doi.org/10.1175/MWR-D-18-0187.1
+    oa_url: https://arxiv.org/pdf/1805.09091
+    pdf_path: reference/papers/probabilistic-calibration/rasp-2018-neural-postprocessing.pdf
+    sha256: feecf0118a39c5ba02fc0be7f676613c1a18c86c881f8c645494623f3ddedd18
+    access: downloaded
+    methods:
+      - neural distributional regression
+      - CRPS minimization
+      - auxiliary ensemble predictors
+      - station embeddings
+      - comparison with EMOS benchmarks
+    datasets:
+      - TIGGE ECMWF 50-member 48-h 2-m temperature forecasts (2007-2016)
+      - 537 DWD surface stations in Germany; 2016 held out for validation
+    metrics:
+      - CRPS
+      - predictive-distribution calibration
+      - predictor importance
+      - training-set-size sensitivity
+    relevance: 该文展示了以 CRPS 直接学习非线性分布参数、融合辅助变量和位置嵌入的后处理路线，可转化为 CorrDiff+CfC 的轻量网格校准器。它能隔离“生成模型本身”和“后处理”带来的增益，但单站 2-m 温度实验没有解决联合场、降水零膨胀和跨时刻一致性。
+    verified_at: 2026-11-23
+
+  - id: price-2025-gencast
+    title: Probabilistic weather forecasting with machine learning
+    authors:
+      - Ilan Price
+      - Alvaro Sanchez-Gonzalez
+      - Ferran Alet
+      - Tom R. Andersson
+      - Andrew El-Kadi
+      - Dominic Masters
+      - Timo Ewalds
+      - Jacklynn Stott
+      - Shakir Mohamed
+      - Peter Battaglia
+      - Remi Lam
+      - Matthew Willson
+    year: 2025
+    venue: Nature 637(8044), 84-90
+    doi: 10.1038/s41586-024-08252-9
+    url: https://www.nature.com/articles/s41586-024-08252-9
+    oa_url: https://www.nature.com/articles/s41586-024-08252-9.pdf
+    pdf_path: reference/papers/weather-generative/price-2025-gencast.pdf
+    sha256: 2af6b1493f3f357b68d5195bcae8d3c9578b8daed7dec02c1bb101c5f8eaedb7
+    access: existing
+    methods:
+      - conditional diffusion ensemble forecasting
+      - autoregressive 12-h rollout
+      - ERA5 EDA initial-condition perturbations
+      - joint spatiotemporal weather-trajectory sampling
+    datasets:
+      - ERA5 reanalysis (1979-2018 training) and ERA5 EDA
+      - ECMWF ENS and GraphCast-Perturbed baselines
+      - global surface and upper-air variables, tropical cyclones and wind-power cases
+    metrics:
+      - CRPS and CRPS skill score
+      - ensemble-mean RMSE
+      - spread-skill ratio
+      - rank histogram
+      - Brier skill score and extreme-event skill
+    relevance: GenCast 是与 CorrDiff 最接近的近期生成式集合参照，证明随机扩散样本可以同时改善边际技巧、校准和有物理质感的时空轨迹。其全球中期预报与公里尺度区域时空超分辨任务不同，且大模型训练成本高；可迁移的是多随机轨迹、分时效 CRPS 和 spread/rank 联合评估，而非直接比较绝对分数。
+    verified_at: 2026-11-23

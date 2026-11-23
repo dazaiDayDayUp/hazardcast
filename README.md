@@ -4,6 +4,8 @@
 
 当前阶段在台湾 CWA 数据上复现原版 CorrDiff 的同一时刻空间降尺度，建立对照基线。进度与结果见[项目交接](docs/2026-11-23-status.md)和 [CorrDiff 实验记录](docs/2026-11-23-corrdiff.md)。
 
+文献库提供 [13 类文献总索引与规范目录说明](reference/literature/README.md)，研究任务、模型集成、对照矩阵和分阶段路线见[跨主题综合综述](docs/2026-11-23-literature-review.md)。
+
 ## 当前目录
 
 ```text

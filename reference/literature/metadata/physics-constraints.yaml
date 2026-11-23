@@ -1,0 +1,349 @@
+topic: physics-constraints
+papers:
+  - id: raissi-2019-physics-informed
+    title: "Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations"
+    authors:
+      - "Maziar Raissi"
+      - "Paris Perdikaris"
+      - "George Em Karniadakis"
+    year: 2019
+    venue: "Journal of Computational Physics 378: 686–707"
+    doi: "10.1016/j.jcp.2018.10.045"
+    url: "https://doi.org/10.1016/j.jcp.2018.10.045"
+    oa_url: "https://arxiv.org/pdf/1711.10561"
+    pdf_path: "reference/papers/physics-constraints/raissi-2019-physics-informed.pdf"
+    sha256: "2a8db6776a110a4f36bd1e36af79cf31a2e74baa5af8f7ee3d9286a75fdc400d"
+    access: downloaded
+    methods:
+      - "自动微分 PDE 残差软约束"
+      - "连续时间坐标网络"
+      - "离散时间隐式 Runge–Kutta 约束"
+    datasets:
+      - "Burgers 方程合成数据"
+      - "Schrödinger 方程合成数据"
+    metrics:
+      - "相对 L2 误差"
+      - "PDE 残差"
+      - "不同配点数与网络容量的误差"
+    relevance: >-
+      为 CfC 的连续时间输出提供直接可微的 PDE 残差范式，可把观测数据项与动力项联合训练，其离散时间隐式 Runge–Kutta 构造也可连接稀疏采样时刻。其基准主要是低维 PDE，软约束不保证逐样本守恒，而本项目的完整大气方程、边界条件和次网格项并不完备。
+    verified_at: 2026-11-23
+
+  - id: jiang-2020-meshfreeflownet
+    title: "MeshfreeFlowNet: A Physics-Constrained Deep Continuous Space-Time Super-Resolution Framework"
+    authors:
+      - "Chiyu “Max” Jiang"
+      - "Soheil Esmaeilzadeh"
+      - "Kamyar Azizzadenesheli"
+      - "Karthik Kashinath"
+      - "Mustafa Mustafa"
+      - "Hamdi A. Tchelepi"
+      - "Philip Marcus"
+      - "Prabhat"
+      - "Anima Anandkumar"
+    year: 2020
+    venue: "SC20: International Conference for High Performance Computing, Networking, Storage and Analysis: 1–15"
+    doi: "10.1109/SC41405.2020.00013"
+    url: "https://doi.org/10.1109/SC41405.2020.00013"
+    oa_url: "https://arxiv.org/pdf/2005.01463"
+    pdf_path: "reference/papers/physics-constraints/jiang-2020-meshfreeflownet.pdf"
+    sha256: "1125ed34e04f306dea0f7a86686e2c1047fcba03eca06419ba2d02c30c25085a"
+    access: downloaded
+    methods:
+      - "3D U-Net 上下文编码器"
+      - "连续隐式神经表示解码器"
+      - "PDE 残差软约束"
+      - "任意时空坐标查询"
+    datasets:
+      - "Dedalus 生成的二维 Rayleigh–Bénard 对流"
+      - "空间 8 倍、时间 4 倍降采样的时空超分辨任务"
+    metrics:
+      - "归一化平均绝对误差（NMAE）"
+      - "R²"
+      - "动能、耗散率及 Taylor/Kolmogorov 尺度误差"
+      - "多 GPU 扩展效率"
+    relevance: >-
+      这是与项目目标最同构的早期工作之一：低分辨率时空块经 3D 编码器和连续解码器恢复更密时空场，并用自动微分施加动力方程，可直接启发 CorrDiff 条件编码与 CfC 连续时间解码的接口。其证据限于二维 Rayleigh–Bénard 数值模拟和确定性重建，PDE 权重过大还会明显伤害精度，不能直接外推到真实区域天气。
+    verified_at: 2026-11-23
+
+  - id: beucler-2021-analytic-constraints
+    title: "Enforcing Analytic Constraints in Neural Networks Emulating Physical Systems"
+    authors:
+      - "Tom Beucler"
+      - "Michael Pritchard"
+      - "Stephan Rasp"
+      - "Jordan Ott"
+      - "Pierre Baldi"
+      - "Pierre Gentine"
+    year: 2021
+    venue: "Physical Review Letters 126(9): 098302"
+    doi: "10.1103/PhysRevLett.126.098302"
+    url: "https://doi.org/10.1103/PhysRevLett.126.098302"
+    oa_url: "https://arxiv.org/pdf/1909.00912"
+    pdf_path: "reference/papers/physics-constraints/beucler-2021-analytic-constraints.pdf"
+    sha256: "3ceee3bd0ac2aade0633e7d79488bc3099439489083c4b4ede8f8ae0c446a3ed"
+    access: downloaded
+    methods:
+      - "解析约束层（ACnet）"
+      - "损失加权软约束（LCnet）"
+      - "质量、能量与辐射守恒"
+      - "气候对流参数化"
+    datasets:
+      - "SPCAM 3.0 两年 aquaplanet 模拟"
+      - "216 维对流倾向与标量输出"
+    metrics:
+      - "均方误差（MSE）"
+      - "约束惩罚 P"
+      - "守恒残差"
+      - "热力学项与约束残差项 MSE"
+    relevance: >-
+      该文给出把线性守恒关系写进网络最后一层的系统方法，适合作为 CorrDiff+CfC 的逐样本质量或能量守恒对照，并能与软惩罚直接比较。实验对象是气候模式柱参数化而非超分辨，且作者明确指出守恒本身不保证暖气候等分布外情形的泛化。
+    verified_at: 2026-11-23
+
+  - id: geiss-2023-conservation
+    title: "Strictly Enforcing Invertibility and Conservation in CNN-Based Super Resolution for Scientific Datasets"
+    authors:
+      - "Andrew Geiss"
+      - "Joseph C. Hardin"
+    year: 2023
+    venue: "Artificial Intelligence for the Earth Systems 2(1): e210012"
+    doi: "10.1175/AIES-D-21-0012.1"
+    url: "https://doi.org/10.1175/AIES-D-21-0012.1"
+    oa_url: "https://arxiv.org/pdf/2011.05586"
+    pdf_path: "reference/papers/physics-constraints/geiss-2023-conservation.pdf"
+    sha256: "7f8148123d443c016f785c5dd745c1c3238efaa22b458b0c74735c2f0861720d"
+    access: downloaded
+    methods:
+      - "Downsampling Enforcement 可微输出层"
+      - "二维平均重采样可逆性"
+      - "CNN 单图超分辨"
+    datasets:
+      - "GOES-17 L1b 辐射"
+      - "ERA5 云量"
+      - "SEVIR/NEXRAD 垂直积分液态水"
+      - "DIV2K 及五类自然图像测试集"
+    metrics:
+      - "RMSE"
+      - "PSNR"
+      - "SSIM"
+      - "输出回降采样与输入间 RMSE"
+    relevance: >-
+      其输出层强制高分辨率场在二维平均后精确回到低分辨率输入，可作为 CorrDiff 每个生成样本的最后一层，直接消除粗网格水量或辐射不守恒。该保证依赖真实粗化算子确为二维平均；论文也展示了算子错配会降精度，并提示高倍率下可能出现棋盘格伪影。
+    verified_at: 2026-11-23
+
+  - id: harder-2023-climate-downscaling
+    title: "Hard-Constrained Deep Learning for Climate Downscaling"
+    authors:
+      - "Paula Harder"
+      - "Alex Hernandez-Garcia"
+      - "Venkatesh Ramesh"
+      - "Qidong Yang"
+      - "Prasanna Sattegeri"
+      - "Daniela Szwarcman"
+      - "Campbell D. Watson"
+      - "David Rolnick"
+    year: 2023
+    venue: "Journal of Machine Learning Research 24(365): 1–40"
+    doi: null
+    url: "https://jmlr.org/papers/v24/23-0158.html"
+    oa_url: "https://www.jmlr.org/papers/volume24/23-0158/23-0158.pdf"
+    pdf_path: "reference/papers/physics-constraints/harder-2023-climate-downscaling.pdf"
+    sha256: "235c7b7cb410c000b77f9a93698b8132d5e7cb33f5c3d3dd331a5ba6d72ae1f5"
+    access: downloaded
+    methods:
+      - "AddCL、ScAddCL、MultCL、SmCL 硬约束层"
+      - "粗网格均值守恒"
+      - "非负性约束"
+      - "空间与时空超分辨"
+    datasets:
+      - "ERA5 总柱水含量与湿静能变量，含两帧输入到三帧输出的时空超分辨"
+      - "WRF 9 km 到 3 km 的 2 m 温度"
+      - "NorESM 温度"
+      - "月球卫星图像与自然图像"
+    metrics:
+      - "RMSE"
+      - "MAE"
+      - "MS-SSIM"
+      - "约束违反量"
+    relevance: >-
+      该文不仅系统比较四类可插拔守恒层，还真的评估了稀疏时间输入到中间时刻输出的时空超分辨，是本项目设计硬约束消融和指标体系的直接模板。多数数据仍由平均池化合成，且约束主要作用于空间粗化关系而非时间动力方程；WRF 的粗细则程本身只近似满足约束，说明硬约束前必须核查数据定义。
+    verified_at: 2026-11-23
+
+  - id: gonzalez-abad-2024-multivariable
+    title: "Multi-Variable Hard Physical Constraints for Climate Model Downscaling"
+    authors:
+      - "Jose González-Abad"
+      - "Álex Hernández-García"
+      - "Paula Harder"
+      - "David Rolnick"
+      - "José Manuel Gutiérrez"
+    year: 2024
+    venue: "Proceedings of the AAAI Symposium Series 2(1): 62–67"
+    doi: "10.1609/aaaiss.v2i1.27650"
+    url: "https://doi.org/10.1609/aaaiss.v2i1.27650"
+    oa_url: "https://ojs.aaai.org/index.php/AAAI-SS/article/download/27650/27423"
+    pdf_path: "reference/papers/physics-constraints/gonzalez-abad-2024-multivariable.pdf"
+    sha256: "d73caf61f341b3cf6b856fe6687f89401da9c5f9527384bb516b23945f6efb46"
+    access: downloaded
+    methods:
+      - "加法式多变量硬约束"
+      - "乘法式多变量硬约束"
+      - "Tmin≤Tmean≤Tmax 参数化"
+      - "UNet 与 DeepESD"
+    datasets:
+      - "ERA-Interim 2° 大尺度预测因子"
+      - "W5E5 0.5° 欧洲日最低、平均和最高气温"
+      - "EC-Earth RCP8.5 2006–2100 投影"
+    metrics:
+      - "RMSE"
+      - "年度约束违反百分比"
+      - "10 次运行及 bootstrap 置信区间"
+    relevance: >-
+      该文把硬约束从单变量粗网格守恒扩展到变量间关系，对多通道 CorrDiff 输出尤其重要：联合生成并不自动保证物理一致，可通过重参数化消除跨变量矛盾。当前只处理最低、平均和最高气温的不等式，尚未解决守恒通量或时间动力约束，且结论是六页会议论文中的概念验证。
+    verified_at: 2026-11-23
+
+  - id: kochkov-2024-neuralgcm
+    title: "Neural general circulation models for weather and climate"
+    authors:
+      - "Dmitrii Kochkov"
+      - "Janni Yuval"
+      - "Ian Langmore"
+      - "Peter Norgaard"
+      - "Jamie Smith"
+      - "Griffin Mooers"
+      - "Milan Klöwer"
+      - "James Lottes"
+      - "Stephan Rasp"
+      - "Peter Düben"
+      - "Sam Hatfield"
+      - "Peter Battaglia"
+      - "Alvaro Sanchez-Gonzalez"
+      - "Matthew Willson"
+      - "Michael P. Brenner"
+      - "Stephan Hoyer"
+    year: 2024
+    venue: "Nature 632(8027): 1060–1066"
+    doi: "10.1038/s41586-024-07744-y"
+    url: "https://doi.org/10.1038/s41586-024-07744-y"
+    oa_url: "https://www.nature.com/articles/s41586-024-07744-y.pdf"
+    pdf_path: "reference/papers/physics-constraints/kochkov-2024-neuralgcm.pdf"
+    sha256: "e1e95326c6f2068d9275cd33673cf49157bad107aa4f63684fee96c1bb46349c"
+    access: downloaded
+    methods:
+      - "可微分动力框架"
+      - "学习物理参数化"
+      - "隐式—显式 ODE 求解器"
+      - "多步展开端到端训练"
+      - "随机集合预报"
+    datasets:
+      - "ERA5 天气训练与 2020 年独立评估"
+      - "2.8°、1.4° 和 0.7° 全球模拟"
+      - "AMIP 式气候积分及 CMIP6、X-SHiELD 对照"
+    metrics:
+      - "RMSE 与均方根偏差（RMSB）"
+      - "CRPS 与 spread–skill ratio"
+      - "功率谱和地转风平衡"
+      - "气候漂移、稳定性与热带气旋统计"
+    relevance: >-
+      它证明可微数值动力与学习参数化可以在多步展开中联合训练，为 CfC 不只拟合中间帧、而与已知动力项耦合提供长期路线和稳定性评估范式。NeuralGCM 是全球天气预报和气候模式而非公里尺度降尺度器，完整移植动力核心成本高，因此更适合作为混合数值—学习对照的设计依据而非首个实现。
+    verified_at: 2026-11-23
+
+  - id: jacobsen-2025-cocogen
+    title: "CoCoGen: Physically Consistent and Conditioned Score-Based Generative Models for Forward and Inverse Problems"
+    authors:
+      - "Christian Jacobsen"
+      - "Yilin Zhuang"
+      - "Karthik Duraisamy"
+    year: 2025
+    venue: "SIAM Journal on Scientific Computing 47(2): C399–C425"
+    doi: "10.1137/24M1636071"
+    url: "https://doi.org/10.1137/24M1636071"
+    oa_url: "https://arxiv.org/pdf/2312.10527"
+    pdf_path: "reference/papers/physics-constraints/jacobsen-2025-cocogen.pdf"
+    sha256: "4f3f1c4db81cdb92289d22a32981ecab7b368bd60297372547c8a3301925d44f"
+    access: downloaded
+    methods:
+      - "score-based 生成模型"
+      - "概率流 ODE"
+      - "采样期 PDE 残差校正"
+      - "ControlNet 式条件增强"
+      - "稀疏观测场重建"
+    datasets:
+      - "64×64 Darcy 流，10,000 个训练样本和 1,000 个测试样本"
+      - "一维 Burgers 方程 10,000 个模拟"
+      - "随机稀疏压力测点的压力重建与渗透率反演"
+    metrics:
+      - "PDE 残差"
+      - "RMSE"
+      - "压力重建 L2 误差"
+      - "渗透率反演 L2 误差"
+    relevance: >-
+      CoCoGen 提供不重训主生成模型、在采样轨迹中插入 PDE 残差校正的路线，可用于检验 CorrDiff 是否只需少量物理引导步即可改善中间时刻重建，并兼容稀疏观测条件。其实验限于 Darcy 流和一维 Burgers 方程，校正步数、求解器离散和收敛性会影响残差与误差，不能直接宣称对天气有效。
+    verified_at: 2026-11-23
+
+  - id: bastek-2025-physics-diffusion
+    title: "Physics-Informed Diffusion Models"
+    authors:
+      - "Jan-Hendrik Bastek"
+      - "WaiChing Sun"
+      - "Dennis M. Kochmann"
+    year: 2025
+    venue: "International Conference on Learning Representations (ICLR 2025)"
+    doi: null
+    url: "https://openreview.net/forum?id=tpYeermigp"
+    oa_url: "https://arxiv.org/pdf/2403.14404"
+    pdf_path: "reference/papers/physics-constraints/bastek-2025-physics-diffusion.pdf"
+    sha256: "45645448691c88b2e6ccc854c430995457a57b682400bbfbab745887a53954ec"
+    access: downloaded
+    methods:
+      - "去噪扩散模型"
+      - "PDE 残差虚拟似然"
+      - "x0 均值或 DDIM 样本残差"
+      - "噪声步相关约束权重"
+      - "等式与不等式软约束"
+    datasets:
+      - "64×64 Darcy 流，10,000 个训练样本和 1,000 个验证样本"
+      - "SIMP 二维结构拓扑优化，含分布外边界条件"
+    metrics:
+      - "残差平均绝对误差（RMAE）"
+      - "测试数据损失"
+      - "中位柔度误差"
+      - "平均体积分数误差"
+    relevance: >-
+      这是改造 CorrDiff 训练目标的最直接文献之一：在预测的干净场上计算离散 PDE 残差，并随扩散噪声水平调节约束强度，可同时比较均值估计和短 DDIM 采样估计。它仍是软约束且未做天气降尺度，残差离散误差、x0 估计的 Jensen 间隙和权重扫描都必须在 CWA 实验中单独核查。
+    verified_at: 2026-11-23
+
+  - id: luo-2025-phydl-nwp
+    title: "Physics-Guided Learning of Meteorological Dynamics for Weather Downscaling and Forecasting"
+    authors:
+      - "Yingtao Luo"
+      - "Shikai Fang"
+      - "Binqing Wu"
+      - "Qingsong Wen"
+      - "Liang Sun"
+    year: 2025
+    venue: "Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2: 2010–2020"
+    doi: "10.1145/3711896.3737081"
+    url: "https://doi.org/10.1145/3711896.3737081"
+    oa_url: "https://arxiv.org/pdf/2505.14555"
+    pdf_path: "reference/papers/physics-constraints/luo-2025-phydl-nwp.pdf"
+    sha256: "c37d9294ec80fd914c31d38eac2176a2264c8a08971b834995310a6cba86a19d"
+    access: downloaded
+    methods:
+      - "连续时空坐标神经表示"
+      - "自动微分 PDE 项"
+      - "显式项库与线性回归"
+      - "潜在力参数化"
+      - "预训练预报模型物理微调"
+    datasets:
+      - "Huadong（ECMWF HRES/ERA5）2 倍和 4 倍空间降尺度"
+      - "Ningbo 观测与 Ningxia ERA5 区域预报"
+      - "WeatherBench 全球预报"
+    metrics:
+      - "RMSE"
+      - "ACC"
+      - "物理残差与方程一致性"
+      - "推理时间和参数量"
+    relevance: >-
+      该文与 CfC 连续时间天气重建高度相关：坐标网络产生任意时空位置的状态，显式动力项之外用潜在力吸收缺测摩擦和未解析过程，避免把不完整大气方程当作精确真值。其降尺度表只报告空间 2 倍和 4 倍实验，时间降尺度没有实证；自由潜在力还可能吸收残差而削弱物理可辨识性，需设容量与正则消融。
+    verified_at: 2026-11-23

@@ -1,0 +1,405 @@
+topic: weather-generative
+papers:
+  - id: ravuri-2021-dgmr
+    title: "Skilful precipitation nowcasting using deep generative models of radar"
+    authors:
+      - "Suman Ravuri"
+      - "Karel Lenc"
+      - "Matthew Willson"
+      - "Dmitry Kangin"
+      - "Remi Lam"
+      - "Piotr Mirowski"
+      - "Megan Fitzsimons"
+      - "Maria Athanassiadou"
+      - "Sheleem Kashem"
+      - "Sam Madge"
+      - "Rachel Prudden"
+      - "Amol Mandhane"
+      - "Aidan Clark"
+      - "Andrew Brock"
+      - "Karen Simonyan"
+      - "Raia Hadsell"
+      - "Niall Robinson"
+      - "Ellen Clancy"
+      - "Alberto Arribas"
+      - "Shakir Mohamed"
+    year: 2021
+    venue: "Nature 597(7878), 672–677"
+    doi: "10.1038/s41586-021-03854-z"
+    url: "https://www.nature.com/articles/s41586-021-03854-z"
+    oa_url: "https://www.nature.com/articles/s41586-021-03854-z.pdf"
+    pdf_path: "reference/papers/weather-generative/ravuri-2021-dgmr.pdf"
+    sha256: "ca5f10f9deb516da9672272e277cee3b2a729ddf60513942afa574380c48a44b"
+    access: downloaded
+    methods:
+      - "条件生成对抗网络 DGMR"
+      - "潜变量随机采样与集合临近预报"
+      - "空间和时间判别器约束序列一致性"
+      - "多空间尺度集合后处理"
+    datasets:
+      - "英国气象局雷达观测（2016–2018 训练，2019 测试）"
+      - "美国 MRMS 雷达降水资料"
+      - "pySTEPS、UNet 和轴向注意力预报基线"
+    metrics:
+      - "CRPS"
+      - "CSI"
+      - "径向功率谱密度 PSD"
+      - "可靠性图与秩直方图"
+      - "相对经济价值"
+      - "气象专家偏好评估"
+    relevance: "DGMR 证明生成模型可以同时保留降水细结构与时空一致的多种未来，是 CorrDiff+CfC 序列生成目标的直接方法参照。其时空判别器和概率评估可转化为 CfC 时序分支的对照，但模型没有显式动力约束，极端降水的位置、强度和生消仍可能失真，且雷达场景不同于多变量区域重建。"
+    verified_at: "2026-11-23"
+
+  - id: lam-2023-graphcast
+    title: "Learning skillful medium-range global weather forecasting"
+    authors:
+      - "Remi Lam"
+      - "Alvaro Sanchez-Gonzalez"
+      - "Matthew Willson"
+      - "Peter Wirnsberger"
+      - "Meire Fortunato"
+      - "Ferran Alet"
+      - "Suman Ravuri"
+      - "Timo Ewalds"
+      - "Zach Eaton-Rosen"
+      - "Weihua Hu"
+      - "Alexander Merose"
+      - "Stephan Hoyer"
+      - "George Holland"
+      - "Oriol Vinyals"
+      - "Jacklynn Stott"
+      - "Alexander Pritzel"
+      - "Shakir Mohamed"
+      - "Peter Battaglia"
+    year: 2023
+    venue: "Science 382(6677), 1416–1421"
+    doi: "10.1126/science.adi2336"
+    url: "https://www.science.org/doi/10.1126/science.adi2336"
+    oa_url: "https://arxiv.org/pdf/2212.12794"
+    pdf_path: "reference/papers/weather-generative/lam-2023-graphcast.pdf"
+    sha256: "71ce5f63fb0b67955d38df35b766d9cd4ef27b4cd6188c7cbe4f9307b0e758c3"
+    access: downloaded
+    methods:
+      - "图神经网络编码器—处理器—解码器"
+      - "多尺度二十面体球面网格消息传递"
+      - "双时次输入与 6 小时自回归预报"
+      - "确定性多变量中期预报"
+    datasets:
+      - "ERA5 再分析（1979–2017 用于模型开发，2018 起留出评估）"
+      - "ECMWF HRES 业务预报"
+      - "IBTrACS 热带气旋路径"
+      - "大气河和极端温度个例"
+    metrics:
+      - "RMSE 与 RMSE skill score"
+      - "ACC"
+      - "热带气旋路径误差"
+      - "极端事件和空间功率谱分析"
+    relevance: "GraphCast 是长时序、多变量天气场高效推进的重要确定性基线，其图消息传递和自回归训练可与 CfC 的连续时间状态推进形成结构对照。它主要解决 0.25°、6 小时间隔的全球单轨迹预报，不生成原生的校准集合，也不直接回答区域内小时以内插值和公里尺度细节重建。"
+    verified_at: "2026-11-23"
+
+  - id: bi-2023-pangu
+    title: "Accurate medium-range global weather forecasting with 3D neural networks"
+    authors:
+      - "Kaifeng Bi"
+      - "Lingxi Xie"
+      - "Hengheng Zhang"
+      - "Xin Chen"
+      - "Xiaotao Gu"
+      - "Qi Tian"
+    year: 2023
+    venue: "Nature 619(7970), 533–538"
+    doi: "10.1038/s41586-023-06185-3"
+    url: "https://www.nature.com/articles/s41586-023-06185-3"
+    oa_url: "https://www.nature.com/articles/s41586-023-06185-3.pdf"
+    pdf_path: "reference/papers/weather-generative/bi-2023-pangu.pdf"
+    sha256: "422b426e563423310a0eb98723aa8c3ffe7d1b1827f8420521628ca293bc666f"
+    access: downloaded
+    methods:
+      - "3D Earth-Specific Transformer（3DEST）"
+      - "气压层高度维显式建模"
+      - "1、3、6、24 小时分层时间聚合"
+      - "确定性预报与初始场扰动集合"
+    datasets:
+      - "ERA5 再分析（1979–2017 训练，2018 测试）"
+      - "ECMWF 业务 IFS 与 FourCastNet 对照"
+      - "2018 年命名热带气旋个例"
+    metrics:
+      - "RMSE"
+      - "ACC"
+      - "热带气旋路径误差与预报时间增益"
+      - "相对分位数误差 RQE"
+    relevance: "Pangu-Weather 提供了垂直层联合表征和多预报步长设计的强基线，对 CorrDiff+CfC 的多变量编码及减少逐步误差积累有直接启发。其原生模型仍是确定性的，集合主要来自初始场扰动而非学习条件分布；固定层次步长也不能替代对不规则观测和任意中间时刻的连续时间建模。"
+    verified_at: "2026-11-23"
+
+  - id: zhang-2023-nowcastnet
+    title: "Skilful nowcasting of extreme precipitation with NowcastNet"
+    authors:
+      - "Yuchen Zhang"
+      - "Mingsheng Long"
+      - "Kaiyuan Chen"
+      - "Lanxiang Xing"
+      - "Ronghua Jin"
+      - "Michael I. Jordan"
+      - "Jianmin Wang"
+    year: 2023
+    venue: "Nature 619(7970), 526–532"
+    doi: "10.1038/s41586-023-06184-4"
+    url: "https://www.nature.com/articles/s41586-023-06184-4"
+    oa_url: "https://www.nature.com/articles/s41586-023-06184-4.pdf"
+    pdf_path: "reference/papers/weather-generative/zhang-2023-nowcastnet.pdf"
+    sha256: "5a7b9aebe0fcaed87d0e749581fbefc8ea75f26274cb17ea9d88f41e59dd0d30"
+    access: downloaded
+    methods:
+      - "物理演化网络与条件 GAN 联合建模"
+      - "神经平流演化及降水强度残差"
+      - "中尺度与对流尺度生成器"
+      - "端到端预报误差优化和跨区域迁移"
+    datasets:
+      - "美国 MRMS 雷达资料"
+      - "中国气象局雷达资料（含非公开部分）"
+      - "pySTEPS、DGMR、PredRNN 和 UNet 对照"
+    metrics:
+      - "邻域 CSI（含 16 和 32 mm/h 强降水阈值）"
+      - "功率谱密度 PSD"
+      - "62 位气象专家偏好评估"
+      - "极端降水个例分析"
+    relevance: "NowcastNet 把可学习的平流演化与随机场生成分开，是本项目设计‘CfC 负责动力推进、CorrDiff 负责随机场细节’最直接的降水参照。其物理结构优于仅在损失中追加约束的可解释性，但中国训练数据含非公开部分，雷达单变量和平流先验也不能保证完整大气守恒或对新生对流的泛化。"
+    verified_at: "2026-11-23"
+
+  - id: gao-2023-prediff
+    title: "PreDiff: Precipitation Nowcasting with Latent Diffusion Models"
+    authors:
+      - "Zhihan Gao"
+      - "Xingjian Shi"
+      - "Boran Han"
+      - "Hao Wang"
+      - "Xiaoyong Jin"
+      - "Danielle Maddix"
+      - "Yi Zhu"
+      - "Mu Li"
+      - "Yuyang Wang"
+    year: 2023
+    venue: "Advances in Neural Information Processing Systems 36 (NeurIPS 2023)"
+    doi: 10.52202/075280-3439
+    url: "https://papers.neurips.cc/paper_files/paper/2023/hash/f82ba6a6b981fbbecf5f2ee5de7db39c-Abstract-Conference.html"
+    oa_url: "https://papers.neurips.cc/paper_files/paper/2023/file/f82ba6a6b981fbbecf5f2ee5de7db39c-Paper-Conference.pdf"
+    pdf_path: "reference/papers/weather-generative/gao-2023-prediff.pdf"
+    sha256: "474de14c61eec8ffa5060f4e3d5aabc05d9c71b618f15d13f6254d8e3882613d"
+    access: downloaded
+    methods:
+      - "条件潜空间扩散模型"
+      - "EarthFormer-UNet 时空去噪骨干"
+      - "两阶段训练"
+      - "逐步去噪的知识对齐引导"
+    datasets:
+      - "SEVIR 降水临近预报基准（降采样版本）"
+      - "N-body MNIST 合成混沌系统"
+      - "ConvLSTM、Earthformer、VideoGPT 和 LDM 对照"
+    metrics:
+      - "CRPS"
+      - "CSI 与多尺度池化 CSI"
+      - "感知质量与集合多样性分析"
+      - "知识约束违背程度"
+    relevance: "PreDiff 与 CorrDiff 同属潜空间条件扩散路线，并展示如何把领域约束注入每个去噪步，可作为区域时空扩散和物理引导消融的近邻基线。其 SEVIR 实验经过降采样，知识对齐在真实降水中主要约束预期强度而非完整动力方程，因此不能把得分提升等同于严格物理一致或公里尺度泛化。"
+    verified_at: "2026-11-23"
+
+  - id: cachay-2023-dyffusion
+    title: "DYffusion: A Dynamics-informed Diffusion Model for Spatiotemporal Forecasting"
+    authors:
+      - "Salva Rühling Cachay"
+      - "Bo Zhao"
+      - "Hailey Joren"
+      - "Rose Yu"
+    year: 2023
+    venue: "Advances in Neural Information Processing Systems 36 (NeurIPS 2023)"
+    doi: 10.52202/075280-1961
+    url: "https://papers.neurips.cc/paper_files/paper/2023/hash/8df90a1440ce782d1f5607b7a38f2531-Abstract-Conference.html"
+    oa_url: "https://papers.neurips.cc/paper_files/paper/2023/file/8df90a1440ce782d1f5607b7a38f2531-Paper-Conference.pdf"
+    pdf_path: "reference/papers/weather-generative/cachay-2023-dyffusion.pdf"
+    sha256: "eb87872c3ef157c48e16773f1e0de36271f86af51f9d7d6ea31385512471ac80"
+    access: downloaded
+    methods:
+      - "动力信息扩散"
+      - "随机时间条件插值器"
+      - "预报器网络与扩散时间耦合"
+      - "连续时间采样轨迹与多步自回归扩展"
+    datasets:
+      - "NOAA OISSTv2 逐日海表温度"
+      - "Navier–Stokes 流场"
+      - "弹簧网格动力系统"
+    metrics:
+      - "CRPS"
+      - "MSE"
+      - "集合离散度—技巧比 SSR"
+      - "推理时间与采样步数"
+    relevance: "DYffusion 将扩散步骤与数据时间动态直接耦合，和 CfC 的连续时间状态表达具有最强的概念互补性，可启发任意中间时刻采样及扩散成本—技巧权衡实验。其验证主要是低分辨率海表温度和理想动力系统，并非多变量天气临近预报；动力信息归纳偏置也不等价于显式物理方程约束。"
+    verified_at: "2026-11-23"
+
+  - id: nguyen-2023-climax
+    title: "ClimaX: A foundation model for weather and climate"
+    authors:
+      - "Tung Nguyen"
+      - "Johannes Brandstetter"
+      - "Ashish Kapoor"
+      - "Jayesh K. Gupta"
+      - "Aditya Grover"
+    year: 2023
+    venue: "Proceedings of the 40th International Conference on Machine Learning, PMLR 202"
+    doi: null
+    url: "https://proceedings.mlr.press/v202/nguyen23a.html"
+    oa_url: "https://proceedings.mlr.press/v202/nguyen23a/nguyen23a.pdf"
+    pdf_path: "reference/papers/weather-generative/nguyen-2023-climax.pdf"
+    sha256: "97c9241d466daa7a1de406072eb5221f4577486fdd30b38f804cd45f989f021f"
+    access: downloaded
+    methods:
+      - "变量级 tokenization"
+      - "变量聚合注意力"
+      - "异构数据自监督预训练与微调"
+      - "Transformer 多任务天气气候建模"
+    datasets:
+      - "CMIP6 多模式气候模拟预训练"
+      - "WeatherBench/ERA5（5.625°、2.8125°、1.40625°）"
+      - "ClimateBench 气候投影"
+      - "S2S 次季节预报任务"
+    metrics:
+      - "纬度加权 RMSE"
+      - "ACC"
+      - "ClimateBench NRMSE"
+      - "迁移与冻结骨干对照"
+    relevance: "ClimaX 说明异构变量、网格和物理来源可以共享预训练骨干，为本项目未来融合再分析、雷达和区域观测提供变量编码及迁移方案。其天气实验分辨率较粗且以确定性误差为主，既不提供原生集合分布，也没有验证公里尺度连续时间重建，因此适合作为表征学习参照而非生成式目标基线。"
+    verified_at: "2026-11-23"
+
+  - id: kochkov-2024-neuralgcm
+    title: "Neural general circulation models for weather and climate"
+    authors:
+      - "Dmitrii Kochkov"
+      - "Janni Yuval"
+      - "Ian Langmore"
+      - "Peter Norgaard"
+      - "Jamie Smith"
+      - "Griffin Mooers"
+      - "Milan Klöwer"
+      - "James Lottes"
+      - "Stephan Rasp"
+      - "Peter Düben"
+      - "Sam Hatfield"
+      - "Peter Battaglia"
+      - "Alvaro Sanchez-Gonzalez"
+      - "Matthew Willson"
+      - "Michael P. Brenner"
+      - "Stephan Hoyer"
+    year: 2024
+    venue: "Nature 632(8027), 1060–1066"
+    doi: "10.1038/s41586-024-07744-y"
+    url: "https://www.nature.com/articles/s41586-024-07744-y"
+    oa_url: "https://www.nature.com/articles/s41586-024-07744-y.pdf"
+    pdf_path: "reference/papers/weather-generative/kochkov-2024-neuralgcm.pdf"
+    sha256: "e1e95326c6f2068d9275cd33673cf49157bad107aa4f63684fee96c1bb46349c"
+    access: downloaded
+    methods:
+      - "可微大气动力核"
+      - "机器学习物理参数化"
+      - "多步轨迹端到端在线训练"
+      - "随机参数化集合预报"
+      - "确定性与随机混合 GCM"
+    datasets:
+      - "ERA5 多步天气轨迹"
+      - "2020 年留出天气预报及 ECMWF ENS/HRES 对照"
+      - "AMIP/CMIP6 气候试验"
+      - "X-SHiELD 云解析模拟与 RAOBCORE 探空资料"
+    metrics:
+      - "RMSE 与 RMSB"
+      - "CRPS"
+      - "集合离散度—技巧比"
+      - "长期气候漂移和气候平均态偏差"
+      - "热带气旋与可降水量统计"
+    relevance: "NeuralGCM 证明可微动力核与学习物理应在多步轨迹中联合训练，为 CfC 时间推进和物理增强提供比事后惩罚更强的设计依据，也覆盖集合与长期稳定性。其系统复杂且集合版本分辨率较粗，论文还报告增暖海温试验中的气候漂移，因此不能把可微性直接视为守恒、校准或区域高分辨率性能的保证。"
+    verified_at: "2026-11-23"
+
+  - id: price-2025-gencast
+    title: "Probabilistic weather forecasting with machine learning"
+    authors:
+      - "Ilan Price"
+      - "Alvaro Sanchez-Gonzalez"
+      - "Ferran Alet"
+      - "Tom R. Andersson"
+      - "Andrew El-Kadi"
+      - "Dominic Masters"
+      - "Timo Ewalds"
+      - "Jacklynn Stott"
+      - "Shakir Mohamed"
+      - "Peter Battaglia"
+      - "Remi Lam"
+      - "Matthew Willson"
+    year: 2025
+    venue: "Nature 637(8044), 84–90"
+    doi: "10.1038/s41586-024-08252-9"
+    url: "https://www.nature.com/articles/s41586-024-08252-9"
+    oa_url: "https://www.nature.com/articles/s41586-024-08252-9.pdf"
+    pdf_path: "reference/papers/weather-generative/price-2025-gencast.pdf"
+    sha256: "2af6b1493f3f357b68d5195bcae8d3c9578b8daed7dec02c1bb101c5f8eaedb7"
+    access: downloaded
+    methods:
+      - "条件扩散集合天气预报"
+      - "图结构去噪器"
+      - "双时次条件与 12 小时自回归生成"
+      - "50 成员集合与随机轨迹采样"
+    datasets:
+      - "ERA5 分析/再分析（1979–2018 训练，2019 评估）"
+      - "ECMWF ENS 业务集合对照"
+      - "热带气旋、极端天气和风电场景"
+    metrics:
+      - "CRPS 与空间池化 CRPS"
+      - "Brier skill score"
+      - "秩直方图与离散度—技巧关系"
+      - "空间功率谱"
+      - "热带气旋路径概率和决策价值"
+    relevance: "GenCast 是本项目最重要的全球概率预报参照：它把扩散采样从单时刻场生成扩展为可联合推进的天气轨迹，并系统检验集合技巧、校准、谱结构和决策价值。其 0.25°、12 小时全球设置与区域公里尺度时空超分辨仍有明显尺度差异，多步扩散采样成本较高，ERA5 评估也不能替代本地高分辨率观测检验。"
+    verified_at: "2026-11-23"
+
+  - id: bodnar-2025-aurora
+    title: "A foundation model for the Earth system"
+    authors:
+      - "Cristian Bodnar"
+      - "Wessel P. Bruinsma"
+      - "Ana Lucic"
+      - "Megan Stanley"
+      - "Anna Allen"
+      - "Johannes Brandstetter"
+      - "Patrick Garvan"
+      - "Maik Riechert"
+      - "Jonathan A. Weyn"
+      - "Haiyu Dong"
+      - "Jayesh K. Gupta"
+      - "Kit Thambiratnam"
+      - "Alexander T. Archibald"
+      - "Chun-Chieh Wu"
+      - "Elizabeth Heider"
+      - "Max Welling"
+      - "Richard E. Turner"
+      - "Paris Perdikaris"
+    year: 2025
+    venue: "Nature 641(8065), 1180–1187"
+    doi: "10.1038/s41586-025-09005-y"
+    url: "https://www.nature.com/articles/s41586-025-09005-y"
+    oa_url: "https://www.nature.com/articles/s41586-025-09005-y.pdf"
+    pdf_path: "reference/papers/weather-generative/bodnar-2025-aurora.pdf"
+    sha256: "66def5494ca66c3aa1bf1ad42c4501b1daa471e51ab887160e978fc8a8acd590"
+    access: downloaded
+    methods:
+      - "13 亿参数地球系统基础模型"
+      - "3D Swin Transformer 处理器"
+      - "Perceiver 异构变量编码器与解码器"
+      - "多源预训练、任务微调与 LoRA"
+    datasets:
+      - "超过一百万小时的再分析、分析、业务预报和气候模拟混合数据"
+      - "ERA5、HRES、IFS 集合等大气资料"
+      - "CAMS 空气质量与 HRES-WAM 海浪资料"
+      - "0.1° 全球天气和热带气旋路径任务"
+    metrics:
+      - "RMSE 与相对 RMSE scorecard"
+      - "极端事件阈值 RMSE"
+      - "热带气旋路径误差"
+      - "跨任务微调收益和推理成本"
+    relevance: "Aurora 展示统一骨干经预训练后向高分辨率天气、空气质量和海浪等任务低成本迁移，适合作为本项目后续跨数据源预训练与参数高效微调的上限参照。其主结果仍是确定性业务式预报，依赖大规模数据与算力，0.1° 全球预报也不等于区域公里尺度生成；对中小规模实验应先验证可迁移收益而非直接复刻模型规模。"
+    verified_at: "2026-11-23"
