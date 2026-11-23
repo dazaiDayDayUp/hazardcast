@@ -14,7 +14,7 @@
 ├── external/             上游代码（PhysicsNeMo、CfC）
 ├── reference/            按论文整理的本地文献
 ├── data/                 只读数据集入口
-├── checkpoints/          下载的模型权重
+├── pretrained/           下载的预训练模型
 └── runs/                 各次运行的配置、日志和产物
 ```
 

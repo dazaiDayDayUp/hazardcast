@@ -1,6 +1,6 @@
 /external/
 /data/
-/checkpoints/
+/pretrained/
 /runs/
 __pycache__/
 
